@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-amigo-blue: #E0F2FE;
+  --color-amigo-black: #111827;
+  --color-amigo-beige: #F5F5DC;
+
+  --font-sans: "Inter", "sans-serif";
+}
+
+:root {
+  background-color: var(--color-amigo-beige);
+  color: var(--color-amigo-black);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.btn-primary {
+  @apply bg-amigo-black text-white px-6 py-2.5 rounded-xl font-semibold hover:opacity-90 active:scale-95 transition-all cursor-pointer;
+}
+
+.btn-outline {
+  @apply border-2 border-amigo-black text-amigo-black px-6 py-2.5 rounded-xl font-semibold hover:bg-amigo-black hover:text-white active:scale-95 transition-all cursor-pointer;
+}
