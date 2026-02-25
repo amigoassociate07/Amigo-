@@ -8,12 +8,12 @@ const Footer = () => {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
                         <div className="flex items-center gap-3 mb-8">
-                            <div className="bg-corex-accent p-2 rounded-lg">
-                                <TrendingUp className="h-6 w-6 text-white" />
+                            <div className="bg-corex-accent h-10 w-10 rounded-lg flex items-center justify-center">
+                                <span className="text-white text-xl font-[950] italic tracking-tighter">A</span>
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-xl font-black tracking-tighter text-white leading-none">AMIGO</span>
-                                <span className="text-[10px] font-bold tracking-[0.2em] text-corex-accent">FINANCE</span>
+                                <span className="text-[10px] font-bold tracking-[0.2em] text-corex-accent">ASSOCIATE</span>
                             </div>
                         </div>
                         <p className="text-gray-400 text-sm leading-relaxed mb-8">
@@ -62,7 +62,7 @@ const Footer = () => {
 
                 <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-gray-500 text-[11px] text-center md:text-left font-medium max-w-2xl">
-                        © 2026 Amigo Finance. All rights reserved. Financial data is provided for informational purposes only. Past performance is not indicative of future results.
+                        © 2026 Amigo Associate. All rights reserved. Financial data is provided for informational purposes only. Past performance is not indicative of future results.
                     </p>
                     <div className="flex gap-8 text-[11px] text-gray-500 font-bold uppercase tracking-wider">
                         <a href="#" className="hover:text-white transition-colors">Terms</a>

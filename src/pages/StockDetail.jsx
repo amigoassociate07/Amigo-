@@ -99,7 +99,7 @@ const StockDetail = ({ stock, onBack }) => {
                         <div className="space-y-4">
                             <div className="flex items-center gap-3 text-[11px] font-bold text-corex-navy">
                                 <div className="p-2 bg-corex-gray rounded-lg"><Globe className="h-4 w-4 text-corex-accent" /></div>
-                                financial.amigo.io/{stock.symbol.toLowerCase()}
+                                amigo-associate.io/{stock.symbol.toLowerCase()}
                             </div>
                             <div className="flex items-center gap-3 text-[11px] font-bold text-corex-navy">
                                 <div className="p-2 bg-corex-gray rounded-lg"><Clock className="h-4 w-4 text-corex-accent" /></div>
