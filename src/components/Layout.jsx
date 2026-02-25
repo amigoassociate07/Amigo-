@@ -4,7 +4,7 @@ import Footer from './Footer';
 
 const Layout = ({ children, onHomeClick }) => {
     return (
-        <div className="min-h-screen flex flex-col bg-amigo-beige">
+        <div className="min-h-screen flex flex-col bg-corex-gray">
             <Navbar onHomeClick={onHomeClick} />
             <main className="flex-grow">
                 {children}

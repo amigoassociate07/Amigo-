@@ -1,27 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  --color-amigo-blue: #E0F2FE;
-  --color-amigo-black: #111827;
-  --color-amigo-beige: #F5F5DC;
+  --color-corex-navy: #0A2647;
+  --color-corex-blue: #144272;
+  --color-corex-accent: #C5A059;
+  --color-corex-white: #FFFFFF;
+  --color-corex-gray: #F8F9FA;
 
-  --font-sans: "Inter", "sans-serif";
+  --font-sans: "Inter", "system-ui", "sans-serif";
 }
 
 :root {
-  background-color: var(--color-amigo-beige);
-  color: var(--color-amigo-black);
+  background-color: var(--color-corex-white);
+  color: var(--color-corex-navy);
 }
 
 body {
   margin: 0;
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .btn-primary {
-  @apply bg-amigo-black text-white px-6 py-2.5 rounded-xl font-semibold hover:opacity-90 active:scale-95 transition-all cursor-pointer;
+  @apply bg-corex-navy text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-corex-blue active:scale-95 transition-all cursor-pointer shadow-sm;
+}
+
+.btn-accent {
+  @apply bg-corex-accent text-white px-6 py-2.5 rounded-lg font-semibold hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm;
 }
 
 .btn-outline {
-  @apply border-2 border-amigo-black text-amigo-black px-6 py-2.5 rounded-xl font-semibold hover:bg-amigo-black hover:text-white active:scale-95 transition-all cursor-pointer;
+  @apply border-2 border-corex-navy text-corex-navy px-6 py-2.5 rounded-lg font-semibold hover:bg-corex-navy hover:text-white active:scale-95 transition-all cursor-pointer;
+}
+
+.corex-card {
+  @apply bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow;
 }
