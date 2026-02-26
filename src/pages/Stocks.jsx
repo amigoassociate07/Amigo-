@@ -3,24 +3,21 @@ import { Search, ArrowUpRight, ArrowDownRight, Filter, Download, ChevronRight, T
 import { motion, AnimatePresence } from 'framer-motion';
 import StockDetail from './StockDetail';
 
-const MOCK_STOCKS = [
-    { id: 1, symbol: 'TCS', name: 'Tata Consultancy Services', price: 4120.50, change: +1.24, volume: '2.4M', marketCap: '14.8T' },
-    { id: 2, symbol: 'HCLTECH', name: 'HCL Technologies', price: 1650.12, change: -0.45, volume: '1.8M', marketCap: '4.5T' },
-    { id: 3, symbol: 'HDFCBANK', name: 'HDFC Bank Ltd', price: 1745.32, change: +0.82, volume: '8.2M', marketCap: '13.2T' },
-    { id: 4, symbol: 'ICICIBANK', name: 'ICICI Bank Ltd', price: 1274.45, change: +2.15, volume: '15.1M', marketCap: '9.1T' },
-    { id: 5, symbol: 'MARUTI', name: 'Maruti Suzuki India Ltd', price: 11726.13, change: +4.32, volume: '0.7M', marketCap: '3.7T' },
-    { id: 6, symbol: 'M&M', name: 'Mahindra & Mahindra Ltd', price: 2993.57, change: -1.82, volume: '2.3M', marketCap: '3.6T' },
-    { id: 7, symbol: 'RELIANCE', name: 'Reliance Industries Ltd', price: 3024.03, change: +0.12, volume: '5.6M', marketCap: '20.4T' },
-    { id: 8, symbol: 'ITC', name: 'ITC Ltd (ITC)', price: 478.20, change: -0.22, volume: '13.1M', marketCap: '5.9T' },
-];
-
-const Stocks = ({ selectedStock, setSelectedStock }) => {
+const Stocks = ({ selectedStock, setSelectedStock, stocks }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
-    const filteredStocks = MOCK_STOCKS.filter(stock =>
+    const filteredStocks = stocks.filter(stock =>
         stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
         stock.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    const handleStockClick = (stock) => {
+        if (['TCS', 'HCLTECH', 'HDFCBANK', 'ICICIBANK', 'MARUTI', 'M&M', 'RELIANCE', 'ITC'].includes(stock.symbol)) {
+            window.open(`${window.location.origin}${window.location.pathname}?stock=${stock.symbol}`, '_blank');
+        } else {
+            setSelectedStock(stock);
+        }
+    };
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -124,7 +121,7 @@ const Stocks = ({ selectedStock, setSelectedStock }) => {
                                         {filteredStocks.map((stock) => (
                                             <tr
                                                 key={stock.id}
-                                                onClick={() => setSelectedStock(stock)}
+                                                onClick={() => handleStockClick(stock)}
                                                 className="hover:bg-corex-gray/50 transition-all cursor-pointer group"
                                             >
                                                 <td className="px-8 py-6 whitespace-nowrap">
