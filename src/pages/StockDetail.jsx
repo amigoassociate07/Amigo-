@@ -17,8 +17,13 @@ const StockDetail = ({ stock, onBack }) => {
         'ITC': ITC_DETAILED_DATA
     };
 
-    const detailData = stockDataMap[stock.symbol];
-    const hasDetailReport = !!detailData;
+    const detailData = stockDataMap[stock.symbol] || {
+        description: `${stock.name} (${stock.symbol}) is a publicly traded company listed on the National Stock Exchange of India. This is a synthetic asset overview as a detailed institutional intelligence report is not currently maintained in our primary database for this ticker.`,
+        keyDetails: {
+            website: `https://www.nseindia.com/get-quotes/equity?symbol=${stock.symbol}`
+        }
+    };
+    const hasDetailReport = !!stockDataMap[stock.symbol];
 
     // Simple SVG Pie Chart Component
     const StockPieChart = ({ data }) => {
@@ -69,7 +74,7 @@ const StockDetail = ({ stock, onBack }) => {
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-[32px] shadow-2xl shadow-corex-navy/10 border border-gray-100 overflow-hidden max-w-7xl mx-auto mb-12"
+            className="bg-white rounded-[32px] shadow-2xl shadow-corex-navy/10 border border-gray-100 overflow-hidden max-w-[1800px] mx-auto mb-12"
         >
             {/* Header Section */}
             <div className="bg-corex-navy p-10 text-white relative overflow-hidden">
@@ -88,7 +93,21 @@ const StockDetail = ({ stock, onBack }) => {
                             <span className="bg-corex-accent text-white px-3 py-1.5 rounded-lg font-black text-[10px] tracking-[0.2em] uppercase shadow-lg shadow-corex-accent/20">{stock.symbol}</span>
                             <span className="text-gray-400 text-[10px] font-black uppercase tracking-widest">National Stock Exchange • Institutional Grade</span>
                         </div>
-                        <h2 className="text-6xl font-black text-white tracking-tight leading-tight">{stock.name}</h2>
+                        <div className="flex items-center gap-6">
+                            <h2 className="text-6xl font-black text-white tracking-tight leading-tight">{stock.name}</h2>
+                            {detailData.keyDetails?.website && (
+                                <a
+                                    href={detailData.keyDetails.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="p-3 bg-white/10 hover:bg-corex-accent text-white rounded-xl transition-all shadow-lg backdrop-blur-sm group/web flex items-center gap-2"
+                                    title="Visit Official Website"
+                                >
+                                    <Globe className="h-5 w-5" />
+                                    <span className="text-[10px] font-black uppercase tracking-widest hidden group-hover/web:block">Official Website</span>
+                                </a>
+                            )}
+                        </div>
                     </div>
                     <div className="text-right">
                         <div className="text-7xl font-black mb-2 tracking-tighter">₹{stock.price.toLocaleString()}</div>
@@ -395,9 +414,11 @@ const StockDetail = ({ stock, onBack }) => {
                                     Synthesized intelligence report providing fundamental analysis and proprietary sentiment scoring for <span className="text-corex-navy font-black">{stock.name}</span>.
                                 </p>
                                 <div className="space-y-4">
-                                    <div className="flex items-center gap-3 text-[11px] font-bold text-corex-navy">
+                                    <div className="flex items-center gap-3 text-[11px] font-bold text-corex-navy overflow-hidden">
                                         <div className="p-2 bg-corex-gray rounded-lg"><Globe className="h-4 w-4 text-corex-accent" /></div>
-                                        amigo-associate.io/{stock.symbol.toLowerCase()}
+                                        <a href={detailData.keyDetails?.website || "#"} target="_blank" rel="noopener noreferrer" className="hover:text-corex-accent transition-colors truncate">
+                                            {detailData.keyDetails?.website ? detailData.keyDetails.website.replace('https://', '').replace('http://', '') : `amigo-associate.io/${stock.symbol.toLowerCase()}`}
+                                        </a>
                                     </div>
                                     <div className="flex items-center gap-3 text-[11px] font-bold text-corex-navy">
                                         <div className="p-2 bg-corex-gray rounded-lg"><Clock className="h-4 w-4 text-corex-accent" /></div>

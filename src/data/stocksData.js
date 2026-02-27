@@ -11,7 +11,8 @@ export const TCS_DETAILED_DATA = {
         revenue: "Reported consolidated revenue of $30 billion as of the end of the 2025 fiscal year.",
         keyServices: "Digital transformation, IT services, Consulting, Business Solutions, Cloud Services, Artificial Intelligence (AI), and Engineering.",
         majorPlatforms: "TCS BaNCS™, TCS iON, ignio™, and Quartz.",
-        stockInformation: "Listed on NSE (TCS) and BSE (532540)."
+        stockInformation: "Listed on NSE (TCS) and BSE (532540).",
+        website: "https://www.tcs.com"
     },
     highlights: [
         { title: "Market Leadership", content: "Recognized as one of the world's largest and most reputable IT service brands." },
@@ -74,7 +75,8 @@ export const HCLTECH_DETAILED_DATA = {
         revenue: "Reported consolidated revenue of $13.84 billion (₹117,055 Cr) for FY25.",
         keyServices: "IT and Business Services, Engineering and R&D Services, and HCL Software.",
         majorPlatforms: "HCL AI Force, Career Shaper, and HCL Software Data Intelligence.",
-        stockInformation: "Listed on NSE (HCLTECH) and BSE (532281)."
+        stockInformation: "Listed on NSE (HCLTECH) and BSE (532281).",
+        website: "https://www.hcltech.com"
     },
     highlights: [
         { title: "AI-First Leadership", content: "Successfully upskilled over 106,000 employees in GenAI during FY25." },
@@ -137,7 +139,8 @@ export const HDFCBANK_DETAILED_DATA = {
         revenue: "Reported consolidated total revenue of ₹4.70 lakh crore ($56B) for FY25.",
         keyServices: "Wholesale Banking, Retail Banking, Treasury, Auto Loans, and Mortgage Services.",
         majorPlatforms: "Project Indra (GenAI), Payzapp, and SmartHub Vyapar.",
-        stockInformation: "Listed on NSE (HDFCBANK) and BSE (500180)."
+        stockInformation: "Listed on NSE (HDFCBANK) and BSE (500180).",
+        website: "https://www.hdfcbank.com"
     },
     highlights: [
         { title: "Institutional Powerhouse", content: "World's 10th largest bank by market cap with over 93 million customers." },
@@ -200,7 +203,8 @@ export const ICICIBANK_DETAILED_DATA = {
         revenue: "Reported annual revenue of ~$34.76 billion for 2025.",
         keyServices: "Personal Banking, Business Banking, Loans, Wealth Management, and NR Services.",
         majorPlatforms: "iMobile Pay (Interoperable), iPal (AI Assistant), and ICICI STACK.",
-        stockInformation: "Listed on NSE (ICICIBANK) and BSE (532174)."
+        stockInformation: "Listed on NSE (ICICIBANK) and BSE (532174).",
+        website: "https://www.icicibank.com"
     },
     highlights: [
         { title: "Digital Pioneer", content: "First Indian bank to launch a comprehensive interoperable payments app (iMobile Pay)." },
@@ -263,7 +267,8 @@ export const MARUTI_DETAILED_DATA = {
         revenue: "Record net sales of ₹1.45 trillion for FY25.",
         keyServices: "Manufacturing and Sale of Passenger Vehicles, Spare Parts, and Accessories.",
         majorPlatforms: "HEARTECT Platform, e VITARA (BEV), and Suzuki Connect.",
-        stockInformation: "Listed on NSE (MARUTI) and BSE (532500)."
+        stockInformation: "Listed on NSE (MARUTI) and BSE (532500).",
+        website: "https://www.marutisuzuki.com"
     },
     highlights: [
         { title: "Market Dominance", content: "Maintains ~40% market share in the Indian passenger vehicle segment." },
@@ -326,7 +331,8 @@ export const RELIANCE_DETAILED_DATA = {
         revenue: "TRAILING 12 MONTH revenue of ~₹10.57 Trillion (FY25).",
         keyServices: "Energy Transition, Retail, Digital Ecosystem (Jio), and Materials.",
         majorPlatforms: "Jio Brain (AI), Jamnagar Giga Complex, and Jio TvOS.",
-        stockInformation: "Listed on NSE (RELIANCE) and BSE (500325)."
+        stockInformation: "Listed on NSE (RELIANCE) and BSE (500325).",
+        website: "https://www.relianceindustries.com"
     },
     highlights: [
         { title: "Revenue Leadership", content: "Consolidated quarterly revenue reached ₹2.69 lakh crore in Q3 FY26." },
@@ -389,7 +395,8 @@ export const ITC_DETAILED_DATA = {
         revenue: "Gross Revenue of ₹81,612 Cr for FY25.",
         keyServices: "FMCG (Cigarettes, Foods, Personal Care), Agri-Business, and Paperboards.",
         majorPlatforms: "ITC MAARS (Agri-Advisory), Sixth Sense Centre (AI Insights).",
-        stockInformation: "Listed on NSE (ITC) and BSE (500875)."
+        stockInformation: "Listed on NSE (ITC) and BSE (500875).",
+        website: "https://www.itcportal.com"
     },
     highlights: [
         { title: "Hotel Demerger", content: "Successfully demerged ITC Hotels into a separate listed entity (Jan 2025)." },
@@ -452,7 +459,8 @@ export const MM_DETAILED_DATA = {
         revenue: "Record consolidated revenue of ₹1.59 trillion for FY25.",
         keyServices: "Manufacturing of SUVs, Commercial Vehicles, Tractors, and Farm Machinery.",
         majorPlatforms: "INGLO Brand Electric Platform, Born Electric SUVs (BE series).",
-        stockInformation: "Listed on NSE (M&M) and BSE (500520)."
+        stockInformation: "Listed on NSE (M&M) and BSE (500520).",
+        website: "https://www.mahindra.com"
     },
     highlights: [
         { title: "Financial Landmark", content: "Quarterly revenue crossed ₹50,000 Cr for the first time in Q3 FY26 (₹52,100 Cr)." },

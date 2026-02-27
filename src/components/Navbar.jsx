@@ -6,7 +6,7 @@ const Navbar = ({ onHomeClick, onStocksClick, activePage }) => {
 
     return (
         <nav className="bg-corex-navy text-white sticky top-0 z-50 shadow-xl border-b border-white/10">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <div className="flex items-center">
@@ -42,6 +42,7 @@ const Navbar = ({ onHomeClick, onStocksClick, activePage }) => {
                             </a>
                             <a
                                 href="#"
+                                onClick={(e) => e.preventDefault()}
                                 className="text-gray-300 hover:text-corex-accent px-4 py-2 rounded-md text-sm font-semibold transition-all hover:bg-white/5"
                             >
                                 Portfolio
@@ -72,60 +73,8 @@ const Navbar = ({ onHomeClick, onStocksClick, activePage }) => {
                         </div>
                     </div>
 
-                    {/* Mobile menu button */}
-                    <div className="md:hidden flex items-center">
-                        <button
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
-                        >
-                            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                        </button>
-                    </div>
                 </div>
             </div>
-
-            {/* Mobile Menu */}
-            {isMenuOpen && (
-                <div className="md:hidden bg-corex-navy border-t border-white/10">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <a
-                            href="#"
-                            onClick={(e) => { onHomeClick(e); setIsMenuOpen(false); }}
-                            className={`block px-3 py-3 rounded-md text-base font-semibold transition-colors ${activePage === 'home' ? 'text-corex-accent bg-white/5' : 'text-gray-300 hover:text-corex-accent'
-                                }`}
-                        >
-                            Home
-                        </a>
-                        <a
-                            href="#"
-                            onClick={(e) => { onStocksClick(e); setIsMenuOpen(false); }}
-                            className={`block px-3 py-3 rounded-md text-base font-semibold transition-colors ${activePage === 'stocks' ? 'text-corex-accent bg-white/5' : 'text-gray-300 hover:text-corex-accent'
-                                }`}
-                        >
-                            Stocks
-                        </a>
-                        <a
-                            href="#"
-                            className="text-gray-300 hover:text-corex-accent block px-3 py-3 rounded-md text-base font-semibold transition-colors"
-                        >
-                            Portfolio
-                        </a>
-                        <a
-                            href="https://news-indol-two.vercel.app/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-300 hover:text-corex-accent block px-3 py-3 rounded-md text-base font-semibold transition-colors"
-                        >
-                            News
-                        </a>
-                    </div>
-                    <div className="pt-4 pb-3 border-t border-white/10 px-5 flex flex-col gap-4">
-                        <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-corex-accent transition-colors cursor-default text-center leading-tight">
-                            Authorised By Arihant Capital Markets LTD
-                        </div>
-                    </div>
-                </div>
-            )}
         </nav>
     );
 };

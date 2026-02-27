@@ -1,26 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, ArrowUpRight, ArrowDownRight, Filter, Download, ChevronRight, TrendingUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import StockDetail from './StockDetail';
 
 const Stocks = ({ selectedStock, setSelectedStock, stocks }) => {
     const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm]);
 
     const filteredStocks = stocks.filter(stock =>
         stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
         stock.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const totalPages = Math.ceil(filteredStocks.length / itemsPerPage);
+    const displayedStocks = filteredStocks.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+    const displayStart = filteredStocks.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0;
+    const displayEnd = Math.min(currentPage * itemsPerPage, filteredStocks.length);
+
     const handleStockClick = (stock) => {
-        if (['TCS', 'HCLTECH', 'HDFCBANK', 'ICICIBANK', 'MARUTI', 'M&M', 'RELIANCE', 'ITC'].includes(stock.symbol)) {
-            window.open(`${window.location.origin}${window.location.pathname}?stock=${stock.symbol}`, '_blank');
-        } else {
-            setSelectedStock(stock);
-        }
+        // Now navigating internally within the same window as requested.
+        setSelectedStock(stock);
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <AnimatePresence mode="wait">
                 {!selectedStock ? (
                     <motion.div
@@ -40,7 +48,7 @@ const Stocks = ({ selectedStock, setSelectedStock, stocks }) => {
                                     Stock Explorer
                                 </h1>
                                 <p className="text-gray-500 font-medium max-w-xl">
-                                    Track and analyze market-leading companies with our advanced institutional-grade intelligence platform.
+                                    Our platform lists all NSE and BSE companies with last 24-hour (end-of-day) price data from Dhan Stock List. No real-time prices.
                                 </p>
                             </div>
                             <div className="flex gap-4 w-full md:w-auto">
@@ -118,7 +126,7 @@ const Stocks = ({ selectedStock, setSelectedStock, stocks }) => {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-50">
-                                        {filteredStocks.map((stock) => (
+                                        {displayedStocks.map((stock) => (
                                             <tr
                                                 key={stock.id}
                                                 onClick={() => handleStockClick(stock)}
@@ -129,7 +137,9 @@ const Stocks = ({ selectedStock, setSelectedStock, stocks }) => {
                                                 </td>
                                                 <td className="px-8 py-6 whitespace-nowrap">
                                                     <div className="text-sm font-black text-corex-navy group-hover:text-corex-accent transition-colors">{stock.name}</div>
-                                                    <div className="text-[10px] font-bold text-gray-400 uppercase mt-0.5 tracking-wider">National Stock Exchange</div>
+                                                    <div className="text-[10px] font-bold text-gray-400 uppercase mt-0.5 tracking-wider">
+                                                        National Stock Exchange {['TCS', 'HCLTECH', 'HDFCBANK', 'ICICIBANK', 'MARUTI', 'M&M', 'RELIANCE', 'ITC'].includes(stock.symbol) && '• Institutional Grade'}
+                                                    </div>
                                                 </td>
                                                 <td className="px-8 py-6 whitespace-nowrap text-right text-sm font-black text-corex-navy">
                                                     ₹{stock.price.toLocaleString()}
@@ -166,10 +176,24 @@ const Stocks = ({ selectedStock, setSelectedStock, stocks }) => {
                             )}
 
                             <div className="p-8 bg-gray-50/50 border-t border-gray-100 flex justify-between items-center bg-white">
-                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Displaying 1 - 8 of 50 Global Assets</span>
+                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                                    Displaying {displayStart} - {displayEnd} of {filteredStocks.length} Companies • Data Source: Dhan (EOD)
+                                </span>
                                 <div className="flex gap-3">
-                                    <button className="px-6 py-2.5 text-xs font-black text-gray-300 border border-gray-200 rounded-xl cursor-not-allowed uppercase tracking-wider transition-all">Previous</button>
-                                    <button className="px-6 py-2.5 text-xs font-black text-corex-navy bg-white border border-gray-200 rounded-xl hover:bg-corex-navy hover:text-white hover:border-corex-navy transition-all uppercase tracking-wider shadow-sm">Next Page</button>
+                                    <button
+                                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                        disabled={currentPage === 1}
+                                        className={`px-6 py-2.5 text-xs font-black uppercase tracking-wider transition-all border rounded-xl ${currentPage === 1 ? 'text-gray-300 border-gray-200 cursor-not-allowed' : 'text-corex-navy bg-white border-gray-200 hover:bg-corex-navy hover:text-white hover:border-corex-navy shadow-sm'}`}
+                                    >
+                                        Previous
+                                    </button>
+                                    <button
+                                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                        disabled={currentPage === totalPages || totalPages === 0}
+                                        className={`px-6 py-2.5 text-xs font-black uppercase tracking-wider transition-all border rounded-xl ${currentPage === totalPages || totalPages === 0 ? 'text-gray-300 border-gray-200 cursor-not-allowed' : 'text-corex-navy bg-white border-gray-200 hover:bg-corex-navy hover:text-white hover:border-corex-navy shadow-sm'}`}
+                                    >
+                                        Next Page
+                                    </button>
                                 </div>
                             </div>
                         </div>

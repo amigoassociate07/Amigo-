@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import MobileBottomNav from './MobileBottomNav';
 
 const Layout = ({ children, onHomeClick, onStocksClick, activePage }) => {
     return (
@@ -10,9 +11,14 @@ const Layout = ({ children, onHomeClick, onStocksClick, activePage }) => {
                 onStocksClick={onStocksClick}
                 activePage={activePage}
             />
-            <main className="flex-grow">
+            <main className="flex-grow pb-24 md:pb-0">
                 {children}
             </main>
+            <MobileBottomNav
+                activePage={activePage}
+                onHomeClick={onHomeClick}
+                onStocksClick={onStocksClick}
+            />
             <Footer />
         </div>
     );

@@ -21,7 +21,7 @@ const Home = ({ onExploreClick }) => {
                     <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#38BDF8_1px,transparent_1px)] [background-size:40px_40px]"></div>
                 </div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
@@ -126,7 +126,7 @@ const Home = ({ onExploreClick }) => {
 
             {/* Stats Section */}
             <section className="py-24 bg-white border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid md:grid-cols-4 gap-12 text-center lg:text-left">
                         {[
                             { value: '$420B+', label: 'Managed Assets', icon: Globe2 },
@@ -152,7 +152,7 @@ const Home = ({ onExploreClick }) => {
 
             {/* Feature Section */}
             <section className="py-32 bg-corex-gray">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-24">
                         <div className="flex justify-center items-center gap-3 mb-6">
                             <div className="h-1 w-8 bg-corex-accent rounded-full"></div>
@@ -209,7 +209,7 @@ const Home = ({ onExploreClick }) => {
                 <div className="absolute inset-0 bg-corex-navy"></div>
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-corex-accent/5 skew-x-[-20deg] translate-x-32"></div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                     <h2 className="text-4xl lg:text-6xl font-black text-white tracking-tighter mb-10 leading-none">
                         Ready to join the <br />
                         <span className="text-corex-accent italic">Elite tier</span> of finance?
