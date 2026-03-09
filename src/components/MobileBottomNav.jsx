@@ -1,7 +1,7 @@
 import React from 'react';
 import { Home, TrendingUp, Briefcase, Newspaper } from 'lucide-react';
 
-const MobileBottomNav = ({ activePage, onHomeClick, onStocksClick }) => {
+const MobileBottomNav = ({ activePage, onHomeClick, onStocksClick, onPortfolioClick }) => {
     return (
         <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-corex-navy/90 backdrop-blur-2xl border-t border-white/10 pb-safe">
             <div className="flex justify-around items-center h-20 px-2 pb-2">
@@ -20,8 +20,8 @@ const MobileBottomNav = ({ activePage, onHomeClick, onStocksClick }) => {
                     <span className="text-[10px] font-bold tracking-wider">Stocks</span>
                 </button>
                 <button
-                    onClick={(e) => e.preventDefault()}
-                    className="flex flex-col items-center justify-center w-full h-full space-y-1 text-gray-400 hover:text-gray-200 transition-colors"
+                    onClick={(e) => { if (onPortfolioClick) onPortfolioClick(e); }}
+                    className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors ${activePage === 'portfolio' ? 'text-corex-accent' : 'text-gray-400 hover:text-gray-200'}`}
                 >
                     <Briefcase className="h-6 w-6" />
                     <span className="text-[10px] font-bold tracking-wider">Portfolio</span>

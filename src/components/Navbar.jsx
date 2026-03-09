@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { TrendingUp, Menu, X, Search, Bell } from 'lucide-react';
 
-const Navbar = ({ onHomeClick, onStocksClick, activePage }) => {
+const Navbar = ({ onHomeClick, onStocksClick, onPortfolioClick, activePage }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
         <nav className="bg-corex-navy text-white sticky top-0 z-50 shadow-xl border-b border-white/10">
             <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-20">
+                <div className="flex items-center justify-center md:justify-between h-20 relative">
                     {/* Logo */}
-                    <div className="flex items-center">
+                    <div className="flex items-center w-full md:w-auto justify-center md:justify-start">
                         <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onClick={onHomeClick}>
                             <div className="bg-corex-accent h-11 w-11 rounded-lg group-hover:scale-105 transition-transform flex items-center justify-center">
                                 <span className="text-white text-2xl font-[950] italic tracking-tighter">A</span>
@@ -42,8 +42,9 @@ const Navbar = ({ onHomeClick, onStocksClick, activePage }) => {
                             </a>
                             <a
                                 href="#"
-                                onClick={(e) => e.preventDefault()}
-                                className="text-gray-300 hover:text-corex-accent px-4 py-2 rounded-md text-sm font-semibold transition-all hover:bg-white/5"
+                                onClick={(e) => { e.preventDefault(); if (onPortfolioClick) onPortfolioClick(e); }}
+                                className={`px-4 py-2 rounded-md text-sm font-semibold transition-all hover:bg-white/5 ${activePage === 'portfolio' ? 'text-corex-accent' : 'text-gray-300 hover:text-corex-accent'
+                                    }`}
                             >
                                 Portfolio
                             </a>

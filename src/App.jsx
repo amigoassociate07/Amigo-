@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Stocks from './pages/Stocks';
+import Portfolio from './pages/Portfolio';
+import Careers from './pages/Careers';
+import Contact from './pages/Contact';
 
 import { MOCK_STOCKS } from './data/mockStocks';
 
 function App() {
-  const [activePage, setActivePage] = useState('home'); // 'home' or 'stocks'
+  const [activePage, setActivePage] = useState('home'); // 'home', 'stocks', 'portfolio', 'careers', 'contact'
   const [selectedStock, setSelectedStock] = useState(null);
 
   useEffect(() => {
@@ -37,16 +40,48 @@ function App() {
     setSelectedStock(null);
   };
 
+  const handlePortfolioClick = (e) => {
+    if (e) e.preventDefault();
+    setActivePage('portfolio');
+    setSelectedStock(null);
+  };
+
+  const handleCareersClick = (e) => {
+    if (e) e.preventDefault();
+    setActivePage('careers');
+    setSelectedStock(null);
+  };
+
+  const handleContactClick = (e) => {
+    if (e) e.preventDefault();
+    setActivePage('contact');
+    setSelectedStock(null);
+  };
+
+
   return (
     <Layout
       onHomeClick={handleHomeClick}
       onStocksClick={handleStocksClick}
+      onPortfolioClick={handlePortfolioClick}
+      onCareersClick={handleCareersClick}
+      onContactClick={handleContactClick}
       activePage={activePage}
     >
-      {activePage === 'home' ? (
+      {activePage === 'home' && (
         <Home onExploreClick={() => setActivePage('stocks')} />
-      ) : (
+      )}
+      {activePage === 'stocks' && (
         <Stocks selectedStock={selectedStock} setSelectedStock={setSelectedStock} stocks={MOCK_STOCKS} />
+      )}
+      {activePage === 'portfolio' && (
+        <Portfolio />
+      )}
+      {activePage === 'careers' && (
+        <Careers />
+      )}
+      {activePage === 'contact' && (
+        <Contact />
       )}
     </Layout>
   );

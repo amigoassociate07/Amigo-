@@ -33,8 +33,8 @@ const Home = ({ onExploreClick }) => {
                                 <span className="text-xs font-black uppercase tracking-[0.4em] text-corex-accent">Institutional Finance</span>
                             </div>
                             <h1 className="text-5xl lg:text-7xl font-black text-white leading-[1.1] mb-8 tracking-tighter">
-                                Intelligence <br />
-                                <span className="text-corex-accent italic">Beyond</span> Limits.
+                                Trustworthy <br />
+                                <span className="text-corex-accent italic">Smart</span> Investments.
                             </h1>
                             <p className="text-xl text-gray-400 mb-10 leading-relaxed max-w-lg font-medium">
                                 Elevate your capital management with institutional-grade analytics, real-time market foresight, and automated intelligence.
@@ -109,7 +109,7 @@ const Home = ({ onExploreClick }) => {
                             <motion.div
                                 animate={{ y: [0, -20, 0] }}
                                 transition={{ duration: 4, repeat: Infinity }}
-                                className="absolute -bottom-14 -left-10 bg-white p-4 rounded-2xl shadow-2xl hidden lg:block"
+                                className="absolute -bottom-32 -left-48 bg-white p-4 rounded-2xl shadow-2xl hidden lg:block"
                             >
                                 <div className="flex items-center gap-3">
                                     <div className="w-2 h-10 bg-green-500 rounded-full"></div>
@@ -127,12 +127,12 @@ const Home = ({ onExploreClick }) => {
             {/* Stats Section */}
             <section className="py-24 bg-white border-b border-gray-100">
                 <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-4 gap-12 text-center lg:text-left">
+                    <div className="grid md:grid-cols-4 gap-12 text-center">
                         {[
                             { value: '$420B+', label: 'Managed Assets', icon: Globe2 },
                             { value: '1.2M+', label: 'Global Trade Nodes', icon: TrendingUp },
                             { value: '99.99%', label: 'Uptime Precision', icon: Shield },
-                            { value: '850K+', label: 'Executive Clients', icon: Users2 }
+                            { value: '12Cr', label: 'Active Trader', icon: Users2 }
                         ].map((stat, i) => (
                             <motion.div
                                 key={i}
@@ -141,7 +141,7 @@ const Home = ({ onExploreClick }) => {
                                 transition={{ delay: i * 0.1 }}
                                 className="group"
                             >
-                                <stat.icon className="h-8 w-8 text-corex-accent mb-6 mx-auto lg:mx-0 group-hover:scale-110 transition-transform" />
+                                <stat.icon className="h-8 w-8 text-corex-accent mb-6 mx-auto group-hover:scale-110 transition-transform" />
                                 <p className="text-4xl font-black text-corex-navy mb-2 tracking-tighter">{stat.value}</p>
                                 <p className="text-xs font-black text-gray-400 uppercase tracking-widest">{stat.label}</p>
                             </motion.div>
