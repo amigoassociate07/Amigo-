@@ -45,16 +45,12 @@ const Footer = ({ onCareersClick, onContactClick, onStocksClick }) => {
                     </div>
 
                     <div className="flex flex-col items-center md:items-start">
-                        <h3 className="text-white font-bold mb-8 uppercase text-xs tracking-widest border-b border-corex-accent/30 pb-2 inline-block">Newsletter</h3>
-                        <p className="text-sm text-gray-400 mb-6 font-medium text-center md:text-left">Get professional market summaries delivered to your inbox.</p>
-                        <form className="flex flex-col gap-3 w-full max-w-xs md:max-w-full mx-auto md:mx-0">
-                            <input
-                                type="email"
-                                placeholder="Email address"
-                                className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-corex-accent w-full text-white placeholder:text-gray-500 transition-all text-center md:text-left"
-                            />
-                            <button className="btn-accent w-full py-3 font-bold text-sm">Subscribe Now</button>
-                        </form>
+                        <h3 className="text-white font-bold mb-8 uppercase text-xs tracking-widest border-b border-corex-accent/30 pb-2 inline-block">Address</h3>
+                        <div className="text-sm text-gray-400 font-medium text-center md:text-left space-y-2">
+                            <p>Vijay Nagar / PU-4</p>
+                            <p>Orbit Mall, 3rd Floor, Office No. 312</p>
+                            <p>Indore</p>
+                        </div>
                     </div>
                 </div>
 
