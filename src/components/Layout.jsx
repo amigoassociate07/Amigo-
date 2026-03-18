@@ -3,13 +3,15 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import MobileBottomNav from './MobileBottomNav';
 
-const Layout = ({ children, onHomeClick, onStocksClick, onPortfolioClick, onCareersClick, onContactClick, activePage }) => {
+const Layout = ({ children, onHomeClick, onStocksClick, onPortfolioClick, onCareersClick, onContactClick, onAdminClick, onAboutClick, onIpoClick, activePage }) => {
     return (
         <div className="min-h-screen flex flex-col bg-corex-gray">
             <Navbar
                 onHomeClick={onHomeClick}
                 onStocksClick={onStocksClick}
                 onPortfolioClick={onPortfolioClick}
+                onAboutClick={onAboutClick}
+                onIpoClick={onIpoClick}
                 activePage={activePage}
             />
             <main className="flex-grow">
@@ -20,11 +22,14 @@ const Layout = ({ children, onHomeClick, onStocksClick, onPortfolioClick, onCare
                 onHomeClick={onHomeClick}
                 onStocksClick={onStocksClick}
                 onPortfolioClick={onPortfolioClick}
+                onIpoClick={onIpoClick}
             />
             <Footer
                 onCareersClick={onCareersClick}
                 onContactClick={onContactClick}
                 onStocksClick={onStocksClick}
+                onAdminClick={onAdminClick}
+                onIpoClick={onIpoClick}
             />
         </div>
     );

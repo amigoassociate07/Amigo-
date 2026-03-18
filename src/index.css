@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-corex-navy: #0A2647;
-  --color-corex-blue: #144272;
-  --color-corex-accent: #38BDF8;
-  --color-corex-white: #FFFFFF;
-  --color-corex-gray: #F8F9FA;
+  --color-corex-navy: #0f172a;
+  --color-corex-blue: #1e293b;
+  --color-corex-accent: #10b981;
+  --color-corex-white: #f8fafc;
+  --color-corex-gray: #f1f5f9;
 
   --font-sans: "Inter", "system-ui", "sans-serif";
 }

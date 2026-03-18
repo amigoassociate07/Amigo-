@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TrendingUp, Menu, X, Search, Bell } from 'lucide-react';
 
-const Navbar = ({ onHomeClick, onStocksClick, onPortfolioClick, activePage }) => {
+const Navbar = ({ onHomeClick, onStocksClick, onPortfolioClick, onAboutClick, onIpoClick, activePage }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
@@ -49,12 +49,28 @@ const Navbar = ({ onHomeClick, onStocksClick, onPortfolioClick, activePage }) =>
                                 Portfolio
                             </a>
                             <a
+                                href="#"
+                                onClick={(e) => { e.preventDefault(); if (onIpoClick) onIpoClick(e); }}
+                                className={`px-4 py-2 rounded-md text-sm font-semibold transition-all hover:bg-white/5 ${activePage === 'ipo' ? 'text-corex-accent' : 'text-gray-300 hover:text-corex-accent'
+                                    }`}
+                            >
+                                IPO
+                            </a>
+                            <a
                                 href="https://news-indol-two.vercel.app/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-gray-300 hover:text-corex-accent px-4 py-2 rounded-md text-sm font-semibold transition-all hover:bg-white/5"
                             >
                                 News
+                            </a>
+                            <a
+                                href="#"
+                                onClick={(e) => { e.preventDefault(); if (onAboutClick) onAboutClick(e); }}
+                                className={`px-4 py-2 rounded-md text-sm font-semibold transition-all hover:bg-white/5 ${activePage === 'about' ? 'text-corex-accent' : 'text-gray-300 hover:text-corex-accent'
+                                    }`}
+                            >
+                                About Us
                             </a>
                         </div>
                     </div>

@@ -56,8 +56,8 @@ const Contact = () => {
                                 {
                                     icon: MapPin,
                                     title: "Visit Us",
-                                    detail: "77 Wall Street",
-                                    sub: "New York, NY 10005, USA",
+                                    detail: "Orbit Mall A.B. Road Vijay Nagar",
+                                    sub: "Scheme 54 PU-4 3rd Floor, Office No.312 Indore Madhya Pradesh 452010",
                                     link: "#"
                                 }
                             ].map((info, i) => (

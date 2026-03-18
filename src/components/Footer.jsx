@@ -1,6 +1,6 @@
 import { Linkedin, Instagram } from 'lucide-react';
 
-const Footer = ({ onCareersClick, onContactClick, onStocksClick }) => {
+const Footer = ({ onCareersClick, onContactClick, onStocksClick, onAdminClick, onIpoClick }) => {
     return (
         <footer className="bg-corex-navy text-white pt-20 pb-24 md:pb-10 border-t border-white/10">
             <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,8 +30,8 @@ const Footer = ({ onCareersClick, onContactClick, onStocksClick }) => {
                         <h3 className="text-white font-bold mb-8 uppercase text-xs tracking-widest border-b border-corex-accent/30 pb-2 inline-block">Platform</h3>
                         <ul className="space-y-4 text-sm text-gray-400">
                             <li><a href="#" onClick={(e) => { e.preventDefault(); if (onStocksClick) onStocksClick(); }} className="hover:text-corex-accent transition-colors">Stocks Explorer</a></li>
-                            <li><a href="#" className="hover:text-corex-accent transition-colors">Market Heatmap</a></li>
                             <li><a href="#" className="hover:text-corex-accent transition-colors">Portfolio Tracker</a></li>
+                            <li><a href="#" onClick={(e) => { e.preventDefault(); if (onIpoClick) onIpoClick(); }} className="hover:text-corex-accent transition-colors">IPO Watch</a></li>
                         </ul>
                     </div>
 
@@ -47,15 +47,15 @@ const Footer = ({ onCareersClick, onContactClick, onStocksClick }) => {
                     <div className="flex flex-col items-center md:items-start">
                         <h3 className="text-white font-bold mb-8 uppercase text-xs tracking-widest border-b border-corex-accent/30 pb-2 inline-block">Address</h3>
                         <div className="text-sm text-gray-400 font-medium text-center md:text-left space-y-2">
-                            <p>Vijay Nagar / PU-4</p>
-                            <p>Orbit Mall, 3rd Floor, Office No. 312</p>
-                            <p>Indore</p>
+                            <p>Orbit Mall A.B. Road Vijay Nagar</p>
+                            <p>Scheme 54 PU-4 3rd Floor,</p>
+                            <p>Office No.312 Indore Madhya Pradesh 452010</p>
                         </div>
                     </div>
                 </div>
 
                 <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-gray-500 text-[11px] text-center md:text-left font-medium max-w-2xl">
+                    <p className="text-gray-500 text-[11px] text-center md:text-left font-medium">
                         © 2026 Amigo Associate. All rights reserved. Financial data is provided for informational purposes only. Past performance is not indicative of future results.
                     </p>
                     <div className="flex gap-4 md:gap-8 justify-center text-[11px] text-gray-500 font-bold uppercase tracking-wider flex-wrap">

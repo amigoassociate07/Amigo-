@@ -1,25 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Briefcase, Zap, Globe, TrendingUp, Users, Award, ChevronRight, Edit2, Trash2, Plus, X, Save } from 'lucide-react';
-import { INITIAL_POSITIONS } from '../data/careersData';
+import React from 'react';
+import { Briefcase, Zap, Globe, TrendingUp, Users, Award, ChevronRight } from 'lucide-react';
 
-const Careers = () => {
-    const [positions, setPositions] = useState([]);
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [isEditing, setIsEditing] = useState(false);
-    const [editingJob, setEditingJob] = useState(null);
-    const [showAdminLogin, setShowAdminLogin] = useState(false);
-
-    // Initialize positions from localStorage or careersData
-    useEffect(() => {
-        const savedPositions = localStorage.getItem('amigo_positions');
-        if (savedPositions) {
-            setPositions(JSON.parse(savedPositions));
-        } else {
-            setPositions(INITIAL_POSITIONS);
-            localStorage.setItem('amigo_positions', JSON.stringify(INITIAL_POSITIONS));
-        }
-    }, []);
-
+const Careers = ({ jobs, applicationLink }) => {
     const perks = [
         {
             icon: <Zap className="h-6 w-6 text-corex-accent" />,
@@ -52,49 +34,6 @@ const Careers = () => {
             description: "Competitive compensation with generous equity options. We win together."
         }
     ];
-
-    const savePositions = (updatedPositions) => {
-        setPositions(updatedPositions);
-        localStorage.setItem('amigo_positions', JSON.stringify(updatedPositions));
-    };
-
-    const handleAddJob = () => {
-        const newJob = {
-            id: Date.now().toString(),
-            title: "New Position",
-            department: "Engineering",
-            location: "On-site",
-            type: "Full-time",
-            description: ""
-        };
-        setEditingJob(newJob);
-        setIsEditing(true);
-    };
-
-    const handleEditJob = (job) => {
-        setEditingJob({ ...job });
-        setIsEditing(true);
-    };
-
-    const handleDeleteJob = (id) => {
-        if (window.confirm('Are you sure you want to delete this position?')) {
-            const updated = positions.filter(j => j.id !== id);
-            savePositions(updated);
-        }
-    };
-
-    const handleSaveJob = (e) => {
-        e.preventDefault();
-        let updated;
-        if (positions.find(j => j.id === editingJob.id)) {
-            updated = positions.map(j => j.id === editingJob.id ? editingJob : j);
-        } else {
-            updated = [...positions, editingJob];
-        }
-        savePositions(updated);
-        setIsEditing(false);
-        setEditingJob(null);
-    };
 
     return (
         <div className="bg-corex-navy min-h-screen text-white font-sans overflow-x-hidden">
@@ -176,18 +115,10 @@ const Careers = () => {
                             <h2 className="text-3xl md:text-5xl font-bold mb-2">Open Positions</h2>
                             <p className="text-gray-400">Join us in building the ultimate financial platform.</p>
                         </div>
-                        {isAdmin && (
-                            <button 
-                                onClick={handleAddJob}
-                                className="flex items-center gap-2 bg-corex-accent text-corex-navy px-4 py-2 rounded-lg font-bold hover:bg-white transition-colors"
-                            >
-                                <Plus className="w-4 h-4" /> Add Position
-                            </button>
-                        )}
                     </div>
 
                     <div className="space-y-4">
-                        {positions.map((job) => (
+                        {jobs.map((job) => (
                             <div key={job.id} className="group bg-white/5 border border-white/10 hover:border-corex-accent/50 rounded-xl p-6 transition-all flex flex-col gap-4 hover:bg-white/10">
                                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                                     <div>
@@ -202,33 +133,22 @@ const Careers = () => {
                                         </p>
                                     </div>
                                     <div className="flex items-center gap-4">
-                                        {isAdmin ? (
-                                            <div className="flex items-center gap-2">
-                                                <button 
-                                                    onClick={() => handleEditJob(job)}
-                                                    className="p-2 rounded-lg bg-white/5 hover:bg-corex-accent hover:text-corex-navy transition-all"
-                                                    title="Edit Position"
-                                                >
-                                                    <Edit2 className="w-4 h-4" />
-                                                </button>
-                                                <button 
-                                                    onClick={() => handleDeleteJob(job.id)}
-                                                    className="p-2 rounded-lg bg-white/5 hover:bg-red-500 text-white transition-all"
-                                                    title="Delete Position"
-                                                >
-                                                    <Trash2 className="w-4 h-4" />
-                                                </button>
-                                            </div>
-                                        ) : (
-                                            <>
-                                                <button className="hidden md:flex items-center gap-2 text-sm font-bold text-gray-400 group-hover:text-white transition-colors">
-                                                    Apply Now <ChevronRight className="w-4 h-4" />
-                                                </button>
-                                                <div className="md:hidden w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
-                                                    <ChevronRight className="w-4 h-4 text-gray-400" />
-                                                </div>
-                                            </>
-                                        )}
+                                        <a 
+                                            href={applicationLink} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="hidden md:flex items-center gap-2 text-sm font-bold text-gray-400 group-hover:text-white transition-colors cursor-pointer"
+                                        >
+                                            Apply Now <ChevronRight className="w-4 h-4" />
+                                        </a>
+                                        <a 
+                                            href={applicationLink} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="md:hidden w-8 h-8 rounded-full bg-white/5 flex items-center justify-center cursor-pointer"
+                                        >
+                                            <ChevronRight className="w-4 h-4 text-gray-400" />
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -238,110 +158,17 @@ const Careers = () => {
                     <div className="mt-12 text-center p-8 bg-corex-accent/10 border border-corex-accent/20 rounded-2xl relative">
                         <h3 className="text-xl font-bold mb-2">Don't see a fit?</h3>
                         <p className="text-gray-400 mb-6 max-w-md mx-auto">We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future openings.</p>
-                        <button className="bg-white/10 border border-white/20 hover:bg-white/20 text-white px-6 py-2 rounded-lg font-bold transition-colors text-sm">
-                            Submit General Application
-                        </button>
-                        
-                        {/* Admin Trigger */}
-                        <div 
-                            className="absolute bottom-4 right-4 group/admin"
-                            onClick={() => setIsAdmin(!isAdmin)}
+                        <a 
+                            href={applicationLink} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="inline-block bg-white/10 border border-white/20 hover:bg-white/20 text-white px-6 py-2 rounded-lg font-bold transition-colors text-sm"
                         >
-                            <div className={`p-2 rounded-full cursor-pointer transition-all duration-300 ${isAdmin ? 'bg-corex-accent text-corex-navy opacity-100' : 'bg-white/5 text-gray-400 opacity-20 hover:opacity-100 hover:bg-white/10'}`}>
-                                <Edit2 className="w-4 h-4" />
-                            </div>
-                            {!isAdmin && (
-                                <span className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black/80 text-[10px] py-1 px-2 rounded opacity-0 group-hover/admin:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                                    Toggle Admin Mode
-                                </span>
-                            )}
-                        </div>
+                            Submit General Application
+                        </a>
                     </div>
                 </div>
             </section>
-
-            {/* Edit Modal */}
-            {isEditing && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setIsEditing(false)}></div>
-                    <div className="relative bg-corex-navy border border-white/10 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl">
-                        <div className="p-6 border-b border-white/10 flex items-center justify-between">
-                            <h2 className="text-xl font-bold">{editingJob?.id ? 'Edit Position' : 'Add Position'}</h2>
-                            <button onClick={() => setIsEditing(false)} className="text-gray-400 hover:text-white">
-                                <X className="w-6 h-6" />
-                            </button>
-                        </div>
-                        <form onSubmit={handleSaveJob} className="p-6 space-y-4">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-gray-400">Title</label>
-                                    <input 
-                                        type="text" 
-                                        value={editingJob.title}
-                                        onChange={e => setEditingJob({...editingJob, title: e.target.value})}
-                                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 focus:border-corex-accent outline-none"
-                                        required
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-gray-400">Department</label>
-                                    <input 
-                                        type="text" 
-                                        value={editingJob.department}
-                                        onChange={e => setEditingJob({...editingJob, department: e.target.value})}
-                                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 focus:border-corex-accent outline-none"
-                                        required
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-gray-400">Location</label>
-                                    <input 
-                                        type="text" 
-                                        value={editingJob.location}
-                                        onChange={e => setEditingJob({...editingJob, location: e.target.value})}
-                                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 focus:border-corex-accent outline-none"
-                                        required
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-gray-400">Type</label>
-                                    <input 
-                                        type="text" 
-                                        value={editingJob.type}
-                                        onChange={e => setEditingJob({...editingJob, type: e.target.value})}
-                                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 focus:border-corex-accent outline-none"
-                                        required
-                                    />
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase tracking-wider text-gray-400">Description</label>
-                                <textarea 
-                                    value={editingJob.description}
-                                    onChange={e => setEditingJob({...editingJob, description: e.target.value})}
-                                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 focus:border-corex-accent outline-none h-32 resize-none"
-                                    required
-                                />
-                            </div>
-                            <div className="pt-4 flex gap-3">
-                                <button 
-                                    type="submit"
-                                    className="flex-1 bg-corex-accent text-corex-navy font-bold py-3 rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2"
-                                >
-                                    <Save className="w-4 h-4" /> Save Changes
-                                </button>
-                                <button 
-                                    type="button"
-                                    onClick={() => setIsEditing(false)}
-                                    className="flex-1 bg-white/5 border border-white/10 font-bold py-3 rounded-lg hover:bg-white/10 transition-colors"
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

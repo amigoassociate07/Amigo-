@@ -1,7 +1,7 @@
 import React from 'react';
-import { Home, TrendingUp, Briefcase, Newspaper } from 'lucide-react';
+import { Home, TrendingUp, Briefcase, Newspaper, BarChart3 } from 'lucide-react';
 
-const MobileBottomNav = ({ activePage, onHomeClick, onStocksClick, onPortfolioClick }) => {
+const MobileBottomNav = ({ activePage, onHomeClick, onStocksClick, onPortfolioClick, onIpoClick }) => {
     return (
         <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-corex-navy/90 backdrop-blur-2xl border-t border-white/10 pb-safe">
             <div className="flex justify-around items-center h-20 px-2 pb-2">
@@ -18,6 +18,13 @@ const MobileBottomNav = ({ activePage, onHomeClick, onStocksClick, onPortfolioCl
                 >
                     <TrendingUp className={`h-6 w-6 transition-transform ${activePage === 'stocks' ? 'scale-110' : ''}`} />
                     <span className="text-[10px] font-bold tracking-wider">Stocks</span>
+                </button>
+                <button
+                    onClick={(e) => { if (onIpoClick) onIpoClick(e); }}
+                    className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors ${activePage === 'ipo' ? 'text-corex-accent' : 'text-gray-400 hover:text-gray-200'}`}
+                >
+                    <BarChart3 className={`h-6 w-6 transition-transform ${activePage === 'ipo' ? 'scale-110' : ''}`} />
+                    <span className="text-[10px] font-bold tracking-wider">IPO</span>
                 </button>
                 <button
                     onClick={(e) => { if (onPortfolioClick) onPortfolioClick(e); }}
