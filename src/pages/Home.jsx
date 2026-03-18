@@ -19,7 +19,47 @@ import {
     BarChart
 } from 'lucide-react';
 
-const Home = ({ onExploreClick }) => {
+const Home = ({ onExploreClick, homeData }) => {
+    const defaultFeatures = [
+        { title: "Institutional Explorer", desc: "Proprietary market scanning technology with millisecond refresh rates for 50,000+ global assets.", icon: "BarChart3" },
+        { title: "Vector Prediction", desc: "Advanced AI algorithms visualizing potential market trajectories before they manifest in price.", icon: "TrendingUp" },
+        { title: "Secure Terminal", desc: "Bank-grade encryption protecting every intelligence node and transaction link in our network.", icon: "Shield" }
+    ];
+
+    const defaultCapitalSolutions = [
+        { title: "Strategic Credit Lines", desc: "Flexible debt solutions for mid-to-large scale operations.", icon: "Coins" },
+        { title: "Structured Finance", desc: "Complex capital structures tailored for unique market positions.", icon: "Landmark" },
+        { title: "Liquidity Velocity", desc: "Instant deployment of capital nodes across global markets.", icon: "Zap" }
+    ];
+
+    const defaultCapitalNodes = [
+        { label: "EMEA Credit Node", value: "$2.4B", progress: "78%" },
+        { label: "APAC Liquidity Pool", value: "$4.1B", progress: "92%" },
+        { label: "AMER Debt Facility", value: "$1.8B", progress: "64%" }
+    ];
+
+    const defaultGlobalMarkets = [
+        { title: "Sentiment Analysis", data: "Extreme Greed", trend: "Increasing", items: ["Twitter/X", "News", "Whitepapers"], icon: "Search" },
+        { title: "Flow Monitor", data: "+$12.4B", trend: "Capital Inflow", items: ["Institutional", "Retail", "VC"], icon: "ArrowUpRight" },
+        { title: "Volatility Scorer", data: "18.4", trend: "Stable", items: ["Historical", "Implied", "Skew"], icon: "BarChart3" },
+        { title: "Alpha Signals", data: "A+ Grade", trend: "High Confidence", items: ["Momentum", "Value", "Mean Reversion"], icon: "Zap" }
+    ];
+
+    const defaultTheoryList = [
+        { title: "Mean-Variance Optimization", desc: "Refining Markowitz's foundational theory through Bayesian priors to minimize expected downside while maximizing stochastic alpha.", icon: "BarChart", label: "MPT+", color: "border-blue-500/30" },
+        { title: "Bayesian Inference Engine", desc: "Continuously updating market probabilities as new nodes of data emerge, allowing for dynamic portfolio rebalancing in milliseconds.", icon: "Dna", label: "STOCHASTIC", color: "border-purple-500/30" },
+        { title: "Risk Parity & Volatility Scaling", desc: "Allocating capital based on risk contribution rather than dollar amount, ensuring a resilient posture across all market regimes.", icon: "Cpu", label: "STABILITY", color: "border-corex-accent/30" },
+        { title: "Algorithmic execution models", desc: "Advanced VWAP and TWAP logic integrated with order-book pressure analysis to minimize slippage and hidden transaction costs.", icon: "Zap", label: "EXECUTION", color: "border-orange-500/30" }
+    ];
+
+    const iconsMap = { BarChart3, TrendingUp, Shield, Coins, Landmark, Zap, Search, ArrowUpRight, BarChart, Dna, Cpu, Globe2, Users2 };
+
+    const getIcon = (item, fallback) => {
+        if (typeof item.icon === 'string' && iconsMap[item.icon]) return iconsMap[item.icon];
+        if (typeof item.icon === 'function' || typeof item.icon === 'object') return item.icon;
+        return fallback;
+    };
+
     return (
         <div className="bg-corex-white overflow-hidden">
             {/* Hero Section */}
@@ -40,12 +80,12 @@ const Home = ({ onExploreClick }) => {
                                 <div className="h-1 w-12 bg-corex-accent rounded-full"></div>
                                 <span className="text-xs font-black uppercase tracking-[0.4em] text-corex-navy/60">Institutional Finance</span>
                             </div>
-                            <h1 className="text-5xl lg:text-7xl font-black text-corex-navy leading-[1.1] mb-8 tracking-tighter">
-                                Trustworthy <br />
-                                <span className="text-corex-accent italic">Smart</span> Investments.
-                            </h1>
+                            <h1 
+                                className="text-5xl lg:text-7xl font-black text-corex-navy leading-[1.1] mb-8 tracking-tighter"
+                                dangerouslySetInnerHTML={{ __html: homeData?.hero?.title || "Trustworthy <br />\n<span class='text-corex-accent italic'>Smart</span> Investments." }}
+                            />
                             <p className="text-xl text-slate-600 mb-10 leading-relaxed max-w-lg font-medium">
-                                Elevate your capital management with institutional-grade analytics, real-time market foresight, and automated intelligence.
+                                {homeData?.hero?.subtitle}
                             </p>
                             <div className="flex flex-col sm:flex-row gap-5">
                                 <button
@@ -136,24 +176,23 @@ const Home = ({ onExploreClick }) => {
             <section className="py-24 bg-corex-white border-b border-corex-gray">
                 <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid md:grid-cols-4 gap-12 text-center">
-                        {[
-                            { value: '$420B+', label: 'Managed Assets', icon: Globe2 },
-                            { value: '1.2M+', label: 'Global Trade Nodes', icon: TrendingUp },
-                            { value: '99.99%', label: 'Uptime Precision', icon: Shield },
-                            { value: '12Cr', label: 'Active Trader', icon: Users2 }
-                        ].map((stat, i) => (
+                        {(homeData?.stats || []).map((stat, i) => {
+                            const icons = [Globe2, TrendingUp, Shield, Users2];
+                            const IconCmp = icons[i % icons.length];
+                            return (
                             <motion.div
-                                key={i}
+                                key={stat.id || i}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: i * 0.1 }}
                                 className="group"
                             >
-                                <stat.icon className="h-8 w-8 text-corex-accent mb-6 mx-auto group-hover:scale-110 transition-transform" />
+                                <IconCmp className="h-8 w-8 text-corex-accent mb-6 mx-auto group-hover:scale-110 transition-transform" />
                                 <p className="text-4xl font-black text-corex-navy mb-2 tracking-tighter">{stat.value}</p>
                                 <p className="text-xs font-black text-slate-400 uppercase tracking-widest">{stat.label}</p>
                             </motion.div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -174,30 +213,16 @@ const Home = ({ onExploreClick }) => {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                title: "Institutional Explorer",
-                                desc: "Proprietary market scanning technology with millisecond refresh rates for 50,000+ global assets.",
-                                icon: BarChart3
-                            },
-                            {
-                                title: "Vector Prediction",
-                                desc: "Advanced AI algorithms visualizing potential market trajectories before they manifest in price.",
-                                icon: TrendingUp
-                            },
-                            {
-                                title: "Secure Terminal",
-                                desc: "Bank-grade encryption protecting every intelligence node and transaction link in our network.",
-                                icon: Shield
-                            }
-                        ].map((feature, i) => (
+                        {(homeData?.features || defaultFeatures).map((feature, i) => {
+                            const IconCmp = getIcon(feature, BarChart3);
+                            return (
                             <motion.div
                                 key={i}
                                 whileHover={{ y: -10 }}
                                 className="bg-white p-10 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-2xl transition-all group"
                             >
                                 <div className="w-16 h-16 rounded-2xl bg-corex-navy flex items-center justify-center mb-8 group-hover:bg-corex-accent transition-colors shadow-xl shadow-corex-navy/10">
-                                    <feature.icon className="text-white h-7 w-7" />
+                                    <IconCmp className="text-white h-7 w-7" />
                                 </div>
                                 <h3 className="text-xl font-black text-corex-navy mb-4 tracking-tight">{feature.title}</h3>
                                 <p className="text-sm text-gray-500 font-medium leading-relaxed mb-8">
@@ -207,7 +232,8 @@ const Home = ({ onExploreClick }) => {
                                     Detailed Specs <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                                 </button>
                             </motion.div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -234,21 +260,20 @@ const Home = ({ onExploreClick }) => {
                             </p>
                             
                             <div className="space-y-6 mb-10">
-                                {[
-                                    { title: "Strategic Credit Lines", desc: "Flexible debt solutions for mid-to-large scale operations.", icon: Coins },
-                                    { title: "Structured Finance", desc: "Complex capital structures tailored for unique market positions.", icon: Landmark },
-                                    { title: "Liquidity Velocity", desc: "Instant deployment of capital nodes across global markets.", icon: Zap }
-                                ].map((item, i) => (
+                                {(homeData?.capitalSolutions || defaultCapitalSolutions).map((item, i) => {
+                                    const IconCmp = getIcon(item, Coins);
+                                    return (
                                     <div key={i} className="flex gap-5 items-start">
                                         <div className="mt-1 bg-corex-accent/10 p-2 rounded-lg">
-                                            <item.icon className="h-5 w-5 text-corex-accent" />
+                                            <IconCmp className="h-5 w-5 text-corex-accent" />
                                         </div>
                                         <div>
                                             <h4 className="font-black text-corex-navy text-lg">{item.title}</h4>
                                             <p className="text-slate-500 text-sm font-medium">{item.desc}</p>
                                         </div>
                                     </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </motion.div>
 
@@ -265,11 +290,7 @@ const Home = ({ onExploreClick }) => {
                                 </div>
                                 <h4 className="text-white font-black text-sm uppercase tracking-widest mb-10 opacity-60">Capital Allocation Live</h4>
                                 <div className="space-y-8">
-                                    {[
-                                        { label: "EMEA Credit Node", value: "$2.4B", progress: "78%" },
-                                        { label: "APAC Liquidity Pool", value: "$4.1B", progress: "92%" },
-                                        { label: "AMER Debt Facility", value: "$1.8B", progress: "64%" }
-                                    ].map((node, i) => (
+                                    {(homeData?.capitalNodes || defaultCapitalNodes).map((node, i) => (
                                         <div key={i}>
                                             <div className="flex justify-between items-end mb-3">
                                                 <span className="text-xs font-black text-white/50 uppercase">{node.label}</span>
@@ -307,12 +328,9 @@ const Home = ({ onExploreClick }) => {
                     </div>
 
                     <div className="grid md:grid-cols-4 gap-6">
-                        {[
-                            { title: "Sentiment Analysis", data: "Extreme Greed", trend: "Increasing", items: ["Twitter/X", "News", "Whitepapers"], icon: Search },
-                            { title: "Flow Monitor", data: "+$12.4B", trend: "Capital Inflow", items: ["Institutional", "Retail", "VC"], icon: ArrowUpRight },
-                            { title: "Volatility Scorer", data: "18.4", trend: "Stable", items: ["Historical", "Implied", "Skew"], icon: BarChart3 },
-                            { title: "Alpha Signals", data: "A+ Grade", trend: "High Confidence", items: ["Momentum", "Value", "Mean Reversion"], icon: Zap }
-                        ].map((card, i) => (
+                        {(homeData?.globalMarkets || defaultGlobalMarkets).map((card, i) => {
+                            const IconCmp = getIcon(card, Search);
+                            return (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, y: 30 }}
@@ -322,7 +340,7 @@ const Home = ({ onExploreClick }) => {
                                 className="bg-white p-8 rounded-[32px] border border-white/50 shadow-sm hover:shadow-xl transition-all group"
                             >
                                 <div className="bg-corex-navy w-12 h-12 rounded-xl flex items-center justify-center mb-6 group-hover:bg-corex-accent transition-colors">
-                                    <card.icon className="h-6 w-6 text-white" />
+                                    <IconCmp className="h-6 w-6 text-white" />
                                 </div>
                                 <h3 className="text-lg font-black text-corex-navy mb-2">{card.title}</h3>
                                 <p className="text-2xl font-black text-corex-navy mb-1">{card.data}</p>
@@ -333,7 +351,8 @@ const Home = ({ onExploreClick }) => {
                                     ))}
                                 </div>
                             </motion.div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -364,36 +383,9 @@ const Home = ({ onExploreClick }) => {
                         </div>
 
                         <div className="lg:w-2/3 grid md:grid-cols-2 gap-8">
-                            {[
-                                {
-                                    title: "Mean-Variance Optimization",
-                                    desc: "Refining Markowitz's foundational theory through Bayesian priors to minimize expected downside while maximizing stochastic alpha.",
-                                    icon: BarChart,
-                                    label: "MPT+",
-                                    color: "border-blue-500/30"
-                                },
-                                {
-                                    title: "Bayesian Inference Engine",
-                                    desc: "Continuously updating market probabilities as new nodes of data emerge, allowing for dynamic portfolio rebalancing in milliseconds.",
-                                    icon: Dna,
-                                    label: "STOCHASTIC",
-                                    color: "border-purple-500/30"
-                                },
-                                {
-                                    title: "Risk Parity & Volatility Scaling",
-                                    desc: "Allocating capital based on risk contribution rather than dollar amount, ensuring a resilient posture across all market regimes.",
-                                    icon: Cpu,
-                                    label: "STABILITY",
-                                    color: "border-corex-accent/30"
-                                },
-                                {
-                                    title: "Algorithmic execution models",
-                                    desc: "Advanced VWAP and TWAP logic integrated with order-book pressure analysis to minimize slippage and hidden transaction costs.",
-                                    icon: Zap,
-                                    label: "EXECUTION",
-                                    color: "border-orange-500/30"
-                                }
-                            ].map((theory, i) => (
+                            {(homeData?.theoryList || defaultTheoryList).map((theory, i) => {
+                                const IconCmp = getIcon(theory, BarChart);
+                                return (
                                 <motion.div
                                     key={i}
                                     initial={{ opacity: 0, y: 20 }}
@@ -404,7 +396,7 @@ const Home = ({ onExploreClick }) => {
                                 >
                                     <div className="flex justify-between items-start mb-6">
                                         <div className="bg-white/10 p-3 rounded-2xl group-hover:bg-corex-accent/20 transition-colors">
-                                            <theory.icon className="h-6 w-6 text-white group-hover:text-corex-accent transition-colors" />
+                                            <IconCmp className="h-6 w-6 text-white group-hover:text-corex-accent transition-colors" />
                                         </div>
                                         <span className="text-[10px] font-black text-gray-500 tracking-[0.2em]">{theory.label}</span>
                                     </div>
@@ -413,7 +405,8 @@ const Home = ({ onExploreClick }) => {
                                         {theory.desc}
                                     </p>
                                 </motion.div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

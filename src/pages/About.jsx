@@ -5,63 +5,6 @@ const NAVY   = '#0f172a';
 const GREEN  = '#10b981';
 const BG     = '#f8fafc';
 
-const teamMembers = [
-  {
-    name: 'Rajiv Sharma',
-    role: 'Chief Executive Officer',
-    bio: 'Former VP at Goldman Sachs with 20+ years in institutional finance.',
-    initials: 'RS',
-  },
-  {
-    name: 'Priya Mehta',
-    role: 'Chief Investment Officer',
-    bio: 'Ex-SEBI advisor and fund manager with deep expertise in equity markets.',
-    initials: 'PM',
-  },
-  {
-    name: 'Arun Patel',
-    role: 'Head of Technology',
-    bio: 'Built trading systems at NSE and NASDAQ. Passionate about fintech innovation.',
-    initials: 'AP',
-  },
-  {
-    name: 'Sneha Rao',
-    role: 'Head of Research',
-    bio: 'CFA charterholder with a decade of experience in fundamental analysis.',
-    initials: 'SR',
-  },
-];
-
-const values = [
-  {
-    icon: Shield,
-    title: 'Trust & Transparency',
-    desc: 'Every recommendation is backed by rigorous research and clearly explained rationale.',
-  },
-  {
-    icon: Target,
-    title: 'Client-First Philosophy',
-    desc: 'Your financial goals are our priority. We align our success with yours.',
-  },
-  {
-    icon: Zap,
-    title: 'Innovation',
-    desc: 'Cutting-edge technology gives retail investors the same tools as institutional players.',
-  },
-  {
-    icon: Award,
-    title: 'Excellence',
-    desc: 'Authorised by Arihant Capital Markets Ltd, we uphold the highest regulatory standards.',
-  },
-];
-
-const stats = [
-  { value: '₹2,400 Cr+', label: 'Assets Under Advice' },
-  { value: '18,000+',    label: 'Active Investors' },
-  { value: '15+',        label: 'Years of Experience' },
-  { value: '97%',        label: 'Client Satisfaction' },
-];
-
 const missionPoints = [
   'Institutional-grade research for every investor',
   'Transparent, SEBI-compliant advisory',
@@ -69,7 +12,16 @@ const missionPoints = [
   'Personalised guidance for every risk profile',
 ];
 
-export default function About() {
+export default function About({ aboutData }) {
+  const { teamMembers = [], values = [], stats = [], missionPoints: dynamicMissionPoints } = aboutData || {};
+
+  const activeMissionPoints = dynamicMissionPoints || [
+    'Institutional-grade research for every investor',
+    'Transparent, SEBI-compliant advisory',
+    'Real-time market intelligence & portfolio tools',
+    'Personalised guidance for every risk profile',
+  ];
+
   return (
     <div style={{ background: BG, color: NAVY, fontFamily: 'inherit' }}>
 
@@ -146,7 +98,7 @@ export default function About() {
               step of your wealth-building journey.
             </p>
             <ul className="space-y-3">
-              {missionPoints.map((pt, i) => (
+              {activeMissionPoints.map((pt, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" style={{ color: GREEN }} />
                   <span className="text-sm font-medium" style={{ color: '#334155' }}>{pt}</span>

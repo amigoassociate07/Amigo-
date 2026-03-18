@@ -11,6 +11,10 @@ import IPOPage from './pages/IPOPage';
 import { MOCK_STOCKS } from './data/mockStocks';
 import { INITIAL_POSITIONS } from './data/careersData';
 import { INITIAL_IPOS } from './data/ipoData';
+import { INITIAL_PORTFOLIO } from './data/portfolioData';
+import { INITIAL_ABOUT } from './data/aboutData';
+import { INITIAL_HOME } from './data/homeData';
+import { INITIAL_CONTACT } from './data/contactData';
 import Admin from './pages/Admin';
 
 function App() {
@@ -31,9 +35,54 @@ function App() {
     return saved || 'https://docs.google.com/forms/d/e/1FAIpQLSecEOlj_F9kRMZIl0LD87JqFv8vf96wq9Qt6Wk8A8IKGKTq7A/viewform';
   });
 
+  const [stocksData, setStocksData] = useState(() => {
+    const saved = localStorage.getItem('amigo_stocks');
+    return saved ? JSON.parse(saved) : MOCK_STOCKS;
+  });
+
+  const [portfolioData, setPortfolioData] = useState(() => {
+    const saved = localStorage.getItem('amigo_portfolio');
+    return saved ? JSON.parse(saved) : INITIAL_PORTFOLIO;
+  });
+
+  const [aboutData, setAboutData] = useState(() => {
+    const saved = localStorage.getItem('amigo_about');
+    return saved ? JSON.parse(saved) : INITIAL_ABOUT;
+  });
+
+  const [homeData, setHomeData] = useState(() => {
+    const saved = localStorage.getItem('amigo_home');
+    return saved ? JSON.parse(saved) : INITIAL_HOME;
+  });
+
+  const [contactData, setContactData] = useState(() => {
+    const saved = localStorage.getItem('amigo_contact');
+    return saved ? JSON.parse(saved) : INITIAL_CONTACT;
+  });
+
   useEffect(() => {
     localStorage.setItem('amigo_positions', JSON.stringify(jobs));
   }, [jobs]);
+
+  useEffect(() => {
+    localStorage.setItem('amigo_stocks', JSON.stringify(stocksData));
+  }, [stocksData]);
+
+  useEffect(() => {
+    localStorage.setItem('amigo_portfolio', JSON.stringify(portfolioData));
+  }, [portfolioData]);
+
+  useEffect(() => {
+    localStorage.setItem('amigo_about', JSON.stringify(aboutData));
+  }, [aboutData]);
+
+  useEffect(() => {
+    localStorage.setItem('amigo_home', JSON.stringify(homeData));
+  }, [homeData]);
+
+  useEffect(() => {
+    localStorage.setItem('amigo_contact', JSON.stringify(contactData));
+  }, [contactData]);
 
   useEffect(() => {
     localStorage.setItem('amigo_ipos', JSON.stringify(ipos));
@@ -165,19 +214,19 @@ function App() {
       activePage={activePage}
     >
       {activePage === 'home' && (
-        <Home onExploreClick={() => setActivePage('stocks')} />
+        <Home onExploreClick={() => setActivePage('stocks')} homeData={homeData} />
       )}
       {activePage === 'stocks' && (
-        <Stocks selectedStock={selectedStock} setSelectedStock={setSelectedStock} stocks={MOCK_STOCKS} />
+        <Stocks selectedStock={selectedStock} setSelectedStock={setSelectedStock} stocks={stocksData} />
       )}
       {activePage === 'portfolio' && (
-        <Portfolio />
+        <Portfolio portfolioData={portfolioData} />
       )}
       {activePage === 'careers' && (
         <Careers jobs={jobs} applicationLink={applicationLink} />
       )}
       {activePage === 'contact' && (
-        <Contact />
+        <Contact contactData={contactData} />
       )}
       {activePage === 'admin' && (
         <Admin 
@@ -191,9 +240,19 @@ function App() {
           onDeleteIpo={handleDeleteIpo}
           applicationLink={applicationLink}
           setApplicationLink={setApplicationLink}
+          stocksData={stocksData}
+          setStocksData={setStocksData}
+          portfolioData={portfolioData}
+          setPortfolioData={setPortfolioData}
+          aboutData={aboutData}
+          setAboutData={setAboutData}
+          homeData={homeData}
+          setHomeData={setHomeData}
+          contactData={contactData}
+          setContactData={setContactData}
         />
       )}
-      {activePage === 'about' && <About />}
+      {activePage === 'about' && <About aboutData={aboutData} />}
       {activePage === 'ipo' && <IPOPage ipos={ipos} />}
     </Layout>
   );

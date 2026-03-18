@@ -2,7 +2,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, MessageSquare, Clock, Globe } from 'lucide-react';
 
-const Contact = () => {
+const Contact = ({ contactData }) => {
+    const defaultInfoCards = [
+        { icon: "Mail", title: "Email Us", detail: "support@amigo.com", sub: "Response within 2 hours", link: "mailto:support@amigo.com" },
+        { icon: "Phone", title: "Call Us", detail: "+1 (555) 000-0000", sub: "Mon-Fri, 9am - 6pm EST", link: "tel:+15550000000" },
+        { icon: "MapPin", title: "Visit Us", detail: "Orbit Mall A.B. Road Vijay Nagar", sub: "Scheme 54 PU-4 3rd Floor, Office No.312 Indore Madhya Pradesh 452010", link: "#" }
+    ];
+    
+    const defaultGlobalPresence = [
+        { icon: "Globe", label: "Global Coverage", value: "24/7 Monitoring" },
+        { icon: "Clock", label: "Response SLA", value: "120 Minutes" },
+        { icon: "Send", label: "Data Integrity", value: "Node-to-Node" }
+    ];
+
+    const iconsMap = { Mail, Phone, MapPin, Globe, Clock, Send };
+    const getIcon = (iconStr, fallback) => iconsMap[iconStr] || fallback;
+
     return (
         <div className="bg-white min-h-screen">
             {/* Hero Section */}
@@ -22,11 +37,12 @@ const Contact = () => {
                             <span className="text-xs font-black uppercase tracking-[0.4em] text-corex-accent">Connect With Us</span>
                             <div className="h-1 w-12 bg-corex-accent rounded-full"></div>
                         </div>
-                        <h1 className="text-5xl lg:text-7xl font-black text-white leading-tight mb-8 tracking-tighter">
-                            Get in <span className="text-corex-accent italic">Touch</span>
-                        </h1>
+                        <h1 
+                            className="text-5xl lg:text-7xl font-black text-white leading-tight mb-8 tracking-tighter"
+                            dangerouslySetInnerHTML={{ __html: contactData?.hero?.title || "Get in <span class='text-corex-accent italic'>Touch</span>" }}
+                        />
                         <p className="text-xl text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
-                            Have questions about our institutional tools or need expert guidance? Our team of financial specialists is here to assist you.
+                            {contactData?.hero?.subtitle || "Have questions about our institutional tools or need expert guidance? Our team of financial specialists is here to assist you."}
                         </p>
                     </motion.div>
                 </div>
@@ -38,29 +54,9 @@ const Contact = () => {
                     <div className="grid lg:grid-cols-3 gap-8">
                         {/* Contact Info Cards */}
                         <div className="lg:col-span-1 space-y-6">
-                            {[
-                                {
-                                    icon: Mail,
-                                    title: "Email Us",
-                                    detail: "support@amigo.com",
-                                    sub: "Response within 2 hours",
-                                    link: "mailto:support@amigo.com"
-                                },
-                                {
-                                    icon: Phone,
-                                    title: "Call Us",
-                                    detail: "+1 (555) 000-0000",
-                                    sub: "Mon-Fri, 9am - 6pm EST",
-                                    link: "tel:+15550000000"
-                                },
-                                {
-                                    icon: MapPin,
-                                    title: "Visit Us",
-                                    detail: "Orbit Mall A.B. Road Vijay Nagar",
-                                    sub: "Scheme 54 PU-4 3rd Floor, Office No.312 Indore Madhya Pradesh 452010",
-                                    link: "#"
-                                }
-                            ].map((info, i) => (
+                            {(contactData?.infoCards || defaultInfoCards).map((info, i) => {
+                                const IconCmp = getIcon(info.icon, Mail);
+                                return (
                                 <motion.a
                                     key={i}
                                     href={info.link}
@@ -70,13 +66,14 @@ const Contact = () => {
                                     className="block p-8 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all group"
                                 >
                                     <div className="w-14 h-14 rounded-2xl bg-corex-gray flex items-center justify-center mb-6 group-hover:bg-corex-accent transition-colors">
-                                        <info.icon className="text-corex-navy h-6 w-6 group-hover:text-white transition-colors" />
+                                        <IconCmp className="text-corex-navy h-6 w-6 group-hover:text-white transition-colors" />
                                     </div>
                                     <h3 className="text-lg font-black text-corex-navy mb-1 uppercase tracking-wider">{info.title}</h3>
                                     <p className="text-corex-accent font-bold mb-1">{info.detail}</p>
                                     <p className="text-gray-400 text-xs font-medium uppercase tracking-widest">{info.sub}</p>
                                 </motion.a>
-                            ))}
+                                );
+                            })}
                         </div>
 
                         {/* Contact Form */}
@@ -147,21 +144,20 @@ const Contact = () => {
             <section className="py-24 bg-corex-gray">
                 <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid md:grid-cols-3 gap-12">
-                        {[
-                            { icon: Globe, label: "Global Coverage", value: "24/7 Monitoring" },
-                            { icon: Clock, label: "Response SLA", value: "120 Minutes" },
-                            { icon: Send, label: "Data Integrity", value: "Node-to-Node" }
-                        ].map((stat, i) => (
+                        {(contactData?.globalPresence || defaultGlobalPresence).map((stat, i) => {
+                            const IconCmp = getIcon(stat.icon, Globe);
+                            return (
                             <div key={i} className="flex items-center gap-6">
                                 <div className="p-4 bg-white rounded-2xl shadow-sm">
-                                    <stat.icon className="h-6 w-6 text-corex-accent" />
+                                    <IconCmp className="h-6 w-6 text-corex-accent" />
                                 </div>
                                 <div>
                                     <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em]">{stat.label}</p>
                                     <p className="text-xl font-black text-corex-navy tracking-tight">{stat.value}</p>
                                 </div>
                             </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>

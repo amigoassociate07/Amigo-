@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Edit2, Trash2, X, Save, Briefcase, Globe, LayoutDashboard, TrendingUp, Calendar, Package, DollarSign, Lock, User, Eye, EyeOff, LogOut, ShieldCheck, Settings, Link2 } from 'lucide-react';
+import { Plus, Edit2, Trash2, X, Save, Briefcase, Globe, LayoutDashboard, TrendingUp, Calendar, Package, DollarSign, Lock, User, Eye, EyeOff, LogOut, ShieldCheck, Settings, Link2, Activity, PieChart, Users } from 'lucide-react';
 
 const NAVY  = '#0f172a';
 const GREEN = '#10b981';
@@ -31,8 +31,8 @@ const LoginScreen = ({ onLogin }) => {
 
     return (
         <div
-            className="flex items-center justify-center px-4 py-20 relative"
-            style={{ background: NAVY, minHeight: 'calc(100vh - 80px)' }}
+            className="flex items-center justify-center px-4 py-20 relative min-h-screen"
+            style={{ background: NAVY }}
         >
             {/* Background glow */}
             <div
@@ -413,8 +413,73 @@ const IPOTab = ({ ipos, onAddIpo, onUpdateIpo, onDeleteIpo }) => {
     );
 };
 
+// ─────────────────────────────────────────────────────── HOME TAB
+const HomeTab = ({ homeData, setHomeData }) => {
+    const [hero, setHero] = useState(homeData?.hero || {title:'', subtitle:''});
+    const [stats, setStats] = useState(homeData?.stats || []);
+
+    const handleSave = () => {
+        setHomeData({ hero, stats });
+        alert('Home data saved!');
+    };
+
+    return (
+        <div className="space-y-8 animate-in fade-in">
+            <h2 className="text-2xl font-bold">Home Page Content</h2>
+            <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4">
+                <h3 className="font-black text-corex-accent">Hero Section</h3>
+                <div>
+                    <label className="text-xs font-black uppercase tracking-widest text-gray-400">Title (HTML allowed)</label>
+                    <textarea value={hero.title} onChange={e => setHero({...hero, title: e.target.value})} className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 h-24 text-sm mt-1 focus:outline-none focus:border-corex-accent transition-colors" />
+                </div>
+                <div>
+                    <label className="text-xs font-black uppercase tracking-widest text-gray-400">Subtitle</label>
+                    <textarea value={hero.subtitle} onChange={e => setHero({...hero, subtitle: e.target.value})} className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 h-24 text-sm mt-1 focus:outline-none focus:border-corex-accent transition-colors" />
+                </div>
+            </div>
+            <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4">
+                <h3 className="font-black text-corex-accent">Stats Section</h3>
+                {stats.map((stat, i) => (
+                    <div key={i} className="flex gap-4">
+                        <input value={stat.value} onChange={e => {
+                            const newStats = [...stats]; newStats[i].value = e.target.value; setStats(newStats);
+                        }} className="flex-1 bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corex-accent transition-colors" placeholder="Value" />
+                        <input value={stat.label} onChange={e => {
+                            const newStats = [...stats]; newStats[i].label = e.target.value; setStats(newStats);
+                        }} className="flex-2 bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corex-accent transition-colors" placeholder="Label" style={{ flex: 2 }} />
+                    </div>
+                ))}
+            </div>
+            <button onClick={handleSave} className="bg-corex-accent text-corex-navy font-black py-4 px-8 rounded-xl flex items-center gap-2 hover:bg-white transition-all shadow-lg shadow-corex-accent/20">
+                <Save className="w-5 h-5" /> Save Changes
+            </button>
+        </div>
+    );
+};
+
+// ─────────────────────────────────────────────────────── JSON EDITOR TAB
+const JsonEditorTab = ({ title, desc, data, onSave }) => {
+    const [json, setJson] = useState(JSON.stringify(data, null, 2));
+    const handleSave = () => { try { onSave(JSON.parse(json)); alert('Saved successfully!'); } catch(e){ alert('Invalid JSON format'); } };
+    return (
+        <div className="space-y-4 animate-in fade-in">
+            <h2 className="text-2xl font-bold">{title}</h2>
+            <p className="text-sm text-gray-400">{desc}</p>
+            <textarea value={json} onChange={e => setJson(e.target.value)} className="w-full h-[500px] bg-black/40 font-mono text-[13px] border border-white/10 rounded-xl p-6 focus:outline-none focus:border-corex-accent transition-colors whitespace-pre overflow-auto" spellCheck="false" />
+            <button onClick={handleSave} className="bg-corex-accent text-corex-navy font-black py-4 px-8 rounded-xl flex items-center gap-2 hover:bg-white transition-all shadow-lg shadow-corex-accent/20">
+                <Save className="w-5 h-5" /> Save Data
+            </button>
+        </div>
+    );
+};
+
 // ─────────────────────────────────────────────────────── MAIN ADMIN
-const Admin = ({ jobs, onAddJob, onUpdateJob, onDeleteJob, ipos, onAddIpo, onUpdateIpo, onDeleteIpo, applicationLink, setApplicationLink }) => {
+const Admin = ({ 
+    jobs, onAddJob, onUpdateJob, onDeleteJob, 
+    ipos, onAddIpo, onUpdateIpo, onDeleteIpo, 
+    applicationLink, setApplicationLink,
+    stocksData, setStocksData, portfolioData, setPortfolioData, aboutData, setAboutData, homeData, setHomeData, contactData, setContactData
+}) => {
     const [activeTab, setActiveTab]   = useState('careers');
     const [isAuthed, setIsAuthed]     = useState(() => sessionStorage.getItem('amigo_admin_auth') === '1');
 
@@ -428,12 +493,17 @@ const Admin = ({ jobs, onAddJob, onUpdateJob, onDeleteJob, ipos, onAddIpo, onUpd
     }
 
     const tabs = [
-        { id: 'careers', label: 'Careers',  icon: Briefcase  },
-        { id: 'ipo',     label: 'IPO',      icon: TrendingUp },
+        { id: 'home',      label: 'Home',      icon: Globe },
+        { id: 'stocks',    label: 'Stocks',    icon: Activity },
+        { id: 'portfolio', label: 'Portfolio', icon: PieChart },
+        { id: 'about',     label: 'About Us',  icon: Users },
+        { id: 'contact',   label: 'Contact',   icon: Link2 },
+        { id: 'careers',   label: 'Careers',   icon: Briefcase  },
+        { id: 'ipo',       label: 'IPO',       icon: TrendingUp },
     ];
 
     return (
-        <div className="bg-corex-navy text-white pt-10 pb-20 px-4 sm:px-6 lg:px-8 relative" style={{ minHeight: 'calc(100vh - 80px)' }}>
+        <div className="bg-corex-navy text-white pt-10 pb-20 px-4 sm:px-6 lg:px-8 relative min-h-screen">
             <div className="max-w-6xl mx-auto">
                 {/* Header */}
                 <div className="flex items-center justify-between gap-4 mb-10">
@@ -473,6 +543,11 @@ const Admin = ({ jobs, onAddJob, onUpdateJob, onDeleteJob, ipos, onAddIpo, onUpd
                 </div>
 
                 {/* Tab Content */}
+                {activeTab === 'home' && <HomeTab homeData={homeData} setHomeData={setHomeData} />}
+                {activeTab === 'stocks' && <JsonEditorTab title="Stocks Data" desc="Edit raw JSON data for the stock explorer." data={stocksData} onSave={setStocksData} />}
+                {activeTab === 'portfolio' && <JsonEditorTab title="Portfolio Data" desc="Edit raw JSON data for portfolio holdings and summary." data={portfolioData} onSave={setPortfolioData} />}
+                {activeTab === 'about' && <JsonEditorTab title="About Us Data" desc="Edit raw JSON data for team members, values, and stats." data={aboutData} onSave={setAboutData} />}
+                {activeTab === 'contact' && <JsonEditorTab title="Contact Data" desc="Edit raw JSON data for contact info and presence cards." data={contactData} onSave={setContactData} />}
                 {activeTab === 'careers' && (
                     <CareersTab 
                         jobs={jobs} 

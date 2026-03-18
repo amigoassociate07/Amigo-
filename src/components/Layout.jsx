@@ -6,31 +6,37 @@ import MobileBottomNav from './MobileBottomNav';
 const Layout = ({ children, onHomeClick, onStocksClick, onPortfolioClick, onCareersClick, onContactClick, onAdminClick, onAboutClick, onIpoClick, activePage }) => {
     return (
         <div className="min-h-screen flex flex-col bg-corex-gray">
-            <Navbar
-                onHomeClick={onHomeClick}
-                onStocksClick={onStocksClick}
-                onPortfolioClick={onPortfolioClick}
-                onAboutClick={onAboutClick}
-                onIpoClick={onIpoClick}
-                activePage={activePage}
-            />
+            {activePage !== 'admin' && (
+                <Navbar
+                    onHomeClick={onHomeClick}
+                    onStocksClick={onStocksClick}
+                    onPortfolioClick={onPortfolioClick}
+                    onAboutClick={onAboutClick}
+                    onIpoClick={onIpoClick}
+                    activePage={activePage}
+                />
+            )}
             <main className="flex-grow">
                 {children}
             </main>
-            <MobileBottomNav
-                activePage={activePage}
-                onHomeClick={onHomeClick}
-                onStocksClick={onStocksClick}
-                onPortfolioClick={onPortfolioClick}
-                onIpoClick={onIpoClick}
-            />
-            <Footer
-                onCareersClick={onCareersClick}
-                onContactClick={onContactClick}
-                onStocksClick={onStocksClick}
-                onAdminClick={onAdminClick}
-                onIpoClick={onIpoClick}
-            />
+            {activePage !== 'admin' && (
+                <>
+                    <MobileBottomNav
+                        activePage={activePage}
+                        onHomeClick={onHomeClick}
+                        onStocksClick={onStocksClick}
+                        onPortfolioClick={onPortfolioClick}
+                        onIpoClick={onIpoClick}
+                    />
+                    <Footer
+                        onCareersClick={onCareersClick}
+                        onContactClick={onContactClick}
+                        onStocksClick={onStocksClick}
+                        onAdminClick={onAdminClick}
+                        onIpoClick={onIpoClick}
+                    />
+                </>
+            )}
         </div>
     );
 };
