@@ -32,7 +32,7 @@ const LoginScreen = ({ onLogin }) => {
     return (
         <div
             className="flex items-center justify-center px-4 py-20 relative"
-            style={{ minHeight: 'calc(100vh - 80px)' }}
+            style={{ background: NAVY, minHeight: 'calc(100vh - 80px)' }}
         >
             {/* Background glow */}
             <div
