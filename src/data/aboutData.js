@@ -6,10 +6,10 @@ export const INITIAL_ABOUT = {
         { id: '4', name: 'Sneha Rao', role: 'Head of Research', bio: 'CFA charterholder with a decade of experience in fundamental analysis.', initials: 'SR' }
     ],
     values: [
-        { id: '1', title: 'Trust & Transparency', desc: 'Every recommendation is backed by rigorous research and clearly explained rationale.' },
-        { id: '2', title: 'Client-First Philosophy', desc: 'Your financial goals are our priority. We align our success with yours.' },
-        { id: '3', title: 'Innovation', desc: 'Cutting-edge technology gives retail investors the same tools as institutional players.' },
-        { id: '4', title: 'Excellence', desc: 'Authorised by Arihant Capital Markets Ltd, we uphold the highest regulatory standards.' }
+        { id: '1', title: 'Trust & Transparency', icon: 'Shield', desc: 'Every recommendation is backed by rigorous research and clearly explained rationale.' },
+        { id: '2', title: 'Client-First Philosophy', icon: 'Users', desc: 'Your financial goals are our priority. We align our success with yours.' },
+        { id: '3', title: 'Innovation', icon: 'Zap', desc: 'Cutting-edge technology gives retail investors the same tools as institutional players.' },
+        { id: '4', title: 'Excellence', icon: 'Award', desc: 'Authorised by Arihant Capital Markets Ltd, we uphold the highest regulatory standards.' }
     ],
     stats: [
         { id: '1', value: '₹2,400 Cr+', label: 'Assets Under Advice' },

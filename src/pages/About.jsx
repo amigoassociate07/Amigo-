@@ -12,8 +12,26 @@ const missionPoints = [
   'Personalised guidance for every risk profile',
 ];
 
+const iconsMap = { 
+  TrendingUp, 
+  Shield, 
+  Users, 
+  Target, 
+  Award, 
+  BarChart2, 
+  Globe, 
+  Zap, 
+  CheckCircle 
+};
+
 export default function About({ aboutData }) {
   const { teamMembers = [], values = [], stats = [], missionPoints: dynamicMissionPoints } = aboutData || {};
+
+  const getIcon = (item, fallback = Shield) => {
+    if (typeof item.icon === 'string' && iconsMap[item.icon]) return iconsMap[item.icon];
+    if (typeof item.icon === 'function' || typeof item.icon === 'object') return item.icon;
+    return fallback;
+  };
 
   const activeMissionPoints = dynamicMissionPoints || [
     'Institutional-grade research for every investor',
@@ -154,9 +172,11 @@ export default function About({ aboutData }) {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map(({ icon: Icon, title, desc }, i) => (
+            {values.map((v, i) => {
+              const Icon = getIcon(v, Shield);
+              return (
               <div
-                key={i}
+                key={v.id || i}
                 className="rounded-2xl p-6 transition-all hover:-translate-y-1 group"
                 style={{
                   background: 'rgba(255,255,255,0.05)',
@@ -169,10 +189,11 @@ export default function About({ aboutData }) {
                 >
                   <Icon className="h-6 w-6 group-hover:scale-110 transition-transform" style={{ color: GREEN }} />
                 </div>
-                <h3 className="font-bold text-white text-base mb-2">{title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>{desc}</p>
+                <h3 className="font-bold text-white text-base mb-2">{v.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>{v.desc}</p>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
