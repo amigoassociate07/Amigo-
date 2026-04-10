@@ -57,7 +57,7 @@ const Navbar = ({ onHomeClick, onStocksClick, onPortfolioClick, onAboutClick, on
                                 IPO
                             </a>
                             <a
-                                href="https://news-indol-two.vercel.app/"
+                                href="https://news-ten-topaz.vercel.app/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-gray-300 hover:text-corex-accent px-4 py-2 rounded-md text-sm font-semibold transition-all hover:bg-white/5"

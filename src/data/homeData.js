@@ -1,7 +1,7 @@
 export const INITIAL_HOME = {
     hero: {
         title: "Trustworthy <br />\n<span className=\"text-corex-accent italic\">Smart</span> Investments.",
-        subtitle: "Elevate your capital management with institutional-grade analytics, real-time market foresight, and automated intelligence."
+        subtitle: "Transform your capital management with institutional-grade analytics, real-time market foresight, and deep research expertise."
     },
     stats: [
         { id: '1', value: '$420B+', label: 'Managed Assets' },

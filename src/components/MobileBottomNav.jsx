@@ -34,7 +34,7 @@ const MobileBottomNav = ({ activePage, onHomeClick, onStocksClick, onPortfolioCl
                     <span className="text-[10px] font-bold tracking-wider">Portfolio</span>
                 </button>
                 <a
-                    href="https://news-indol-two.vercel.app/"
+                    href="https://news-ten-topaz.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex flex-col items-center justify-center w-full h-full space-y-1 text-gray-400 hover:text-gray-200 transition-colors"

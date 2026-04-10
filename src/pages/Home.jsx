@@ -153,20 +153,7 @@ const Home = ({ onExploreClick, homeData }) => {
                                 </div>
                             </div>
 
-                            {/* Floating decorative elements */}
-                            <motion.div
-                                animate={{ y: [0, -20, 0] }}
-                                transition={{ duration: 4, repeat: Infinity }}
-                                className="absolute -bottom-32 -left-48 bg-white p-4 rounded-2xl shadow-2xl hidden lg:block"
-                            >
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-10 bg-green-500 rounded-full"></div>
-                                    <div>
-                                        <p className="text-corex-navy font-black text-xs">MARKET OPEN</p>
-                                        <p className="text-gray-400 text-[9px] font-black">VOL: 4.8B</p>
-                                    </div>
-                                </div>
-                            </motion.div>
+
                         </motion.div>
                     </div>
                 </div>

@@ -4,8 +4,7 @@ import { Mail, Phone, MapPin, Send, MessageSquare, Clock, Globe } from 'lucide-r
 
 const Contact = ({ contactData }) => {
     const defaultInfoCards = [
-        { icon: "Mail", title: "Email Us", detail: "support@amigo.com", sub: "Response within 2 hours", link: "mailto:support@amigo.com" },
-        { icon: "Phone", title: "Call Us", detail: "+1 (555) 000-0000", sub: "Mon-Fri, 9am - 6pm EST", link: "tel:+15550000000" },
+        { icon: "Phone", title: "Call Us", detail: "+91 9522700027", sub: "Mon-Fri, 9am - 6pm IST", link: "tel:+919522700027" },
         { icon: "MapPin", title: "Visit Us", detail: "Orbit Mall A.B. Road Vijay Nagar", sub: "Scheme 54 PU-4 3rd Floor, Office No.312 Indore Madhya Pradesh 452010", link: "#" }
     ];
     
@@ -42,7 +41,7 @@ const Contact = ({ contactData }) => {
                             dangerouslySetInnerHTML={{ __html: contactData?.hero?.title || "Get in <span class='text-corex-accent italic'>Touch</span>" }}
                         />
                         <p className="text-xl text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
-                            {contactData?.hero?.subtitle || "Have questions about our institutional tools or need expert guidance? Our team of financial specialists is here to assist you."}
+                            {contactData?.hero?.subtitle || "If you have any questions or require professional guidance, our team is ready to assist you with any enquiries."}
                         </p>
                     </motion.div>
                 </div>
@@ -98,7 +97,7 @@ const Contact = ({ contactData }) => {
                                         <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">Full Name</label>
                                         <input
                                             type="text"
-                                            placeholder="John Doe"
+                                            placeholder="Amigo Associate"
                                             className="w-full bg-corex-gray border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-corex-accent/50 outline-none transition-all font-medium"
                                         />
                                     </div>
@@ -106,19 +105,17 @@ const Contact = ({ contactData }) => {
                                         <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">Email Redirection</label>
                                         <input
                                             type="email"
-                                            placeholder="john@firm.com"
+                                            placeholder="amigoassociate@gmail.com"
                                             className="w-full bg-corex-gray border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-corex-accent/50 outline-none transition-all font-medium"
                                         />
                                     </div>
                                     <div className="md:col-span-2 space-y-2">
                                         <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">Assistance Vector (Subject)</label>
-                                        <select className="w-full bg-corex-gray border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-corex-accent/50 outline-none transition-all font-medium appearance-none">
-                                            <option>Institutional Access</option>
-                                            <option>API & Integration</option>
-                                            <option>Career Opportunities</option>
-                                            <option>Security Inquiry</option>
-                                            <option>Other Intelligence</option>
-                                        </select>
+                                        <input
+                                            type="text"
+                                            placeholder="What can we help you with?"
+                                            className="w-full bg-corex-gray border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-corex-accent/50 outline-none transition-all font-medium"
+                                        />
                                     </div>
                                     <div className="md:col-span-2 space-y-2">
                                         <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">Message Content</label>
@@ -130,7 +127,7 @@ const Contact = ({ contactData }) => {
                                     </div>
                                     <div className="md:col-span-2">
                                         <button className="btn-accent w-full py-5 text-base font-black uppercase tracking-widest flex items-center justify-center gap-3">
-                                            Transmit Message <Send className="h-5 w-5" />
+                                            Send Message <Send className="h-5 w-5" />
                                         </button>
                                     </div>
                                 </form>
@@ -140,27 +137,6 @@ const Contact = ({ contactData }) => {
                 </div>
             </section>
 
-            {/* Global Presence */}
-            <section className="py-24 bg-corex-gray">
-                <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-3 gap-12">
-                        {(contactData?.globalPresence || defaultGlobalPresence).map((stat, i) => {
-                            const IconCmp = getIcon(stat.icon, Globe);
-                            return (
-                            <div key={i} className="flex items-center gap-6">
-                                <div className="p-4 bg-white rounded-2xl shadow-sm">
-                                    <IconCmp className="h-6 w-6 text-corex-accent" />
-                                </div>
-                                <div>
-                                    <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em]">{stat.label}</p>
-                                    <p className="text-xl font-black text-corex-navy tracking-tight">{stat.value}</p>
-                                </div>
-                            </div>
-                            );
-                        })}
-                    </div>
-                </div>
-            </section>
         </div>
     );
 };

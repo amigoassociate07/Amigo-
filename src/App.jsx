@@ -32,7 +32,7 @@ function App() {
 
   const [applicationLink, setApplicationLink] = useState(() => {
     const saved = localStorage.getItem('amigo_app_link');
-    return saved || 'https://docs.google.com/forms/d/e/1FAIpQLSecEOlj_F9kRMZIl0LD87JqFv8vf96wq9Qt6Wk8A8IKGKTq7A/viewform';
+    return saved || 'https://forms.gle/Hd4W28HF2JhkghCr5';
   });
 
   const [stocksData, setStocksData] = useState(() => {
@@ -108,6 +108,20 @@ function App() {
     handleLocationChange();
     window.addEventListener('popstate', handleLocationChange);
 
+    // Force update the hero subtitle if it's the old version (bypassing local storage cache)
+    const oldSubtitle = "Elevate your capital management with institutional-grade analytics, real-time market foresight, and research and experience.";
+    const newSubtitle = "Transform your capital management with institutional-grade analytics, real-time market foresight, and deep research expertise.";
+    
+    if (homeData?.hero?.subtitle === oldSubtitle) {
+      setHomeData(prev => ({
+        ...prev,
+        hero: {
+          ...prev.hero,
+          subtitle: newSubtitle
+        }
+      }));
+    }
+
     // Clear legacy query parameters and hashes
     if (window.location.search || window.location.hash) {
       window.history.replaceState({}, document.title, window.location.pathname);
@@ -130,6 +144,93 @@ function App() {
       behavior: 'smooth'
     });
   }, [activePage, selectedStock]);
+
+  useEffect(() => {
+    // Migration: Update hero subtitle if it matches the old version
+    const oldSubtitle = "Elevate your capital management with institutional-grade analytics, real-time market foresight, and automated intelligence.";
+    const newSubtitle = "Elevate your capital management with institutional-grade analytics, real-time market foresight, and research and experience.";
+    
+    if (homeData?.hero?.subtitle === oldSubtitle) {
+      setHomeData(prev => ({
+        ...prev,
+        hero: {
+          ...prev.hero,
+          subtitle: newSubtitle
+        }
+      }));
+    }
+
+    // Migration: Update application link if it matches the old or placeholder versions
+    const oldAppLink = "https://docs.google.com/forms/d/e/1FAIpQLSecEOlj_F9kRMZIl0LD87JqFv8vf96wq9Qt6Wk8A8IKGKTq7A/viewform";
+    const placeholderLink = "https://google.com/test-form";
+    const newAppLink = "https://forms.gle/Hd4W28HF2JhkghCr5";
+    
+    if (applicationLink === oldAppLink || applicationLink === placeholderLink || applicationLink.includes("FAIpQLSecEOlj_F9kRMZIl0LD87JqFv8vf96wq9Qt6Wk8A8IKGKTq7A")) {
+      setApplicationLink(newAppLink);
+    }
+
+    // Migration: Update contact email if it matches the old version
+    const oldEmail = "support@amigo.com";
+    const oldEmail2 = "hello@amigoassociate.com";
+    const oldEmail3 = "amigoassociate@gmail.com";
+    const newEmail = "amigoassociate07@gmail.com";
+    
+    if (contactData?.infoCards?.some(card => card.detail === oldEmail || card.detail === oldEmail2 || card.detail === oldEmail3)) {
+      setContactData(prev => ({
+        ...prev,
+        infoCards: prev.infoCards.map(card => 
+          (card.detail === oldEmail || card.detail === oldEmail2 || card.detail === oldEmail3)
+            ? { ...card, detail: newEmail, link: `mailto:${newEmail}` }
+            : card
+        )
+      }));
+    }
+
+    // Migration: Update contact phone if it matches the old version
+    const oldPhone = "+1 (555) 000-0000";
+    const newPhone = "+91 9522700027";
+    
+    if (contactData?.infoCards?.some(card => card.detail === oldPhone)) {
+      setContactData(prev => ({
+        ...prev,
+        infoCards: prev.infoCards.map(card => 
+          card.detail === oldPhone
+            ? { ...card, detail: newPhone, link: `tel:${newPhone.replace(/\s/g, '')}`, sub: "Mon-Fri, 9am - 6pm IST" }
+            : card
+        )
+      }));
+    }
+
+    // Migration: Update contact hero subtitle if it matches the old version
+    const oldContactSubtitle = "Have questions about our institutional tools or need expert guidance? Our team of financial specialists is here to assist you.";
+    const newContactSubtitle = "If you have any questions or require professional guidance, our team is ready to assist you with any enquiries.";
+    
+    if (contactData?.hero?.subtitle === oldContactSubtitle) {
+      setContactData(prev => ({
+        ...prev,
+        hero: {
+          ...prev.hero,
+          subtitle: newContactSubtitle
+        }
+      }));
+    }
+
+    // Migration: Remove "Email Us" card if it exists (prioritizing form)
+    if (contactData?.infoCards?.some(card => card.title === "Email Us")) {
+      setContactData(prev => {
+        const { globalPresence, ...rest } = prev;
+        return {
+          ...rest,
+          infoCards: rest.infoCards.filter(card => card.title !== "Email Us")
+        };
+      });
+    } else if (contactData?.globalPresence) {
+      setContactData(prev => {
+        const { globalPresence, ...rest } = prev;
+        return rest;
+      });
+    }
+  }, [homeData, setHomeData, applicationLink, setApplicationLink, contactData, setContactData]);
 
   const navigate = (page) => {
     setActivePage(page);

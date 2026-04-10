@@ -1,5 +1,5 @@
-import React from 'react';
-import { TrendingUp, Shield, Users, Target, Award, BarChart2, Globe, Zap, CheckCircle } from 'lucide-react';
+import { TrendingUp, Shield, Users, Target, Award, BarChart2, Globe, Zap, CheckCircle, Camera } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const NAVY   = '#0f172a';
 const GREEN  = '#10b981';
@@ -21,8 +21,30 @@ const iconsMap = {
   BarChart2, 
   Globe, 
   Zap, 
-  CheckCircle 
+  CheckCircle,
+  Camera
 };
+
+const cultureImages = [
+  {
+    src: '/images/culture/team-1.jpg',
+    title: 'Team Spirit',
+    desc: 'Our dedicated team celebrating milestones together.',
+    span: 'md:col-span-2 md:row-span-2'
+  },
+  {
+    src: '/images/culture/office.jpg',
+    title: 'Office Life',
+    desc: 'Collaboration and innovation at the heart of Amigo.',
+    span: 'md:col-span-1 md:row-span-1'
+  },
+  {
+    src: '/images/culture/team-2.jpg',
+    title: 'Beyond Charts',
+    desc: 'Building a community of passionate professionals.',
+    span: 'md:col-span-1 md:row-span-1'
+  }
+];
 
 export default function About({ aboutData }) {
   const { teamMembers = [], values = [], stats = [], missionPoints: dynamicMissionPoints } = aboutData || {};
@@ -74,9 +96,7 @@ export default function About({ aboutData }) {
           </h1>
 
           <p className="text-lg leading-relaxed max-w-3xl mx-auto" style={{ color: 'rgba(255,255,255,0.65)' }}>
-            Amigo Associate is your trusted partner in navigating the Indian equity markets.
-            Authorised by Arihant Capital Markets Ltd, we bring institutional-grade research
-            and insights to every investor — no matter the portfolio size.
+            Amigo Associate aims to enhance understanding of the Indian equity markets through research-driven insights and analysis, accessible to investors at all levels.
           </p>
         </div>
       </section>
@@ -129,7 +149,7 @@ export default function About({ aboutData }) {
           <div className="grid grid-cols-2 gap-4">
             {[
               { icon: BarChart2, label: 'Market Research' },
-              { icon: Globe,     label: 'Global Coverage' },
+              { icon: Zap,       label: 'Real Time Updates' },
               { icon: Users,     label: 'Community'       },
               { icon: Shield,    label: 'SEBI Compliant'  },
             ].map(({ icon: Icon, label }, i) => (
@@ -198,48 +218,74 @@ export default function About({ aboutData }) {
         </div>
       </section>
 
-      {/* ── TEAM ── */}
-      <section className="py-24 px-6" style={{ background: BG }}>
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <p
-              className="text-xs font-bold uppercase tracking-[0.2em] mb-3"
-              style={{ color: GREEN }}
+
+      {/* ── CULTURE GALLERY ── */}
+      <section className="py-24 px-6 overflow-hidden" style={{ background: 'white' }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
-              Leadership
-            </p>
-            <h2 className="text-4xl font-black mb-3" style={{ color: NAVY }}>
-              Meet the Team
-            </h2>
-            <p style={{ color: '#64748b' }}>The experienced minds behind your financial success.</p>
+              <p
+                className="text-xs font-bold uppercase tracking-[0.2em] mb-3"
+                style={{ color: GREEN }}
+              >
+                Our Culture
+              </p>
+              <h2 className="text-4xl font-black mb-3" style={{ color: NAVY }}>
+                Life at Amigo
+              </h2>
+              <p className="max-w-xl" style={{ color: '#64748b' }}>
+                Beyond the charts and research, we are a family of dedicated professionals 
+                building the future of retail investing in India.
+              </p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="hidden md:flex items-center gap-2 text-sm font-bold"
+              style={{ color: NAVY }}
+            >
+              <Camera className="h-5 w-5" style={{ color: GREEN }} />
+              Moments that Matter
+            </motion.div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teamMembers.map((m, i) => (
-              <div
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+            {cultureImages.map((img, i) => (
+              <motion.div
                 key={i}
-                className="rounded-2xl p-6 text-center transition-all hover:-translate-y-1"
-                style={{
-                  background: 'white',
-                  border: '1px solid #e2e8f0',
-                  boxShadow: '0 2px 16px rgba(15,23,42,0.06)',
-                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`relative group overflow-hidden rounded-3xl shadow-lg ${img.span}`}
               >
-                <div
-                  className="h-16 w-16 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl font-black text-white"
-                  style={{ background: NAVY }}
-                >
-                  {m.initials}
+                <img 
+                  src={img.src} 
+                  alt={img.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000';
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                  <h3 className="text-white font-bold text-xl mb-1">{img.title}</h3>
+                  <p className="text-white/70 text-sm">{img.desc}</p>
                 </div>
-                <h3 className="font-bold text-base mb-1" style={{ color: NAVY }}>{m.name}</h3>
-                <div
-                  className="text-xs font-semibold mb-3 uppercase tracking-widest"
-                  style={{ color: GREEN }}
-                >
-                  {m.role}
+                
+                {/* Fallback pattern if image fails to load */}
+                <div className="absolute inset-0 -z-10 bg-slate-50 flex items-center justify-center">
+                  <div className="text-slate-200 text-xs font-bold uppercase tracking-widest text-center px-4">
+                    Image Preview<br/>{img.title}
+                  </div>
                 </div>
-                <p className="text-sm leading-relaxed" style={{ color: '#64748b' }}>{m.bio}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -256,7 +302,7 @@ export default function About({ aboutData }) {
             Join thousands of investors who trust Amigo Associate for smarter, data-driven investing.
           </p>
           <a
-            href="mailto:hello@amigoassociate.com"
+            href="mailto:amigoassociate07@gmail.com"
             className="inline-flex items-center gap-2 font-bold py-3 px-8 rounded-xl transition-all hover:scale-105 text-white"
             style={{ background: GREEN }}
           >

@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import MobileBottomNav from './MobileBottomNav';
+import WhatsAppButton from './WhatsAppButton';
 
 const Layout = ({ children, onHomeClick, onStocksClick, onPortfolioClick, onCareersClick, onContactClick, onAdminClick, onAboutClick, onIpoClick, activePage }) => {
     return (
@@ -34,9 +35,12 @@ const Layout = ({ children, onHomeClick, onStocksClick, onPortfolioClick, onCare
                         onStocksClick={onStocksClick}
                         onAdminClick={onAdminClick}
                         onIpoClick={onIpoClick}
+                        onAboutClick={onAboutClick}
+                        onPortfolioClick={onPortfolioClick}
                     />
                 </>
             )}
+            <WhatsAppButton />
         </div>
     );
 };
