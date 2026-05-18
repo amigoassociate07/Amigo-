@@ -1,17 +1,48 @@
 export const INITIAL_PORTFOLIO = {
-    summary: {
-        totalInvestment: 545000,
-        currentValue: 682500,
-        dayPnL: 12500,
-        totalPnL: 137500,
-        dayPnLPercent: 1.86,
-        totalPnLPercent: 25.22,
-    },
-    holdings: [
-        { id: '1', name: 'Reliance Industries', ticker: 'RELIANCE', quantity: 50, avgPrice: 2450.00, cmp: 2950.50, dayChange: 45.20, dayChangePercent: 1.55 },
-        { id: '2', name: 'Tata Consultancy Services', ticker: 'TCS', quantity: 20, avgPrice: 3200.00, cmp: 3950.25, dayChange: -12.50, dayChangePercent: -0.31 },
-        { id: '3', name: 'HDFC Bank', ticker: 'HDFCBANK', quantity: 150, avgPrice: 1520.00, cmp: 1445.80, dayChange: 15.40, dayChangePercent: 1.07 },
-        { id: '4', name: 'Tata Motors', ticker: 'TATAMOTORS', quantity: 200, avgPrice: 650.00, cmp: 980.60, dayChange: 22.10, dayChangePercent: 2.30 },
-        { id: '5', name: 'Infosys', ticker: 'INFY', quantity: 100, avgPrice: 1450.00, cmp: 1680.90, dayChange: 8.50, dayChangePercent: 0.50 }
+    title: "Institutional Study Portfolio",
+    description: "Real-time tracking of institutional-grade analysis nodes and high-conviction market studies.",
+    nodes: [
+        {
+            id: '1',
+            symbol: 'RELIANCE',
+            name: 'Reliance Industries',
+            category: 'Equity Study',
+            status: 'High Conviction',
+            trend: 'Bullish',
+            allocation: '12%',
+            lastUpdated: '2026-05-15'
+        },
+        {
+            id: '2',
+            symbol: 'HDFCBANK',
+            name: 'HDFC Bank',
+            category: 'Banking Intelligence',
+            status: 'Steady',
+            trend: 'Neutral',
+            allocation: '10%',
+            lastUpdated: '2026-05-15'
+        },
+        {
+            id: '3',
+            symbol: 'TCS',
+            name: 'Tata Consultancy Services',
+            category: 'Tech Framework',
+            status: 'Dividend Yield',
+            trend: 'Bullish',
+            allocation: '8%',
+            lastUpdated: '2026-05-15'
+        }
+    ],
+    insights: [
+        {
+            id: '1',
+            title: 'Macro Convergence',
+            desc: 'Study of interest rate sensitivity nodes across emerging market frameworks.'
+        },
+        {
+            id: '2',
+            title: 'Sector Rotation',
+            desc: 'Analyzing capital flows from heavy industry to digital infrastructure nodes.'
+        }
     ]
 };

@@ -1,148 +1,124 @@
 import React from 'react';
-import { TrendingUp, TrendingDown, Briefcase, Activity, DollarSign, PieChart, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { PieChart, TrendingUp, Shield, Activity, ArrowUpRight, Clock, Globe } from 'lucide-react';
 
-const Portfolio = ({ portfolioData }) => {
-    const PORTFOLIO_DATA = portfolioData;
-    const formatCurrency = (value) => {
-        return new Intl.NumberFormat('en-IN', {
-            style: 'currency',
-            currency: 'INR',
-            maximumFractionDigits: 2
-        }).format(value);
-    };
-
-    const isPositive = (value) => value >= 0;
-
+const Portfolio = ({ portfolioData, onBackClick }) => {
     return (
-        <div className="min-h-screen bg-gray-50 text-corex-navy pb-24 md:pb-12 pt-8">
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-corex-navy min-h-screen pt-32 pb-20 px-4">
+            <div className="max-w-7xl mx-auto">
                 {/* Header Section */}
-                <div className="flex items-center gap-4 mb-8">
-                    <div className="bg-corex-navy p-3 rounded-2xl shadow-xl shadow-corex-navy/20">
-                        <Briefcase className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                        <h1 className="text-3xl font-black tracking-tight text-corex-navy">Your Portfolio</h1>
-                        <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mt-1">Institutional Holdings</p>
-                    </div>
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                    >
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[8px] font-black uppercase tracking-widest mb-6">
+                            <Activity className="h-3 w-3" /> Live Study Terminal
+                        </div>
+                        <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-tight">
+                            {portfolioData?.title || "Study Portfolio"}.
+                        </h1>
+                        <p className="text-xl text-gray-400 mt-4 max-w-xl font-medium leading-relaxed">
+                            {portfolioData?.description || "Real-time tracking of high-conviction analysis nodes."}
+                        </p>
+                    </motion.div>
+                    
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="p-6 rounded-[32px] bg-white/5 border border-white/10 backdrop-blur-xl"
+                    >
+                        <div className="text-emerald-500 text-3xl font-black mb-1">98.4%</div>
+                        <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Accuracy Vector</div>
+                    </motion.div>
                 </div>
 
-                {/* Summary Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    {/* Current Value */}
-                    <div className="bg-white border text-center border-gray-100 rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 relative overflow-hidden group">
-                        <p className="text-gray-400 text-xs font-black uppercase tracking-[0.2em] mb-3">Current Value</p>
-                        <h2 className="text-4xl font-black mb-3 text-corex-navy">{formatCurrency(PORTFOLIO_DATA.summary.currentValue)}</h2>
-                        <div className="inline-flex bg-gray-50 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-500">
-                            Invested: {formatCurrency(PORTFOLIO_DATA.summary.totalInvestment)}
+                {/* Portfolio Grid */}
+                <div className="grid lg:grid-cols-3 gap-8">
+                    {/* Left Column: Intelligence Nodes */}
+                    <div className="lg:col-span-2 space-y-8">
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {portfolioData?.nodes?.map((node, i) => (
+                                <motion.div
+                                    key={node.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: i * 0.1 }}
+                                    className="p-8 rounded-[40px] bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all group"
+                                >
+                                    <div className="flex justify-between items-start mb-8">
+                                        <div>
+                                            <h3 className="text-2xl font-black text-white mb-1 group-hover:text-emerald-400 transition-colors">{node.symbol}</h3>
+                                            <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">{node.name}</p>
+                                        </div>
+                                        <div className={`px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest ${
+                                            node.trend === 'Bullish' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-amber-500/10 text-amber-500'
+                                        }`}>
+                                            {node.trend}
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/5">
+                                        <div>
+                                            <p className="text-[8px] font-black text-gray-500 uppercase tracking-widest mb-1">Status</p>
+                                            <p className="text-sm font-black text-white">{node.status}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-[8px] font-black text-gray-500 uppercase tracking-widest mb-1">Allocation</p>
+                                            <p className="text-sm font-black text-emerald-500">{node.allocation}</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
 
-                    {/* Total P&L */}
-                    <div className="bg-white border text-center border-gray-100 rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 relative overflow-hidden group">
-                        <p className="text-gray-400 text-xs font-black uppercase tracking-[0.2em] mb-3">Total Returns</p>
-                        <h2 className={`text-4xl font-black mb-3 flex items-center justify-center gap-2 ${isPositive(PORTFOLIO_DATA.summary.totalPnL) ? 'text-green-600' : 'text-red-600'}`}>
-                            {isPositive(PORTFOLIO_DATA.summary.totalPnL) ? '+' : ''}{formatCurrency(PORTFOLIO_DATA.summary.totalPnL)}
-                        </h2>
-                        <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black ${isPositive(PORTFOLIO_DATA.summary.totalPnLPercent) ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
-                            {isPositive(PORTFOLIO_DATA.summary.totalPnLPercent) ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
-                            <span>{Math.abs(PORTFOLIO_DATA.summary.totalPnLPercent)}%</span>
-                        </div>
-                    </div>
-
-                    {/* Day P&L */}
-                    <div className="bg-white border text-center border-gray-100 rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 relative overflow-hidden group md:col-span-2 lg:col-span-2">
-                        <div className="flex flex-col md:flex-row items-center justify-between h-full">
-                            <div className="text-center md:text-left mb-4 md:mb-0">
-                                <p className="text-gray-400 text-xs font-black uppercase tracking-[0.2em] mb-3">1D Returns</p>
-                                <h2 className={`text-4xl font-black mb-3 ${isPositive(PORTFOLIO_DATA.summary.dayPnL) ? 'text-green-600' : 'text-red-600'}`}>
-                                    {isPositive(PORTFOLIO_DATA.summary.dayPnL) ? '+' : ''}{formatCurrency(PORTFOLIO_DATA.summary.dayPnL)}
-                                </h2>
-                                <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black ${isPositive(PORTFOLIO_DATA.summary.dayPnLPercent) ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
-                                    {isPositive(PORTFOLIO_DATA.summary.dayPnLPercent) ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
-                                    <span>{Math.abs(PORTFOLIO_DATA.summary.dayPnLPercent)}%</span>
-                                </div>
+                    {/* Right Column: Insights & Stats */}
+                    <div className="space-y-8">
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="p-8 rounded-[40px] bg-emerald-500 text-white shadow-2xl shadow-emerald-500/20"
+                        >
+                            <h3 className="text-2xl font-black mb-6 tracking-tight">Study Insights</h3>
+                            <div className="space-y-6">
+                                {portfolioData?.insights?.map((insight) => (
+                                    <div key={insight.id} className="pb-6 border-b border-white/10 last:border-0 last:pb-0">
+                                        <h4 className="text-sm font-black uppercase tracking-widest mb-2 flex items-center gap-2">
+                                            <TrendingUp className="h-4 w-4" /> {insight.title}
+                                        </h4>
+                                        <p className="text-xs text-emerald-50/70 font-medium leading-relaxed">
+                                            {insight.desc}
+                                        </p>
+                                    </div>
+                                ))}
                             </div>
-                            <div className="hidden md:flex h-24 w-24 bg-corex-gray rounded-full items-center justify-center -mr-4 group-hover:bg-corex-accent transition-colors shadow-inner">
-                                <Activity className="h-10 w-10 text-corex-navy group-hover:text-white transition-colors" />
+                        </motion.div>
+
+                        <div className="p-8 rounded-[40px] bg-white/5 border border-white/10">
+                            <h3 className="text-xl font-black text-white mb-8 tracking-tight">Framework Distribution</h3>
+                            <div className="space-y-4">
+                                {[
+                                    { label: 'Equity Study', value: 65 },
+                                    { label: 'Forex Intelligence', value: 20 },
+                                    { label: 'Fixed Income', value: 15 }
+                                ].map((item, i) => (
+                                    <div key={i}>
+                                        <div className="flex justify-between text-[10px] font-black uppercase tracking-widest mb-2">
+                                            <span className="text-gray-400">{item.label}</span>
+                                            <span className="text-emerald-500">{item.value}%</span>
+                                        </div>
+                                        <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                animate={{ width: `${item.value}%` }}
+                                                className="h-full bg-emerald-500"
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                {/* Holdings List Section */}
-                <div className="bg-white rounded-[2rem] shadow-xl shadow-corex-navy/5 border border-gray-100 overflow-hidden">
-                    <div className="p-8 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
-                        <h3 className="text-xl font-black text-corex-navy flex items-center gap-3">
-                            Current Holdings
-                            <span className="bg-white border border-gray-200 text-xs px-3 py-1 rounded-full text-corex-navy">{PORTFOLIO_DATA.holdings.length} Positions</span>
-                        </h3>
-                    </div>
-
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left">
-                            <thead>
-                                <tr className="bg-white border-b border-gray-100">
-                                    <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Company</th>
-                                    <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] text-right">Avg. Price</th>
-                                    <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] text-right">CMP</th>
-                                    <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] text-right hidden lg:table-cell">Investment</th>
-                                    <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] text-right">Current Value</th>
-                                    <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] text-right">Returns</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-50">
-                                {PORTFOLIO_DATA.holdings.map((stock) => {
-                                    const investment = stock.quantity * stock.avgPrice;
-                                    const currentValue = stock.quantity * stock.cmp;
-                                    const totalReturn = currentValue - investment;
-                                    const returnPercent = (totalReturn / investment) * 100;
-
-                                    return (
-                                        <tr key={stock.id} className="hover:bg-gray-50/80 transition-all group cursor-pointer">
-                                            <td className="px-8 py-6 whitespace-nowrap">
-                                                <div className="flex items-center gap-4">
-                                                    <div className="flex-shrink-0 h-10 w-10 rounded-2xl bg-corex-navy text-white flex items-center justify-center font-black group-hover:bg-corex-accent transition-colors shadow-sm">
-                                                        {stock.name.charAt(0)}
-                                                    </div>
-                                                    <div>
-                                                        <div className="text-sm font-black text-corex-navy group-hover:text-corex-accent transition-colors">{stock.name}</div>
-                                                        <div className="flex items-center gap-2 mt-1">
-                                                            <span className="px-2 py-0.5 bg-gray-100 text-[10px] font-black uppercase rounded text-gray-500">{stock.ticker}</span>
-                                                            <span className="text-[10px] font-bold text-gray-400">{stock.quantity} shares</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="px-8 py-6 whitespace-nowrap text-right font-medium text-gray-500">
-                                                {formatCurrency(stock.avgPrice)}
-                                            </td>
-                                            <td className="px-8 py-6 whitespace-nowrap text-right">
-                                                <div className="font-black text-corex-navy">{formatCurrency(stock.cmp)}</div>
-                                                <div className={`inline-flex items-center gap-1 text-[10px] font-black mt-1 ${isPositive(stock.dayChangePercent) ? 'text-green-600' : 'text-red-600'}`}>
-                                                    {isPositive(stock.dayChangePercent) ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
-                                                    {Math.abs(stock.dayChangePercent).toFixed(2)}%
-                                                </div>
-                                            </td>
-                                            <td className="px-8 py-6 whitespace-nowrap text-right font-medium text-gray-400 hidden lg:table-cell">
-                                                {formatCurrency(investment)}
-                                            </td>
-                                            <td className="px-8 py-6 whitespace-nowrap text-right font-black text-corex-navy">
-                                                {formatCurrency(currentValue)}
-                                            </td>
-                                            <td className="px-8 py-6 whitespace-nowrap text-right">
-                                                <div className={`font-black ${isPositive(totalReturn) ? 'text-green-600' : 'text-red-600'}`}>
-                                                    {isPositive(totalReturn) ? '+' : ''}{formatCurrency(totalReturn)}
-                                                </div>
-                                                <div className={`text-[10px] font-black mt-1 ${isPositive(returnPercent) ? 'text-green-600/80' : 'text-red-600/80'}`}>
-                                                    {isPositive(returnPercent) ? '+' : ''}{returnPercent.toFixed(2)}%
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

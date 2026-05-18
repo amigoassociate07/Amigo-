@@ -1,4 +1,4 @@
-import { TrendingUp, Shield, Users, Target, Award, BarChart2, Globe, Zap, CheckCircle, Camera } from 'lucide-react';
+import { TrendingUp, Shield, Users, Target, Award, BarChart2, Globe, Zap, CheckCircle, Camera, BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const NAVY   = '#0f172a';
@@ -6,10 +6,10 @@ const GREEN  = '#10b981';
 const BG     = '#f8fafc';
 
 const missionPoints = [
-  'Institutional-grade research for every investor',
-  'Transparent, SEBI-compliant advisory',
+  'Institutional-grade study for every investor',
+  'Transparent, data-driven analytics',
   'Real-time market intelligence & portfolio tools',
-  'Personalised guidance for every risk profile',
+  'Informational insights for every risk profile',
 ];
 
 const iconsMap = { 
@@ -56,10 +56,10 @@ export default function About({ aboutData }) {
   };
 
   const activeMissionPoints = dynamicMissionPoints || [
-    'Institutional-grade research for every investor',
-    'Transparent, SEBI-compliant advisory',
+    'Institutional-grade study for every investor',
+    'Transparent, data-driven analytics',
     'Real-time market intelligence & portfolio tools',
-    'Personalised guidance for every risk profile',
+    'Informational insights for every risk profile',
   ];
 
   return (
@@ -68,109 +68,215 @@ export default function About({ aboutData }) {
       {/* ── HERO ── */}
       <section
         style={{ background: NAVY }}
-        className="relative overflow-hidden py-28 px-6"
+        className="relative overflow-hidden py-32 px-6"
       >
         {/* decorative blobs */}
-        <div
-          className="absolute top-[-80px] right-[-80px] w-[420px] h-[420px] rounded-full opacity-10 pointer-events-none"
-          style={{ background: GREEN, filter: 'blur(80px)' }}
+        <motion.div
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{ duration: 15, repeat: Infinity }}
+          className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full pointer-events-none"
+          style={{ background: GREEN, filter: 'blur(100px)' }}
         />
-        <div
-          className="absolute bottom-[-60px] left-[-60px] w-[300px] h-[300px] rounded-full opacity-10 pointer-events-none"
-          style={{ background: GREEN, filter: 'blur(60px)' }}
+        <motion.div
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.05, 0.15, 0.05],
+          }}
+          transition={{ duration: 20, repeat: Infinity, delay: 5 }}
+          className="absolute bottom-[-80px] left-[-80px] w-[400px] h-[400px] rounded-full pointer-events-none"
+          style={{ background: GREEN, filter: 'blur(80px)' }}
         />
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
           {/* badge */}
-          <div
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2 mb-7 text-sm font-semibold uppercase tracking-widest"
-            style={{ background: `${GREEN}20`, color: GREEN, border: `1px solid ${GREEN}40` }}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="glass-pill bg-corex-navy/50 border-white/10 text-white mb-10 !px-8 !py-3 !gap-6"
+            style={{ borderColor: `${GREEN}20` }}
           >
-            <TrendingUp className="h-4 w-4" />
-            About Amigo Associate
-          </div>
+            <TrendingUp className="h-5 w-5" style={{ color: GREEN }} />
+            <div className="glass-pill bg-yellow-400/10 border-yellow-500/20 text-yellow-600 !px-4 !py-1.5 !gap-3">
+                <BookOpen className="h-3.5 w-3.5" /> Educational Purpose Only
+            </div>
+            <span style={{ color: GREEN }}>Institutional Genesis</span>
+          </motion.div>
 
-          <h1 className="text-5xl sm:text-6xl font-black mb-6 text-white leading-tight">
-            Democratising{' '}
-            <span style={{ color: GREEN }}>Wealth Creation</span>
+          <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black mb-8 text-white leading-[0.9] tracking-tighter">
+            Architecting <br />
+            <span style={{ color: GREEN }} className="italic">Financial Trust.</span>
           </h1>
 
-          <p className="text-lg leading-relaxed max-w-3xl mx-auto" style={{ color: 'rgba(255,255,255,0.65)' }}>
-            Amigo Associate aims to enhance understanding of the Indian equity markets through research-driven insights and analysis, accessible to investors at all levels.
+          <p className="text-xl leading-relaxed max-w-3xl mx-auto font-medium" style={{ color: 'rgba(255,255,255,0.5)' }}>
+            Amigo Associate is built on the foundation of rigorous study and institutional-grade analytics, bringing the world's market intelligence to the modern investor.
           </p>
         </div>
       </section>
 
-      {/* ── STATS BAR ── */}
-      <section style={{ background: GREEN }} className="py-12 px-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {stats.map((s, i) => (
-            <div key={i}>
-              <div className="text-3xl font-black text-white mb-1">{s.value}</div>
-              <div className="text-sm font-semibold uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.75)' }}>
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* ── MISSION ── */}
+
+      {/* ── MISSION & AIM ── */}
       <section className="py-24 px-6" style={{ background: BG }}>
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          {/* text side */}
-          <div>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
             <p
               className="text-xs font-bold uppercase tracking-[0.2em] mb-3"
               style={{ color: GREEN }}
             >
-              Our Mission
+              Purpose & Focus
             </p>
-            <h2 className="text-4xl font-black mb-5 leading-tight" style={{ color: NAVY }}>
-              Levelling the Playing Field in Indian Finance
+            <h2 className="text-4xl sm:text-5xl font-black mb-5 tracking-tight" style={{ color: NAVY }}>
+              Our Mission & Aim
             </h2>
-            <p className="leading-relaxed mb-8 text-base" style={{ color: '#475569' }}>
-              We believe every Indian deserves access to high-quality investment research and
-              financial guidance — not just the wealthy few. From identifying multibagger stocks
-              to managing risk in volatile markets, Amigo Associate stands beside you at every
-              step of your wealth-building journey.
+            <p className="max-w-2xl mx-auto text-base text-slate-500 font-medium">
+              Architecting a transparent, academic environment to empower every Indian investor with institutional-grade insights and analytical clarity.
             </p>
-            <ul className="space-y-3">
-              {activeMissionPoints.map((pt, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" style={{ color: GREEN }} />
-                  <span className="text-sm font-medium" style={{ color: '#334155' }}>{pt}</span>
-                </li>
-              ))}
-            </ul>
           </div>
 
-          {/* card grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { icon: BarChart2, label: 'Market Research' },
-              { icon: Zap,       label: 'Real Time Updates' },
-              { icon: Users,     label: 'Community'       },
-              { icon: Shield,    label: 'SEBI Compliant'  },
-            ].map(({ icon: Icon, label }, i) => (
-              <div
-                key={i}
-                className="rounded-2xl p-7 flex flex-col items-center gap-4 text-center transition-all hover:-translate-y-1"
-                style={{
-                  background: 'white',
-                  border: '1px solid #e2e8f0',
-                  boxShadow: '0 2px 16px rgba(15,23,42,0.06)',
-                }}
-              >
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Our Mission */}
+            <div
+              className="p-8 sm:p-10 rounded-[32px] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between"
+              style={{
+                background: 'white',
+                border: '1px solid #e2e8f0',
+                boxShadow: '0 4px 24px rgba(15,23,42,0.04)',
+              }}
+            >
+              <div>
                 <div
-                  className="h-12 w-12 rounded-xl flex items-center justify-center"
-                  style={{ background: `${GREEN}15` }}
+                  className="h-14 w-14 rounded-2xl bg-emerald-50 flex items-center justify-center mb-6"
+                  style={{ background: `${GREEN}12` }}
                 >
-                  <Icon className="h-6 w-6" style={{ color: GREEN }} />
+                  <Target className="h-7 w-7" style={{ color: GREEN }} />
                 </div>
-                <span className="text-sm font-bold" style={{ color: NAVY }}>{label}</span>
+                <h3 className="text-2xl font-black mb-4 tracking-tight" style={{ color: NAVY }}>
+                  Our Mission
+                </h3>
+                <p className="leading-relaxed text-slate-600 mb-6 text-sm font-medium">
+                  To democratize institutional-grade financial intelligence and academic study. We believe that professional tools, deep market insights, and objective educational materials should not be exclusive privileges of institutional elites, but accessible resources for all.
+                </p>
+              </div>
+              <ul className="space-y-3.5">
+                {[
+                  'Democratizing institutional financial frameworks.',
+                  'Enabling absolute transparency in data-driven tools.',
+                  'Fostering a scientific and bias-free learning workspace.'
+                ].map((pt, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" style={{ color: GREEN }} />
+                    <span className="text-sm font-semibold text-slate-700">{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Our Aim */}
+            <div
+              className="p-8 sm:p-10 rounded-[32px] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between"
+              style={{
+                background: 'white',
+                border: '1px solid #e2e8f0',
+                boxShadow: '0 4px 24px rgba(15,23,42,0.04)',
+              }}
+            >
+              <div>
+                <div
+                  className="h-14 w-14 rounded-2xl bg-emerald-50 flex items-center justify-center mb-6"
+                  style={{ background: `${GREEN}12` }}
+                >
+                  <TrendingUp className="h-7 w-7" style={{ color: GREEN }} />
+                </div>
+                <h3 className="text-2xl font-black mb-4 tracking-tight" style={{ color: NAVY }}>
+                  Our Aim
+                </h3>
+                <p className="leading-relaxed text-slate-600 mb-6 text-sm font-medium">
+                  To serve as India's premier digital financial sanctuary and academic training ground. We aim to nurture analytical logic, minimize market speculativeness through structured studies, and guide retail capital toward highly resilient assets.
+                </p>
+              </div>
+              <ul className="space-y-3.5">
+                {[
+                  'Building professional analytical mastery in users.',
+                  'Mitigating risk profiles through asset rationalization.',
+                  'Cultivating zero-bias, educational-first values.'
+                ].map((pt, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" style={{ color: GREEN }} />
+                    <span className="text-sm font-semibold text-slate-700">{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── STUDY PURPOSE ── */}
+      <section className="py-24 px-6 border-t border-gray-100" style={{ background: 'white' }}>
+        <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-5 py-2 mb-7 text-sm font-semibold uppercase tracking-widest"
+            style={{ background: `${GREEN}10`, color: GREEN }}
+          >
+            <BookOpen className="h-4 w-4" />
+            Educational Intent
+          </div>
+          <h2 className="text-4xl font-black mb-6 leading-tight" style={{ color: NAVY }}>
+            Built for <span style={{ color: GREEN }}>Study & Intelligence</span>
+          </h2>
+          <p className="text-lg leading-relaxed max-w-3xl mx-auto mb-10" style={{ color: '#475569' }}>
+            Amigo Associate is primarily designed as a study-oriented platform for students, studyers, and market enthusiasts. Our core purpose is to facilitate the study of financial markets through historical data study, trend visualization, and educational modules.
+          </p>
+          <div className="grid sm:grid-cols-3 gap-8 w-full">
+            {[
+              { title: 'Academic Study', desc: 'In-depth tools for studying market behavior and historical patterns.' },
+              { title: 'Skill Development', desc: 'Enhance your technical analysis and data interpretation skills.' },
+              { title: 'Pure Study', desc: 'Focused purely on informational data with no commercial or transactional intent.' }
+            ].map((box, i) => (
+              <div key={i} className="p-8 rounded-3xl bg-slate-50 border border-slate-100 text-left">
+                <h3 className="font-bold text-lg mb-3" style={{ color: NAVY }}>{box.title}</h3>
+                <p className="text-sm leading-relaxed text-slate-500 font-medium">{box.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* ── ALLIED SERVICES ── */}
+      <section className="py-24 px-6 border-t border-gray-100" style={{ background: '#f1f5f9' }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="md:w-1/2">
+              <p
+                className="text-xs font-bold uppercase tracking-[0.2em] mb-3"
+                style={{ color: GREEN }}
+              >
+                Comprehensive Ecosystem
+              </p>
+              <h2 className="text-4xl font-black mb-6 leading-tight" style={{ color: NAVY }}>
+                Beyond Equity: <br />
+                <span style={{ color: GREEN }}>Allied Financial Services</span>
+              </h2>
+              <p className="leading-relaxed text-base mb-8" style={{ color: '#475569' }}>
+                Through our strategic distribution partnerships, we offer a complete suite of financial products to ensure your entire portfolio is robust and protected.
+              </p>
+            </div>
+            <div className="md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { title: 'Insurance', sub: 'Life & General' },
+                { title: 'Mutual Funds', sub: 'Distribution' },
+                { title: 'Fixed Deposits', sub: 'Bonds & NCDs' },
+                { title: 'Loans', sub: 'Mortgages & Credits' },
+              ].map((item, i) => (
+                <div key={i} className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all">
+                  <div className="h-2 w-8 bg-corex-accent rounded-full mb-4"></div>
+                  <h3 className="font-black text-lg mb-1" style={{ color: NAVY }}>{item.title}</h3>
+                  <p className="text-xs font-bold uppercase tracking-widest text-slate-400">{item.sub}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -191,7 +297,7 @@ export default function About({ aboutData }) {
             <p style={{ color: 'rgba(255,255,255,0.5)' }}>The principles that guide everything we do.</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-8">
             {values.map((v, i) => {
               const Icon = getIcon(v, Shield);
               return (
@@ -238,7 +344,7 @@ export default function About({ aboutData }) {
                 Life at Amigo
               </h2>
               <p className="max-w-xl" style={{ color: '#64748b' }}>
-                Beyond the charts and research, we are a family of dedicated professionals 
+                Beyond the charts and study, we are a family of dedicated professionals 
                 building the future of retail investing in India.
               </p>
             </motion.div>
@@ -291,26 +397,38 @@ export default function About({ aboutData }) {
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section className="py-20 px-6" style={{ background: NAVY }}>
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-black text-white mb-4">
-            Ready to Start Your{' '}
-            <span style={{ color: GREEN }}>Investment Journey?</span>
-          </h2>
-          <p className="mb-8 text-base" style={{ color: 'rgba(255,255,255,0.6)' }}>
-            Join thousands of investors who trust Amigo Associate for smarter, data-driven investing.
-          </p>
-          <a
-            href="mailto:amigoassociate07@gmail.com"
-            className="inline-flex items-center gap-2 font-bold py-3 px-8 rounded-xl transition-all hover:scale-105 text-white"
-            style={{ background: GREEN }}
-          >
-            Get in Touch
-          </a>
+      {/* ── INSTITUTIONAL TRUST ── */}
+      <section className="py-32 bg-slate-50 border-t border-slate-100">
+        <div className="max-w-5xl mx-auto px-6">
+            <div className="text-center mb-20">
+                <h2 className="text-xs font-black uppercase tracking-[0.5em] text-corex-accent mb-4">Quality Assurance</h2>
+                <p className="text-4xl font-black text-corex-navy tracking-tighter">Why Our Study is <span className="text-corex-accent italic uppercase tracking-tighter">Trusted</span>.</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+                {[
+                    { title: "SEBI Compliant", desc: "Adhering to the highest standards of regulatory compliance and data transparency." },
+                    { title: "Institutional DNA", desc: "Study methodologies derived from institutional-grade investment frameworks." },
+                    { title: "Zero Bias", desc: "Unbiased, data-first approach with no external commercial influence on study." }
+                ].map((item, i) => (
+                    <motion.div 
+                        key={i}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1 }}
+                        className="bg-white p-10 rounded-[40px] border border-slate-200 shadow-sm hover:shadow-xl transition-all group"
+                    >
+                        <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center mb-6 group-hover:bg-corex-accent transition-colors">
+                            <CheckCircle className="h-6 w-6 text-corex-accent group-hover:text-white" />
+                        </div>
+                        <h4 className="text-xl font-black text-corex-navy mb-4 tracking-tight">{item.title}</h4>
+                        <p className="text-slate-500 text-sm font-medium leading-relaxed">{item.desc}</p>
+                    </motion.div>
+                ))}
+            </div>
         </div>
       </section>
-
     </div>
   );
 }

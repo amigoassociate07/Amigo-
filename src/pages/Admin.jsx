@@ -9,6 +9,7 @@ const ADMIN_PASS = 'amigo@2026';
 
 // ─────────────────────────────────────────────────────── LOGIN SCREEN
 const LoginScreen = ({ onLogin }) => {
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPass, setShowPass] = useState(false);
     const [error, setError]       = useState('');
@@ -19,11 +20,11 @@ const LoginScreen = ({ onLogin }) => {
         setLoading(true);
         setError('');
         setTimeout(() => {
-            if (password === ADMIN_PASS) {
+            if (username === ADMIN_USER && password === ADMIN_PASS) {
                 sessionStorage.setItem('amigo_admin_auth', '1');
                 onLogin();
             } else {
-                setError('Invalid password.');
+                setError('Invalid username or password.');
             }
             setLoading(false);
         }, 600);
@@ -52,14 +53,41 @@ const LoginScreen = ({ onLogin }) => {
                     >
                         <ShieldCheck className="h-8 w-8" style={{ color: GREEN }} />
                     </div>
+                    <div className="glass-pill bg-yellow-400/10 border-yellow-500/20 text-yellow-600 mb-6 mx-auto">
+                        <ShieldCheck className="h-3 w-3" /> Educational Purpose Only
+                    </div>
                     <h1 className="text-2xl font-black text-white mb-1">Admin Portal</h1>
                     <p className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
-                        Enter password to manage content
+                        Enter credentials to manage content
                     </p>
                 </div>
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="px-10 py-8 space-y-6">
+                    {/* Username */}
+                    <div className="space-y-2">
+                        <label className="text-xs font-black uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                            Admin Username
+                        </label>
+                        <div className="relative">
+                            <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4" style={{ color: 'rgba(255,255,255,0.3)' }} />
+                            <input
+                                type="text"
+                                value={username}
+                                onChange={e => setUsername(e.target.value)}
+                                placeholder="Enter username"
+                                required
+                                className="w-full pl-11 pr-4 py-4 rounded-xl text-sm text-white focus:outline-none transition-all"
+                                style={{
+                                    background: 'rgba(255,255,255,0.06)',
+                                    border: `1px solid ${error ? '#ef4444' : 'rgba(255,255,255,0.1)'}`,
+                                }}
+                                onFocus={e => e.target.style.borderColor = GREEN}
+                                onBlur={e => e.target.style.borderColor = error ? '#ef4444' : 'rgba(255,255,255,0.1)'}
+                            />
+                        </div>
+                    </div>
+
                     {/* Password */}
                     <div className="space-y-2">
                         <label className="text-xs font-black uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.5)' }}>
@@ -73,7 +101,7 @@ const LoginScreen = ({ onLogin }) => {
                                 onChange={e => setPassword(e.target.value)}
                                 placeholder="Enter password"
                                 required
-                                className="w-full pl-11 pr-12 py-4 rounded-xl text-sm text-white focus:outline-none transition-all"
+                                className="w-full pl-11 pr-4 py-4 rounded-xl text-sm text-white focus:outline-none transition-all"
                                 style={{
                                     background: 'rgba(255,255,255,0.06)',
                                     border: `1px solid ${error ? '#ef4444' : 'rgba(255,255,255,0.1)'}`,
@@ -81,14 +109,7 @@ const LoginScreen = ({ onLogin }) => {
                                 onFocus={e => e.target.style.borderColor = GREEN}
                                 onBlur={e => e.target.style.borderColor = error ? '#ef4444' : 'rgba(255,255,255,0.1)'}
                             />
-                            <button
-                                type="button"
-                                onClick={() => setShowPass(p => !p)}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 transition-colors"
-                                style={{ color: 'rgba(255,255,255,0.3)' }}
-                            >
-                                {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                            </button>
+
                         </div>
                     </div>
 
@@ -112,9 +133,7 @@ const LoginScreen = ({ onLogin }) => {
                         {loading ? 'Signing in...' : 'Sign In'}
                     </button>
 
-                    <p className="text-center text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
-                        Authorised by Arihant Capital Markets Ltd
-                    </p>
+
                 </form>
             </div>
         </div>
@@ -291,127 +310,7 @@ const CareersTab = ({ jobs, onAddJob, onUpdateJob, onDeleteJob, applicationLink,
     );
 };
 
-// ─────────────────────────────────────────────────────── IPO TAB
-const STATUS_OPTIONS = ['Upcoming', 'Open', 'Closed'];
 
-const IPOTab = ({ ipos, onAddIpo, onUpdateIpo, onDeleteIpo }) => {
-    const [isEditing, setIsEditing]   = useState(false);
-    const [editingIpo, setEditingIpo] = useState(null);
-
-    const blankIpo = { company: '', sector: '', priceRange: '', lotSize: '', openDate: '', closeDate: '', listingDate: '', status: 'Upcoming', description: '' };
-
-    const handleEdit   = (ipo) => { setEditingIpo({ ...ipo }); setIsEditing(true); };
-    const handleAddNew = () => { setEditingIpo({ ...blankIpo }); setIsEditing(true); };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        editingIpo.id ? onUpdateIpo(editingIpo) : onAddIpo(editingIpo);
-        setIsEditing(false); setEditingIpo(null);
-    };
-
-    const statusColor = { Open: '#10b981', Upcoming: '#f59e0b', Closed: '#64748b' };
-
-    return (
-        <>
-            <div className="flex items-center justify-between mb-8">
-                <p className="text-gray-400 text-sm">Manage upcoming and live IPO listings.</p>
-                <button onClick={handleAddNew} className="btn-accent px-6 py-3 flex items-center gap-2">
-                    <Plus className="w-5 h-5" /> Add IPO
-                </button>
-            </div>
-
-            <div className="grid gap-6">
-                {ipos.map(ipo => (
-                    <div key={ipo.id} className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-white/10 transition-all">
-                        <div className="flex-1">
-                            <div className="flex items-center gap-3 mb-2">
-                                <h3 className="text-xl font-bold">{ipo.company}</h3>
-                                <span className="text-xs font-bold px-3 py-1 rounded-full"
-                                    style={{ background: `${statusColor[ipo.status] || '#64748b'}25`, color: statusColor[ipo.status] || '#64748b' }}>
-                                    {ipo.status}
-                                </span>
-                            </div>
-                            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
-                                <span className="bg-white/5 px-3 py-1 rounded-full border border-white/10">{ipo.sector}</span>
-                                <span className="flex items-center gap-1"><DollarSign className="w-3 h-3" /> {ipo.priceRange}</span>
-                                <span className="flex items-center gap-1"><Package className="w-3 h-3" /> Lot: {ipo.lotSize}</span>
-                                <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {ipo.openDate} → {ipo.closeDate}</span>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <button onClick={() => handleEdit(ipo)} className="p-3 rounded-xl bg-white/5 hover:bg-corex-accent hover:text-corex-navy transition-all" title="Edit">
-                                <Edit2 className="w-5 h-5" />
-                            </button>
-                            <button onClick={() => { if (window.confirm('Delete this IPO?')) onDeleteIpo(ipo.id); }} className="p-3 rounded-xl bg-white/5 hover:bg-red-500 transition-all" title="Delete">
-                                <Trash2 className="w-5 h-5" />
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            {ipos.length === 0 && (
-                <div className="text-center py-20 bg-white/5 rounded-3xl border border-dashed border-white/10">
-                    <TrendingUp className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                    <p className="text-gray-400">No IPOs listed. Add one to get started.</p>
-                </div>
-            )}
-
-            {/* IPO Edit Modal */}
-            {isEditing && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setIsEditing(false)} />
-                    <div className="relative bg-corex-navy border border-white/10 rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto">
-                        <div className="p-8 border-b border-white/10 flex items-center justify-between sticky top-0 bg-corex-navy z-10">
-                            <h2 className="text-2xl font-black">{editingIpo?.id ? 'Edit IPO' : 'New IPO'}</h2>
-                            <button onClick={() => setIsEditing(false)} className="text-gray-400 hover:text-white transition-colors"><X className="w-6 h-6" /></button>
-                        </div>
-                        <form onSubmit={handleSubmit} className="p-8 space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {[
-                                    { label: 'Company Name',  key: 'company',     placeholder: 'e.g. Swiggy Ltd' },
-                                    { label: 'Sector',        key: 'sector',      placeholder: 'e.g. Consumer Tech' },
-                                    { label: 'Price Range',   key: 'priceRange',  placeholder: 'e.g. ₹350 – ₹390' },
-                                    { label: 'Lot Size',      key: 'lotSize',     placeholder: 'e.g. 150' },
-                                    { label: 'Open Date',     key: 'openDate',    placeholder: 'e.g. 25 Mar 2026' },
-                                    { label: 'Close Date',    key: 'closeDate',   placeholder: 'e.g. 27 Mar 2026' },
-                                    { label: 'Listing Date',  key: 'listingDate', placeholder: 'e.g. 01 Apr 2026' },
-                                ].map(({ label, key, placeholder }) => (
-                                    <div key={key} className="space-y-2">
-                                        <label className="text-xs font-black uppercase tracking-widest text-gray-400">{label}</label>
-                                        <input type="text" value={editingIpo[key]} onChange={e => setEditingIpo({...editingIpo, [key]: e.target.value})}
-                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-corex-accent outline-none transition-colors"
-                                            placeholder={placeholder} required />
-                                    </div>
-                                ))}
-                                <div className="space-y-2">
-                                    <label className="text-xs font-black uppercase tracking-widest text-gray-400">Status</label>
-                                    <select value={editingIpo.status} onChange={e => setEditingIpo({...editingIpo, status: e.target.value})}
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-corex-accent outline-none transition-colors appearance-none">
-                                        {STATUS_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-black uppercase tracking-widest text-gray-400">Description</label>
-                                <textarea value={editingIpo.description} onChange={e => setEditingIpo({...editingIpo, description: e.target.value})}
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-corex-accent outline-none h-32 resize-none transition-colors"
-                                    placeholder="Short description about the company..." required />
-                            </div>
-                            <div className="pt-4 flex gap-4">
-                                <button type="submit" className="flex-1 bg-corex-accent text-corex-navy font-black py-4 rounded-xl hover:bg-white transition-all flex items-center justify-center gap-2">
-                                    <Save className="w-5 h-5" /> {editingIpo.id ? 'Update IPO' : 'Create IPO'}
-                                </button>
-                                <button type="button" onClick={() => setIsEditing(false)} className="flex-1 bg-white/5 border border-white/10 font-black py-4 rounded-xl hover:bg-white/10 transition-colors">
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
-        </>
-    );
-};
 
 // ─────────────────────────────────────────────────────── HOME TAB
 const HomeTab = ({ homeData, setHomeData }) => {
@@ -476,9 +375,8 @@ const JsonEditorTab = ({ title, desc, data, onSave }) => {
 // ─────────────────────────────────────────────────────── MAIN ADMIN
 const Admin = ({ 
     jobs, onAddJob, onUpdateJob, onDeleteJob, 
-    ipos, onAddIpo, onUpdateIpo, onDeleteIpo, 
     applicationLink, setApplicationLink,
-    stocksData, setStocksData, portfolioData, setPortfolioData, aboutData, setAboutData, homeData, setHomeData, contactData, setContactData
+    portfolioData, setPortfolioData, aboutData, setAboutData, homeData, setHomeData, contactData, setContactData
 }) => {
     const [activeTab, setActiveTab]   = useState('careers');
     const [isAuthed, setIsAuthed]     = useState(() => sessionStorage.getItem('amigo_admin_auth') === '1');
@@ -494,12 +392,10 @@ const Admin = ({
 
     const tabs = [
         { id: 'home',      label: 'Home',      icon: Globe },
-        { id: 'stocks',    label: 'Stocks',    icon: Activity },
-        { id: 'portfolio', label: 'Portfolio', icon: PieChart },
         { id: 'about',     label: 'About Us',  icon: Users },
         { id: 'contact',   label: 'Contact',   icon: Link2 },
         { id: 'careers',   label: 'Careers',   icon: Briefcase  },
-        { id: 'ipo',       label: 'IPO',       icon: TrendingUp },
+
     ];
 
     return (
@@ -544,8 +440,8 @@ const Admin = ({
 
                 {/* Tab Content */}
                 {activeTab === 'home' && <HomeTab homeData={homeData} setHomeData={setHomeData} />}
-                {activeTab === 'stocks' && <JsonEditorTab title="Stocks Data" desc="Edit raw JSON data for the stock explorer." data={stocksData} onSave={setStocksData} />}
-                {activeTab === 'portfolio' && <JsonEditorTab title="Portfolio Data" desc="Edit raw JSON data for portfolio holdings and summary." data={portfolioData} onSave={setPortfolioData} />}
+
+
                 {activeTab === 'about' && <JsonEditorTab title="About Us Data" desc="Edit raw JSON data for team members, values, and stats." data={aboutData} onSave={setAboutData} />}
                 {activeTab === 'contact' && <JsonEditorTab title="Contact Data" desc="Edit raw JSON data for contact info and presence cards." data={contactData} onSave={setContactData} />}
                 {activeTab === 'careers' && (
@@ -558,9 +454,7 @@ const Admin = ({
                         setApplicationLink={setApplicationLink} 
                     />
                 )}
-                {activeTab === 'ipo' && (
-                    <IPOTab ipos={ipos || []} onAddIpo={onAddIpo} onUpdateIpo={onUpdateIpo} onDeleteIpo={onDeleteIpo} />
-                )}
+
             </div>
         </div>
     );

@@ -49,11 +49,14 @@ const Careers = ({ jobs, applicationLink }) => {
                 <div className="absolute top-40 -right-40 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
                 <div className="max-w-4xl mx-auto text-center z-10 relative">
-                    <div className="inline-block px-4 py-1.5 rounded-full border border-corex-accent/30 bg-corex-accent/10 text-corex-accent text-xs font-bold tracking-widest uppercase mb-8">
+                    <div className="glass-pill bg-yellow-400/10 border-yellow-500/20 text-yellow-600 mb-6">
+                        <Briefcase className="h-3 w-3" /> Educational Purpose Only
+                    </div>
+                    <div className="glass-pill border-corex-accent/30 bg-corex-accent/10 text-corex-accent mb-8">
                         Join The Mission
                     </div>
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-8 leading-[1.1]">
-                        Build the <span className="text-corex-accent relative inline-block">Future
+                    <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-8 leading-[1.1] uppercase">
+                        Build the <span className="text-corex-accent relative inline-block italic">Future
                             <svg className="absolute w-full h-3 -bottom-1 left-0 text-corex-accent opacity-50" viewBox="0 0 100 10" preserveAspectRatio="none">
                                 <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
                             </svg>
@@ -64,13 +67,13 @@ const Careers = ({ jobs, applicationLink }) => {
                         We are looking for exceptional talent to help us democratize institutional-grade financial data and empower investors worldwide.
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <button className="btn-accent px-8 py-4 w-full sm:w-auto text-base" onClick={() => {
+                        <button className="btn-institutional bg-corex-accent text-white shadow-corex-accent/40 w-full sm:w-auto" onClick={() => {
                             document.getElementById('open-positions').scrollIntoView({ behavior: 'smooth' });
                         }}>
                             View Open Positions
                         </button>
-                        <button className="px-8 py-4 rounded-lg bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-colors w-full sm:w-auto text-base">
-                            Learn About Our Culture
+                        <button className="btn-institutional bg-white/5 border border-white/10 text-white hover:bg-white/10 w-full sm:w-auto">
+                            Our Vision
                         </button>
                     </div>
                 </div>
@@ -139,7 +142,7 @@ const Careers = ({ jobs, applicationLink }) => {
                                             rel="noopener noreferrer"
                                             className="hidden md:flex items-center gap-2 text-sm font-bold text-gray-400 group-hover:text-white transition-colors cursor-pointer"
                                         >
-                                            Apply Now <ChevronRight className="w-4 h-4" />
+                                            Submit Application <ChevronRight className="w-4 h-4" />
                                         </a>
                                         <a 
                                             href={applicationLink} 

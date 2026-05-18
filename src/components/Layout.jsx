@@ -4,19 +4,30 @@ import Footer from './Footer';
 import MobileBottomNav from './MobileBottomNav';
 import WhatsAppButton from './WhatsAppButton';
 
-const Layout = ({ children, onHomeClick, onStocksClick, onPortfolioClick, onCareersClick, onContactClick, onAdminClick, onAboutClick, onIpoClick, activePage }) => {
+const Layout = ({ children, onHomeClick, onServicesClick, onPortfolioClick, onCareersClick, onContactClick, onAdminClick, onAboutClick, onIpoClick, onMutualFundsClick, onPathshalaClick, onForexClick, activePage }) => {
     return (
         <div className="min-h-screen flex flex-col bg-corex-gray">
             {activePage !== 'admin' && (
+                <div className="bg-yellow-400 py-1.5 px-4 text-center border-b border-yellow-500/20">
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">
+                        Educational Purpose Only: Amigo Associate is a study platform for academic learning and market intelligence.
+                    </span>
+                </div>
+            )}
+            {activePage !== 'admin' && (
                 <Navbar
                     onHomeClick={onHomeClick}
-                    onStocksClick={onStocksClick}
+                    onServicesClick={onServicesClick}
                     onPortfolioClick={onPortfolioClick}
                     onAboutClick={onAboutClick}
                     onIpoClick={onIpoClick}
+                    onMutualFundsClick={onMutualFundsClick}
+                    onPathshalaClick={onPathshalaClick}
+                    onForexClick={onForexClick}
                     activePage={activePage}
                 />
             )}
+            
             <main className="flex-grow">
                 {children}
             </main>
@@ -25,18 +36,22 @@ const Layout = ({ children, onHomeClick, onStocksClick, onPortfolioClick, onCare
                     <MobileBottomNav
                         activePage={activePage}
                         onHomeClick={onHomeClick}
-                        onStocksClick={onStocksClick}
+                        onServicesClick={onServicesClick}
+
                         onPortfolioClick={onPortfolioClick}
                         onIpoClick={onIpoClick}
                     />
                     <Footer
                         onCareersClick={onCareersClick}
                         onContactClick={onContactClick}
-                        onStocksClick={onStocksClick}
+
                         onAdminClick={onAdminClick}
+                        onServicesClick={onServicesClick}
                         onIpoClick={onIpoClick}
                         onAboutClick={onAboutClick}
                         onPortfolioClick={onPortfolioClick}
+                        onMutualFundsClick={onMutualFundsClick}
+                        onForexClick={onForexClick}
                     />
                 </>
             )}

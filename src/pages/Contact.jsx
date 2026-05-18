@@ -31,17 +31,20 @@ const Contact = ({ contactData }) => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
+                        <div className="glass-pill bg-yellow-400/10 border-yellow-500/20 text-yellow-600 mb-6">
+                            <Mail className="h-3 w-3" /> Educational Purpose Only
+                        </div>
                         <div className="flex justify-center items-center gap-3 mb-6">
                             <div className="h-1 w-12 bg-corex-accent rounded-full"></div>
                             <span className="text-xs font-black uppercase tracking-[0.4em] text-corex-accent">Connect With Us</span>
                             <div className="h-1 w-12 bg-corex-accent rounded-full"></div>
                         </div>
                         <h1 
-                            className="text-5xl lg:text-7xl font-black text-white leading-tight mb-8 tracking-tighter"
+                            className="text-3xl sm:text-5xl lg:text-7xl font-black text-white leading-tight mb-8 tracking-tight"
                             dangerouslySetInnerHTML={{ __html: contactData?.hero?.title || "Get in <span class='text-corex-accent italic'>Touch</span>" }}
                         />
-                        <p className="text-xl text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
-                            {contactData?.hero?.subtitle || "If you have any questions or require professional guidance, our team is ready to assist you with any enquiries."}
+                        <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
+                            {contactData?.hero?.subtitle || "If you have any questions or require platform assistance, our team is ready to assist you with any enquiries."}
                         </p>
                     </motion.div>
                 </div>
@@ -126,7 +129,7 @@ const Contact = ({ contactData }) => {
                                         ></textarea>
                                     </div>
                                     <div className="md:col-span-2">
-                                        <button className="btn-accent w-full py-5 text-base font-black uppercase tracking-widest flex items-center justify-center gap-3">
+                                        <button className="btn-institutional bg-corex-accent text-white shadow-corex-accent/40 w-full">
                                             Send Message <Send className="h-5 w-5" />
                                         </button>
                                     </div>

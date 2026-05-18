@@ -2,7 +2,6 @@
 
 @theme {
   --color-corex-navy: #0f172a;
-  --color-corex-blue: #1e293b;
   --color-corex-accent: #10b981;
   --color-corex-white: #f8fafc;
   --color-corex-gray: #f1f5f9;
@@ -22,18 +21,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.btn-primary {
-  @apply bg-corex-navy text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-corex-blue active:scale-95 transition-all cursor-pointer shadow-sm;
-}
-
 .btn-accent {
-  @apply bg-corex-accent text-white px-6 py-2.5 rounded-lg font-semibold hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm;
+  @apply bg-corex-accent text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-xl shadow-corex-accent/20;
 }
 
-.btn-outline {
-  @apply border-2 border-corex-navy text-corex-navy px-6 py-2.5 rounded-lg font-semibold hover:bg-corex-navy hover:text-white active:scale-95 transition-all cursor-pointer;
+.btn-institutional {
+  @apply px-12 py-6 text-base font-black uppercase tracking-widest shadow-2xl transition-all active:scale-95 flex items-center justify-center gap-3 rounded-2xl;
 }
 
-.corex-card {
-  @apply bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow;
+.glass-pill {
+  @apply inline-flex items-center gap-3 rounded-full px-6 py-2 text-[11px] font-black uppercase tracking-[0.3em] border backdrop-blur-md;
 }
+

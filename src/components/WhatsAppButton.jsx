@@ -8,7 +8,7 @@ const WhatsAppButton = () => {
     
     // Config
     const phoneNumber = "919522700027"; 
-    const defaultText = "Hello! I'm interested in Amigo Associate services.";
+    const defaultText = "Hello, I would like to inquire about Amigo Associate's institutional wealth management services.";
 
     const handleSend = (e) => {
         if (e) e.preventDefault();
@@ -58,7 +58,7 @@ const WhatsAppButton = () => {
                             <div className="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 max-w-[85%]">
                                 <p className="text-sm font-medium text-corex-navy leading-relaxed">
                                     Hi there! 👋<br />
-                                    How can we assist your capital management operations today?
+                                    Let’s Talk About Your Financial Aims.
                                 </p>
                                 <span className="text-[9px] font-bold text-gray-400 uppercase mt-2 block tracking-widest">
                                     {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
