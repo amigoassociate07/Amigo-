@@ -362,80 +362,72 @@ function App() {
 
       activePage={activePage}
     >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activePage}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-        >
-          {activePage === 'home' && (
-            <Home onExploreClick={(page) => setActivePage(page || 'services')} homeData={homeData} />
-          )}
-          {activePage === 'services' && (
-            <Services 
-              onExploreInsurance={() => setActivePage('insurance-detail')} 
-              onExploreMutualFunds={() => setActivePage('mutual-funds')} 
-              onExploreFixedDeposits={() => setActivePage('fixed-deposits-detail')} 
-              onExploreLoans={() => setActivePage('loans-detail')} 
-              onExploreEquity={() => setActivePage('equity-detail')} 
-              onExploreForex={() => setActivePage('forex-detail')}
-            />
-          )}
-          {activePage === 'insurance-detail' && <InsuranceDetail onBackClick={() => setActivePage('services')} />}
-          {activePage === 'mutual-funds' && (
-            <MutualFunds 
-              onBackClick={() => setActivePage('services')}
-              onSIPClick={() => setActivePage('sip-detail')}
-              onLumpsumClick={() => setActivePage('lumpsum-detail')}
-              onELSSClick={() => setActivePage('elss-detail')}
-              onDebtClick={() => setActivePage('debt-funds-detail')}
-              onEquityClick={() => setActivePage('equity-funds-detail')}
-              onReviewClick={() => setActivePage('portfolio-review-detail')}
-            />
-          )}
-          {activePage === 'fixed-deposits-detail' && <FixedDepositsDetail onBackClick={() => setActivePage('services')} />}
-          {activePage === 'loans-detail' && <LoansDetail onBackClick={() => setActivePage('services')} />}
-          {activePage === 'equity-detail' && <EquityDetail onBackClick={() => setActivePage('services')} />}
-          {activePage === 'careers' && (
-            <Careers jobs={jobs} applicationLink={applicationLink} />
-          )}
-          {activePage === 'contact' && (
-            <Contact contactData={contactData} />
-          )}
-          {activePage === 'admin' && (
-            <Admin 
-              jobs={jobs} 
-              onAddJob={handleAddJob} 
-              onUpdateJob={handleUpdateJob} 
-              onDeleteJob={handleDeleteJob}
-              applicationLink={applicationLink}
-              setApplicationLink={setApplicationLink}
-              aboutData={aboutData}
-              setAboutData={setAboutData}
-              homeData={homeData}
-              setHomeData={setHomeData}
-              contactData={contactData}
-              setContactData={setContactData}
-              portfolioData={portfolioData}
-              setPortfolioData={setPortfolioData}
-            />
-          )}
+      <div className="w-full">
+        {activePage === 'home' && (
+          <Home onExploreClick={(page) => setActivePage(page || 'services')} homeData={homeData} />
+        )}
+        {activePage === 'services' && (
+          <Services 
+            onExploreInsurance={() => setActivePage('insurance-detail')} 
+            onExploreMutualFunds={() => setActivePage('mutual-funds')} 
+            onExploreFixedDeposits={() => setActivePage('fixed-deposits-detail')} 
+            onExploreLoans={() => setActivePage('loans-detail')} 
+            onExploreEquity={() => setActivePage('equity-detail')} 
+            onExploreForex={() => setActivePage('forex-detail')}
+          />
+        )}
+        {activePage === 'insurance-detail' && <InsuranceDetail onBackClick={() => setActivePage('services')} />}
+        {activePage === 'mutual-funds' && (
+          <MutualFunds 
+            onBackClick={() => setActivePage('services')}
+            onSIPClick={() => setActivePage('sip-detail')}
+            onLumpsumClick={() => setActivePage('lumpsum-detail')}
+            onELSSClick={() => setActivePage('elss-detail')}
+            onDebtClick={() => setActivePage('debt-funds-detail')}
+            onEquityClick={() => setActivePage('equity-funds-detail')}
+            onReviewClick={() => setActivePage('portfolio-review-detail')}
+          />
+        )}
+        {activePage === 'fixed-deposits-detail' && <FixedDepositsDetail onBackClick={() => setActivePage('services')} />}
+        {activePage === 'loans-detail' && <LoansDetail onBackClick={() => setActivePage('services')} />}
+        {activePage === 'equity-detail' && <EquityDetail onBackClick={() => setActivePage('services')} />}
+        {activePage === 'careers' && (
+          <Careers jobs={jobs} applicationLink={applicationLink} />
+        )}
+        {activePage === 'contact' && (
+          <Contact contactData={contactData} />
+        )}
+        {activePage === 'admin' && (
+          <Admin 
+            jobs={jobs} 
+            onAddJob={handleAddJob} 
+            onUpdateJob={handleUpdateJob} 
+            onDeleteJob={handleDeleteJob}
+            applicationLink={applicationLink}
+            setApplicationLink={setApplicationLink}
+            aboutData={aboutData}
+            setAboutData={setAboutData}
+            homeData={homeData}
+            setHomeData={setHomeData}
+            contactData={contactData}
+            setContactData={setContactData}
+            portfolioData={portfolioData}
+            setPortfolioData={setPortfolioData}
+          />
+        )}
 
-          {activePage === 'portfolio' && <Portfolio portfolioData={portfolioData} onBackClick={() => setActivePage('services')} />}
+        {activePage === 'portfolio' && <Portfolio portfolioData={portfolioData} onBackClick={() => setActivePage('services')} />}
 
-          {activePage === 'pathshala' && <Pathshala />}
-          {activePage === 'sip-detail' && <SIPDetail onBackClick={() => setActivePage('mutual-funds')} />}
-          {activePage === 'lumpsum-detail' && <LumpsumDetail onBackClick={() => setActivePage('mutual-funds')} />}
-          {activePage === 'elss-detail' && <ELSSDetail onBackClick={() => setActivePage('mutual-funds')} />}
-          {activePage === 'debt-funds-detail' && <DebtFundsDetail onBackClick={() => setActivePage('mutual-funds')} />}
-          {activePage === 'equity-funds-detail' && <EquityFundsDetail onBackClick={() => setActivePage('mutual-funds')} />}
-          {activePage === 'portfolio-review-detail' && <PortfolioReviewDetail onBackClick={() => setActivePage('mutual-funds')} />}
-          {activePage === 'about' && <About aboutData={aboutData} />}
-          {activePage === 'forex-detail' && <ForexDetail onBackClick={() => navigate('services')} />}
-        </motion.div>
-      </AnimatePresence>
+        {activePage === 'pathshala' && <Pathshala />}
+        {activePage === 'sip-detail' && <SIPDetail onBackClick={() => setActivePage('mutual-funds')} />}
+        {activePage === 'lumpsum-detail' && <LumpsumDetail onBackClick={() => setActivePage('mutual-funds')} />}
+        {activePage === 'elss-detail' && <ELSSDetail onBackClick={() => setActivePage('mutual-funds')} />}
+        {activePage === 'debt-funds-detail' && <DebtFundsDetail onBackClick={() => setActivePage('mutual-funds')} />}
+        {activePage === 'equity-funds-detail' && <EquityFundsDetail onBackClick={() => setActivePage('mutual-funds')} />}
+        {activePage === 'portfolio-review-detail' && <PortfolioReviewDetail onBackClick={() => setActivePage('mutual-funds')} />}
+        {activePage === 'about' && <About aboutData={aboutData} />}
+        {activePage === 'forex-detail' && <ForexDetail onBackClick={() => navigate('services')} />}
+      </div>
 
     </Layout>
   );
