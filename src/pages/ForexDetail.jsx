@@ -338,7 +338,7 @@ const ForexDetail = ({ onBackClick }) => {
                   <button
                     key={index}
                     onClick={() => setActiveLesson(index)}
-                    className={`w-full text-left p-8 rounded-[32px] transition-all flex items-center gap-6 group ${
+                    className={`w-full text-left p-8 rounded-[32px] transition-all flex items-center gap-6 group cursor-pointer ${
                       activeLesson === index 
                       ? "bg-corex-navy text-white shadow-2xl shadow-corex-navy/20 scale-[1.02]" 
                       : "bg-slate-50 text-slate-400 hover:bg-slate-100"
@@ -418,14 +418,14 @@ const ForexDetail = ({ onBackClick }) => {
                   <button 
                     disabled={activeLesson === 0}
                     onClick={() => setActiveLesson(prev => prev - 1)}
-                    className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 disabled:opacity-0 transition-all"
+                    className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 disabled:opacity-0 transition-all cursor-pointer"
                   >
                     <ArrowLeft className="h-4 w-4" /> Previous Lesson
                   </button>
                   {activeLesson < lessons.length - 1 ? (
                     <button 
                       onClick={() => setActiveLesson(prev => prev + 1)}
-                      className="flex items-center gap-6 group"
+                      className="flex items-center gap-6 group cursor-pointer"
                     >
                       <div className="text-right">
                         <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Up Next</p>
@@ -455,7 +455,7 @@ const ForexDetail = ({ onBackClick }) => {
                Our institutional analysts are available for academic study sessions to help you master the intricacies of global currency dynamics.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-               <button className="px-10 py-5 bg-corex-navy text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-indigo-600 transition-all shadow-xl shadow-corex-navy/10 flex items-center justify-center gap-3">
+               <button className="px-10 py-5 bg-corex-navy text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-indigo-600 transition-all shadow-xl shadow-corex-navy/10 flex items-center justify-center gap-3 cursor-pointer">
                   Schedule Study Session <PlayCircle className="h-5 w-5" />
                </button>
             </div>
