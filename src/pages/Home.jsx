@@ -420,7 +420,7 @@ const Home = ({ onExploreClick, homeData }) => {
 
                                 <button 
                                     onClick={() => setExpandedFeature(expandedFeature === i ? null : i)}
-                                    className="text-xs font-black uppercase tracking-widest text-corex-accent flex items-center gap-2 group/btn mt-auto pt-4"
+                                    className="text-xs font-black uppercase tracking-widest text-corex-accent flex items-center gap-2 group/btn mt-auto pt-4 cursor-pointer"
                                 >
                                     {expandedFeature === i ? 'Close Specs' : 'Detailed Specs'}
                                     <ChevronRight className={`h-4 w-4 transition-transform ${expandedFeature === i ? 'rotate-90 text-corex-navy' : 'group-hover/btn:translate-x-1'}`} />
@@ -512,7 +512,7 @@ const Home = ({ onExploreClick, homeData }) => {
 
                                     <button 
                                         onClick={() => setExpandedPhase(expandedPhase === i ? null : i)}
-                                        className="text-xs font-black uppercase tracking-widest text-corex-accent flex items-center gap-2 group/btn mt-auto pt-4 relative z-10"
+                                        className="text-xs font-black uppercase tracking-widest text-corex-accent flex items-center gap-2 group/btn mt-auto pt-4 relative z-10 cursor-pointer"
                                     >
                                         {expandedPhase === i ? 'Close Study' : 'Detailed Study'}
                                         <ChevronRight className={`h-4 w-4 transition-transform ${expandedPhase === i ? 'rotate-90 text-corex-navy' : 'group-hover/btn:translate-x-1'}`} />
@@ -542,7 +542,7 @@ const Home = ({ onExploreClick, homeData }) => {
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <button 
                                     onClick={() => onExploreClick('pathshala')}
-                                    className="px-10 py-5 bg-corex-navy text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-corex-accent transition-all shadow-xl shadow-corex-navy/10 flex items-center justify-center gap-3"
+                                    className="px-10 py-5 bg-corex-navy text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-corex-accent transition-all shadow-xl shadow-corex-navy/10 flex items-center justify-center gap-3 cursor-pointer"
                                 >
                                     Start Learning <ArrowRight className="h-5 w-5" />
                                 </button>
@@ -650,7 +650,7 @@ const Home = ({ onExploreClick, homeData }) => {
                                                     </div>
                                                     <button 
                                                         onClick={() => setExpandedCalc(expandedCalc === i ? null : i)}
-                                                        className="text-[10px] font-black uppercase tracking-widest text-corex-accent border border-corex-accent/20 hover:border-corex-accent px-4 py-2 rounded-xl transition-all"
+                                                        className="text-[10px] font-black uppercase tracking-widest text-corex-accent border border-corex-accent/20 hover:border-corex-accent px-4 py-2 rounded-xl transition-all cursor-pointer"
                                                     >
                                                         {expandedCalc === i ? 'Close Tool' : 'Launch Tool'}
                                                     </button>
@@ -846,7 +846,7 @@ const Home = ({ onExploreClick, homeData }) => {
 
                                     <button 
                                         onClick={() => setExpandedTheory(expandedTheory === i ? null : i)}
-                                        className="text-xs font-black uppercase tracking-widest text-corex-accent flex items-center gap-2 group/btn mt-auto pt-4"
+                                        className="text-xs font-black uppercase tracking-widest text-corex-accent flex items-center gap-2 group/btn mt-auto pt-4 cursor-pointer"
                                     >
                                         {expandedTheory === i ? 'Close Specs' : 'Detailed Specs'}
                                         <ChevronRight className={`h-4 w-4 transition-transform ${expandedTheory === i ? 'rotate-90 text-white' : 'group-hover/btn:translate-x-1'}`} />
