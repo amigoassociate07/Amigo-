@@ -697,7 +697,7 @@ const Pathshala = () => {
                                         setQuizAnswer(null);
                                         setQuizSubmitted(false);
                                       }}
-                                      className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-corex-navy hover:text-corex-accent transition-colors"
+                                      className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-corex-navy hover:text-corex-accent transition-colors cursor-pointer"
                                   >
                                       {progress > 0 ? "Continue Learning" : "Start Learning"} <ArrowRight className="h-4 w-4" />
                                   </button>
@@ -774,7 +774,7 @@ const Pathshala = () => {
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
                 <button 
                   onClick={() => setActiveCourse(null)}
-                  className="inline-flex items-center gap-3 text-xs font-black uppercase tracking-widest text-slate-500 hover:text-corex-accent transition-colors"
+                  className="inline-flex items-center gap-3 text-xs font-black uppercase tracking-widest text-slate-500 hover:text-corex-accent transition-colors cursor-pointer"
                 >
                   <ArrowLeft className="h-4 w-4" /> Back to Portal
                 </button>
@@ -828,7 +828,7 @@ const Pathshala = () => {
                                   setQuizAnswer(null);
                                   setQuizSubmitted(false);
                                 }}
-                                className={`w-full p-4 rounded-2xl border text-left flex items-start gap-4 transition-all ${isActive ? 'bg-corex-navy border-corex-navy text-white shadow-lg' : 'bg-slate-50/50 hover:bg-slate-100/50 border-slate-100 text-slate-700'}`}
+                                className={`w-full p-4 rounded-2xl border text-left flex items-start gap-4 transition-all cursor-pointer ${isActive ? 'bg-corex-navy border-corex-navy text-white shadow-lg' : 'bg-slate-50/50 hover:bg-slate-100/50 border-slate-100 text-slate-700'}`}
                               >
                                 <div className={`h-6 w-6 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 ${isActive ? 'bg-corex-accent/25 text-corex-accent' : isCompleted ? 'bg-emerald-50 text-emerald-500' : 'bg-slate-200/50 text-slate-400'}`}>
                                   {isCompleted ? (
@@ -939,7 +939,7 @@ const Pathshala = () => {
                               key={idx}
                               onClick={() => !quizSubmitted && handleQuizSubmit(idx)}
                               disabled={quizSubmitted}
-                              className={`w-full p-4 rounded-xl border text-left text-xs font-bold transition-all flex justify-between items-center ${cardStyle}`}
+                              className={`w-full p-4 rounded-xl border text-left text-xs font-bold transition-all flex justify-between items-center cursor-pointer ${cardStyle}`}
                             >
                               <span>{option}</span>
                               {quizSubmitted && isCorrect && (
@@ -968,7 +968,7 @@ const Pathshala = () => {
                             {quizAnswer === currentLesson.quiz.a ? (
                               <button 
                                 onClick={handleNextLesson}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all"
+                                className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer"
                               >
                                 Next Lesson <ArrowRight className="h-3.5 w-3.5" />
                               </button>
@@ -978,7 +978,7 @@ const Pathshala = () => {
                                   setQuizAnswer(null);
                                   setQuizSubmitted(false);
                                 }}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all"
+                                className="inline-flex items-center gap-2 px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer"
                               >
                                 Try Again
                               </button>
