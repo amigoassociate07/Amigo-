@@ -224,7 +224,7 @@ const MutualFunds = ({ onBackClick, onSIPClick, onLumpsumClick, onELSSClick, onD
                                                 else if (type.title === "Equity Funds") onEquityClick();
                                                 else if (type.title === "Portfolio Review") onReviewClick();
                                             }}
-                                            className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-corex-accent transition-colors hover:text-corex-navy"
+                                            className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-corex-accent transition-colors hover:text-corex-navy cursor-pointer"
                                         >
                                             Learn More <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                                         </div>
@@ -234,7 +234,7 @@ const MutualFunds = ({ onBackClick, onSIPClick, onLumpsumClick, onELSSClick, onD
                                                 e.stopPropagation();
                                                 setExpandedFund(expandedFund === i ? null : i);
                                             }}
-                                            className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-corex-accent flex items-center gap-1.5"
+                                            className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-corex-accent flex items-center gap-1.5 cursor-pointer"
                                         >
                                             {expandedFund === i ? 'Close Specs' : 'Detailed Specs'}
                                             <ChevronRight className={`w-3.5 h-3.5 transition-transform ${expandedFund === i ? 'rotate-90 text-corex-accent' : ''}`} />

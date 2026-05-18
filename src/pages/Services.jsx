@@ -155,7 +155,7 @@ const Services = ({ onExploreInsurance, onExploreMutualFunds, onExploreFixedDepo
                         onExploreForex();
                       }
                     }}
-                    className="flex items-center gap-3 text-corex-navy font-black uppercase tracking-[0.3em] text-[10px] group/btn bg-slate-50 px-6 py-3 rounded-full hover:bg-corex-accent hover:text-white transition-all"
+                    className="flex items-center gap-3 text-corex-navy font-black uppercase tracking-[0.3em] text-[10px] group/btn bg-slate-50 px-6 py-3 rounded-full hover:bg-corex-accent hover:text-white transition-all cursor-pointer"
                   >
                     Learning Node <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-2 transition-transform" />
                   </button>
