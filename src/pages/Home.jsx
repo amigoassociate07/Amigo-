@@ -263,7 +263,7 @@ const Home = ({ onExploreClick, homeData }) => {
                             rotate: [0, 90, 0]
                         }}
                         transition={{ duration: 20, repeat: Infinity }}
-                        className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-corex-accent/10 blur-[120px] rounded-full"
+                        className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-corex-accent/10 blur-[120px] rounded-full hidden lg:block"
                     />
                     <motion.div 
                         animate={{ 
@@ -272,7 +272,7 @@ const Home = ({ onExploreClick, homeData }) => {
                             rotate: [0, -90, 0]
                         }}
                         transition={{ duration: 25, repeat: Infinity, delay: 2 }}
-                        className="absolute top-1/2 -right-24 w-[500px] h-[500px] bg-blue-500/10 blur-[100px] rounded-full"
+                        className="absolute top-1/2 -right-24 w-[500px] h-[500px] bg-blue-500/10 blur-[100px] rounded-full hidden lg:block"
                     />
                 </div>
 
