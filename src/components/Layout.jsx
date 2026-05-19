@@ -28,7 +28,7 @@ const Layout = ({ children, onHomeClick, onServicesClick, onPortfolioClick, onCa
                 />
             )}
             
-            <main className="flex-grow pb-32 md:pb-0">
+            <main className="flex-grow">
                 {children}
             </main>
             {activePage !== 'admin' && (
