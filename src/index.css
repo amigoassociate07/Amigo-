@@ -29,14 +29,14 @@ body {
 }
 
 .btn-accent {
-  @apply bg-corex-accent text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-xl shadow-corex-accent/20;
+  @apply bg-corex-accent text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-black uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-xl shadow-corex-accent/20;
 }
 
 .btn-institutional {
-  @apply px-12 py-6 text-base font-black uppercase tracking-widest shadow-2xl transition-all active:scale-95 flex items-center justify-center gap-3 rounded-2xl;
+  @apply px-6 py-4 text-xs sm:px-12 sm:py-6 sm:text-base font-black uppercase tracking-widest shadow-2xl transition-all active:scale-95 flex items-center justify-center gap-3 rounded-2xl;
 }
 
 .glass-pill {
-  @apply inline-flex items-center gap-3 rounded-full px-6 py-2 text-[11px] font-black uppercase tracking-[0.3em] border backdrop-blur-md;
+  @apply inline-flex items-center gap-2 sm:gap-3 rounded-full px-4 py-1.5 sm:px-6 sm:py-2 text-[9px] sm:text-[11px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] border backdrop-blur-md;
 }
 

@@ -252,7 +252,7 @@ const Home = ({ onExploreClick, homeData }) => {
     return (
         <div className="bg-corex-white overflow-hidden">
             {/* Hero Section */}
-            <section className="relative pt-20 pb-32 lg:pt-32 lg:pb-48 bg-corex-white">
+            <section className="relative pt-10 pb-16 sm:pt-20 sm:pb-32 lg:pt-32 lg:pb-48 bg-corex-white">
                 {/* Background Pattern & Glows */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.05]"></div>
@@ -284,34 +284,34 @@ const Home = ({ onExploreClick, homeData }) => {
                             transition={{ duration: 0.8 }}
                             className="text-center xl:text-left flex flex-col items-center xl:items-start"
                         >
-                            <div className="glass-pill bg-slate-50 border-corex-navy/10 text-corex-navy mb-10 !px-4 sm:!px-8 !py-2 sm:!py-3 !gap-3 sm:!gap-6">
-                                <Zap className="h-5 w-5 text-corex-accent" />
-                                <div className="glass-pill bg-yellow-400/10 border-yellow-500/20 text-yellow-600 !px-4 !py-1.5 !gap-3">
-                                    <Search className="h-3.5 w-3.5" /> Educational Purpose Only
+                            <div className="glass-pill bg-slate-50 border-corex-navy/10 text-corex-navy mb-6 sm:mb-10">
+                                <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-corex-accent" />
+                                <div className="glass-pill bg-yellow-400/10 border-yellow-500/20 text-yellow-600">
+                                    <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> Educational Purpose Only
                                 </div>
                                 <span className="text-corex-navy">Institutional Grade</span>
                             </div>
                              <h1 
-                                className="text-4xl sm:text-6xl lg:text-8xl xl:text-[120px] font-black text-corex-navy leading-[0.9] mb-12 tracking-tight"
+                                className="text-3xl sm:text-5xl lg:text-8xl xl:text-[120px] font-black text-corex-navy leading-[0.9] mb-6 sm:mb-12 tracking-tight"
                                 dangerouslySetInnerHTML={{ __html: homeData?.hero?.title || "Trustworthy <br />\n<span class='text-corex-accent italic'>Smart</span> Investments." }}
                             />
-                             <div className="relative mb-12 flex flex-col items-center xl:items-start">
+                             <div className="relative mb-6 sm:mb-12 flex flex-col items-center xl:items-start">
                                 <div className="absolute -left-6 top-0 w-1.5 h-full bg-corex-accent rounded-full hidden xl:block"></div>
-                                <p className="text-lg sm:text-2xl text-slate-600 leading-relaxed max-w-lg font-medium xl:pl-8">
+                                <p className="text-sm sm:text-xl text-slate-600 leading-relaxed max-w-lg font-medium xl:pl-8">
                                     {homeData?.hero?.subtitle || "Join India's most advanced financial ecosystem. We combine institutional-grade intelligence with a human-centric approach to grow your wealth."}
                                 </p>
                             </div>
-                            <div className="flex flex-col sm:flex-row gap-6">
+                            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto px-4 sm:px-0">
                                 <button
                                     onClick={() => onExploreClick('contact')}
-                                    className="btn-institutional bg-corex-accent text-white shadow-corex-accent/40 group relative overflow-hidden cursor-pointer"
+                                    className="btn-institutional bg-corex-accent text-white shadow-corex-accent/40 group relative overflow-hidden cursor-pointer w-full sm:w-auto"
                                 >
                                     <span className="relative z-10">Study Market</span>
-                                    <ArrowUpRight className="h-6 w-6 relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                    <ArrowUpRight className="h-4 w-4 sm:h-6 sm:w-6 relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                                 </button>
-                                <button className="btn-institutional text-corex-navy border-2 border-corex-navy/10 hover:bg-corex-navy hover:text-white backdrop-blur-sm cursor-pointer">
-                                    <PlayCircle className="h-6 w-6" /> Our Vision
+                                <button className="btn-institutional text-corex-navy border-2 border-corex-navy/10 hover:bg-corex-navy hover:text-white backdrop-blur-sm cursor-pointer w-full sm:w-auto">
+                                    <PlayCircle className="h-4 w-4 sm:h-6 sm:w-6" /> Our Vision
                                 </button>
                             </div>
                         </motion.div>
