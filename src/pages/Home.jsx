@@ -277,14 +277,14 @@ const Home = ({ onExploreClick, homeData }) => {
                 </div>
 
                 <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="grid xl:grid-cols-2 gap-16 items-center">
+                    <div className="grid lg:grid-cols-2 gap-8 xl:gap-16 items-center">
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="text-center xl:text-left flex flex-col items-center xl:items-start"
+                            className="text-center lg:text-left flex flex-col items-center lg:items-start"
                         >
-                            <div className="glass-pill bg-slate-50 border-corex-navy/10 text-corex-navy mb-6 sm:mb-10">
+                            <div className="glass-pill bg-slate-50 border-corex-navy/10 text-corex-navy mb-6 sm:mb-10 lg:mb-6 xl:mb-10">
                                 <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-corex-accent" />
                                 <div className="glass-pill bg-yellow-400/10 border-yellow-500/20 text-yellow-600">
                                     <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> Educational Purpose Only
@@ -292,16 +292,16 @@ const Home = ({ onExploreClick, homeData }) => {
                                 <span className="text-corex-navy">Institutional Grade</span>
                             </div>
                              <h1 
-                                className="text-3xl sm:text-5xl lg:text-8xl xl:text-[120px] font-black text-corex-navy leading-[0.9] mb-6 sm:mb-12 tracking-tight"
+                                className="text-3xl sm:text-5xl lg:text-5xl xl:text-7xl 2xl:text-[120px] font-black text-corex-navy leading-[0.9] mb-6 sm:mb-12 lg:mb-6 xl:mb-12 tracking-tight"
                                 dangerouslySetInnerHTML={{ __html: homeData?.hero?.title || "Trustworthy <br />\n<span class='text-corex-accent italic'>Smart</span> Investments." }}
                             />
-                             <div className="relative mb-6 sm:mb-12 flex flex-col items-center xl:items-start">
-                                <div className="absolute -left-6 top-0 w-1.5 h-full bg-corex-accent rounded-full hidden xl:block"></div>
-                                <p className="text-sm sm:text-xl text-slate-600 leading-relaxed max-w-lg font-medium xl:pl-8">
+                             <div className="relative mb-6 sm:mb-12 lg:mb-6 xl:mb-12 flex flex-col items-center lg:items-start">
+                                <div className="absolute -left-6 top-0 w-1.5 h-full bg-corex-accent rounded-full hidden lg:block"></div>
+                                <p className="text-sm sm:text-xl text-slate-600 leading-relaxed max-w-lg font-medium lg:pl-8">
                                     {homeData?.hero?.subtitle || "Join India's most advanced financial ecosystem. We combine institutional-grade intelligence with a human-centric approach to grow your wealth."}
                                 </p>
                             </div>
-                            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto px-4 sm:px-0">
+                            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto px-4 sm:px-0 lg:px-0">
                                 <button
                                     onClick={() => onExploreClick('contact')}
                                     className="btn-institutional bg-corex-accent text-white shadow-corex-accent/40 group relative overflow-hidden cursor-pointer w-full sm:w-auto"
