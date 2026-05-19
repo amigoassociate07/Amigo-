@@ -144,7 +144,8 @@ const FixedDepositsDetail = ({ onBackClick }) => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: i * 0.1 }}
                         viewport={{ once: true }}
-                        className={`p-8 rounded-[32px] border border-slate-100 hover:border-amber-500/30 hover:shadow-xl transition-all group flex flex-col ${expandedOption === i ? 'lg:col-span-2' : ''}`}
+                        onClick={() => setExpandedOption(expandedOption === i ? null : i)}
+                        className={`p-8 rounded-[32px] border border-slate-100 hover:border-amber-500/30 hover:shadow-xl transition-all group flex flex-col cursor-pointer ${expandedOption === i ? 'lg:col-span-2' : ''}`}
                     >
                         <div className={`w-14 h-14 rounded-2xl ${option.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                             <option.icon className={`h-7 w-7 ${option.color}`} />
@@ -161,6 +162,7 @@ const FixedDepositsDetail = ({ onBackClick }) => {
                                     animate={{ opacity: 1, height: 'auto' }}
                                     exit={{ opacity: 0, height: 0 }}
                                     className="pt-6 border-t border-slate-100 space-y-4"
+                                    onClick={(e) => e.stopPropagation()}
                                 >
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
@@ -186,8 +188,11 @@ const FixedDepositsDetail = ({ onBackClick }) => {
 
                         <div className="mt-auto pt-8">
                             <button 
-                                onClick={() => setExpandedOption(expandedOption === i ? null : i)}
-                                className={`w-full py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all flex items-center justify-center gap-3 ${expandedOption === i ? 'bg-corex-navy text-white' : 'bg-slate-50 text-slate-400 hover:bg-amber-500 hover:text-white'}`}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setExpandedOption(expandedOption === i ? null : i);
+                                }}
+                                className={`w-full py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all flex items-center justify-center gap-3 cursor-pointer ${expandedOption === i ? 'bg-corex-navy text-white' : 'bg-slate-50 text-slate-400 hover:bg-amber-500 hover:text-white'}`}
                             >
                                 {expandedOption === i ? 'Close Study' : 'Detailed Study'}
                                 <ArrowRight className={`h-4 w-4 transition-transform ${expandedOption === i ? 'rotate-90' : ''}`} />

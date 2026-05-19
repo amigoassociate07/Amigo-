@@ -8,8 +8,8 @@ const Footer = ({ onCareersClick, onContactClick, onAdminClick, onIpoClick, onAb
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1 flex flex-col items-center md:items-start">
                         <div className="flex items-center gap-3 mb-8">
-                            <div className="bg-corex-accent h-10 w-10 rounded-lg flex items-center justify-center">
-                                <span className="text-white text-xl font-[950] italic tracking-tighter">A</span>
+                            <div className="bg-white h-10 w-10 rounded-lg flex items-center justify-center overflow-hidden border border-white/10 shadow-inner">
+                                <img src="/vite.svg" alt="Amigo Logo" className="h-full w-full object-cover" />
                             </div>
                             <div className="flex flex-col text-left">
                                 <span className="text-xl font-black tracking-tighter text-white leading-none">AMIGO</span>

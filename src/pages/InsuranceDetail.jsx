@@ -228,11 +228,12 @@ const InsuranceDetail = ({ onBackClick }) => {
                 {topInsurers.map((item, i) => (
                     <motion.div
                         key={i}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: i * 0.1 }}
                         viewport={{ once: true }}
-                        className={`group relative overflow-hidden rounded-[32px] border border-slate-100 bg-white p-6 hover:shadow-2xl hover:shadow-slate-200 transition-all flex flex-col h-full ${expandedInsurer === i ? 'lg:col-span-2' : ''}`}
+                        onClick={() => setExpandedInsurer(expandedInsurer === i ? null : i)}
+                        className={`group relative overflow-hidden rounded-[32px] border border-slate-100 bg-white p-6 hover:shadow-2xl hover:shadow-slate-200 transition-all flex flex-col h-full cursor-pointer ${expandedInsurer === i ? 'lg:col-span-2' : ''}`}
                     >
                         <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${item.color} blur-2xl rounded-full -mr-16 -mt-16 opacity-50 group-hover:opacity-100 transition-opacity`}></div>
                         
@@ -262,6 +263,7 @@ const InsuranceDetail = ({ onBackClick }) => {
                                         animate={{ opacity: 1, height: 'auto' }}
                                         exit={{ opacity: 0, height: 0 }}
                                         className="mt-6 pt-6 border-t border-slate-50 space-y-4"
+                                        onClick={(e) => e.stopPropagation()}
                                     >
                                         <div className="grid grid-cols-2 gap-4">
                                             <div>
@@ -296,8 +298,11 @@ const InsuranceDetail = ({ onBackClick }) => {
                                     {expandedInsurer === i ? 'Hide Details' : 'View Policy Study'}
                                 </span>
                                 <button 
-                                    onClick={() => setExpandedInsurer(expandedInsurer === i ? null : i)}
-                                    className={`h-8 w-8 rounded-full flex items-center justify-center transition-all ${expandedInsurer === i ? 'bg-corex-navy text-white rotate-45' : 'bg-slate-50 hover:bg-corex-accent hover:text-white'}`}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setExpandedInsurer(expandedInsurer === i ? null : i);
+                                    }}
+                                    className={`h-8 w-8 rounded-full flex items-center justify-center transition-all cursor-pointer ${expandedInsurer === i ? 'bg-corex-navy text-white rotate-45' : 'bg-slate-50 hover:bg-corex-accent hover:text-white'}`}
                                 >
                                     <ArrowRight className="h-4 w-4" />
                                 </button>

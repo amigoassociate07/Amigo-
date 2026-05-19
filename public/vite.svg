@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <!-- Elegant Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#CA9E5A" />
+      <stop offset="25%" stop-color="#FDF0CD" />
+      <stop offset="45%" stop-color="#D4AF37" />
+      <stop offset="75%" stop-color="#F3E5AB" />
+      <stop offset="100%" stop-color="#A67C1E" />
+    </linearGradient>
+    
+    <!-- Outer Drop Shadow for high-end elevation -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.15" />
+    </filter>
+
+    <!-- White Halo filter for cursive text readability -->
+    <filter id="whiteHalo">
+      <feMorphology operator="dilate" radius="4" in="SourceAlpha" result="dilated" />
+      <feGaussianBlur stdDeviation="3" in="dilated" result="blurred" />
+      <feFlood flood-color="#FFFFFF" flood-opacity="0.95" result="white" />
+      <feComposite in="white" in2="blurred" operator="in" result="glow" />
+      <feMerge>
+        <feMergeNode in="glow" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <circle cx="250" cy="250" r="230" fill="#ffffff" filter="url(#shadow)" />
+
+  <!-- Double Golden Circles -->
+  <!-- Outer Gold Ring -->
+  <circle cx="250" cy="250" r="215" fill="none" stroke="url(#goldGrad)" stroke-width="8" />
+  <!-- Inner Gold Ring -->
+  <circle cx="250" cy="250" r="204" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" />
+
+  <!-- Geometric Wireframe Hexagons -->
+  <!-- Hexagon 1 -->
+  <polygon points="250,90 388,170 388,330 250,410 112,330 112,170" fill="none" stroke="url(#goldGrad)" stroke-width="1.8" opacity="0.8" />
+  <!-- Hexagon 2 (Offset/Rotated) -->
+  <polygon points="250,97 380,172 380,322 250,397 120,322 120,172" fill="none" stroke="url(#goldGrad)" stroke-width="1" opacity="0.6" />
+
+  <!-- Central Editorial Serif "A" -->
+  <text x="250" y="375" font-family="'Times New Roman', Georgia, serif" font-size="340" font-weight="bold" fill="#0b0b0b" text-anchor="middle" letter-spacing="-10">A</text>
+
+  <!-- Gold Foliage / Plant Stem Wrapping Around Right Side -->
+  <g stroke="url(#goldGrad)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Main branch -->
+    <path d="M 335 295 C 375 260, 380 180, 335 125" stroke-width="2.5" />
+    
+    <!-- Leaves / Twigs -->
+    <!-- Twig 1 -->
+    <path d="M 358 240 C 380 230, 390 220, 382 205" stroke-width="1.8" />
+    <path d="M 382 205 C 372 212, 362 222, 358 240 Z" fill="url(#goldGrad)" opacity="0.8" />
+    
+    <!-- Twig 2 -->
+    <path d="M 364 190 C 385 175, 380 160, 370 162" stroke-width="1.8" />
+    <path d="M 370 162 C 362 170, 360 180, 364 190 Z" fill="url(#goldGrad)" opacity="0.8" />
+    
+    <!-- Twig 3 -->
+    <path d="M 345 140 C 358 120, 350 110, 342 120 C 338 125, 340 135, 345 140 Z" fill="url(#goldGrad)" stroke-width="1.5" opacity="0.8" />
+
+    <!-- Flower buds -->
+    <circle cx="378" cy="225" r="4.5" fill="url(#goldGrad)" />
+    <circle cx="368" cy="175" r="3.5" fill="url(#goldGrad)" />
+    <circle cx="350" cy="130" r="3" fill="url(#goldGrad)" />
+  </g>
+
+  <!-- Cursive "amigo" Text with a clean white stroke glow and elegant script font -->
+  <text x="250" y="278" font-family="'Brush Script MT', 'Bickham Script Pro', 'Great Vibes', 'Playball', 'Lucida Handwriting', cursive" font-size="95" font-style="italic" fill="#583f32" text-anchor="middle" filter="url(#whiteHalo)">amigo</text>
+</svg>

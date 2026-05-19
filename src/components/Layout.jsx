@@ -6,7 +6,7 @@ import WhatsAppButton from './WhatsAppButton';
 
 const Layout = ({ children, onHomeClick, onServicesClick, onPortfolioClick, onCareersClick, onContactClick, onAdminClick, onAboutClick, onIpoClick, onMutualFundsClick, onPathshalaClick, onForexClick, activePage }) => {
     return (
-        <div className="min-h-screen flex flex-col bg-corex-gray">
+        <div className="min-h-screen flex flex-col bg-corex-gray overflow-x-hidden w-full">
             {activePage !== 'admin' && (
                 <div className="bg-yellow-400 py-1.5 px-4 text-center border-b border-yellow-500/20">
                     <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">
@@ -28,7 +28,7 @@ const Layout = ({ children, onHomeClick, onServicesClick, onPortfolioClick, onCa
                 />
             )}
             
-            <main className="flex-grow">
+            <main className="flex-grow pb-24 md:pb-0">
                 {children}
             </main>
             {activePage !== 'admin' && (
@@ -38,8 +38,8 @@ const Layout = ({ children, onHomeClick, onServicesClick, onPortfolioClick, onCa
                         onHomeClick={onHomeClick}
                         onServicesClick={onServicesClick}
 
-                        onPortfolioClick={onPortfolioClick}
-                        onIpoClick={onIpoClick}
+                        onMutualFundsClick={onMutualFundsClick}
+                        onPathshalaClick={onPathshalaClick}
                     />
                     <Footer
                         onCareersClick={onCareersClick}

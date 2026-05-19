@@ -9,7 +9,7 @@ const Navbar = ({ onHomeClick, onServicesClick, onPortfolioClick, onAboutClick, 
             <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20 relative">
                     {/* Mobile Menu Button */}
-                    <div className="flex xl:hidden items-center">
+                    <div className="flex xl:hidden items-center z-20">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             className="p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/5 transition-all"
@@ -19,10 +19,10 @@ const Navbar = ({ onHomeClick, onServicesClick, onPortfolioClick, onAboutClick, 
                     </div>
 
                     {/* Logo */}
-                    <div className="flex items-center w-full md:w-auto justify-center md:justify-start">
+                    <div className="flex items-center justify-center flex-1 xl:flex-initial xl:justify-start z-10">
                         <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onClick={onHomeClick}>
-                            <div className="bg-corex-accent h-11 w-11 rounded-lg group-hover:scale-105 transition-transform flex items-center justify-center">
-                                <span className="text-white text-2xl font-[950] italic tracking-tighter">A</span>
+                            <div className="bg-white h-11 w-11 rounded-lg group-hover:scale-105 transition-transform flex items-center justify-center overflow-hidden border border-white/10 shadow-inner">
+                                <img src="/vite.svg" alt="Amigo Logo" className="h-full w-full object-cover" />
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-xl font-black tracking-tighter text-white leading-none">AMIGO</span>
@@ -104,7 +104,7 @@ const Navbar = ({ onHomeClick, onServicesClick, onPortfolioClick, onAboutClick, 
                     </div>
 
                     {/* Mobile Menu Notification Indicator (Optional) */}
-                    <div className="flex xl:hidden items-center">
+                    <div className="flex xl:hidden items-center z-20">
                         <Bell className="h-5 w-5 text-gray-400" />
                     </div>
                 </div>

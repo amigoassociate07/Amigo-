@@ -304,13 +304,13 @@ const Home = ({ onExploreClick, homeData }) => {
                             <div className="flex flex-col sm:flex-row gap-6">
                                 <button
                                     onClick={() => onExploreClick('contact')}
-                                    className="btn-institutional bg-corex-accent text-white shadow-corex-accent/40 group relative overflow-hidden"
+                                    className="btn-institutional bg-corex-accent text-white shadow-corex-accent/40 group relative overflow-hidden cursor-pointer"
                                 >
                                     <span className="relative z-10">Study Market</span>
                                     <ArrowUpRight className="h-6 w-6 relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                                 </button>
-                                <button className="btn-institutional text-corex-navy border-2 border-corex-navy/10 hover:bg-corex-navy hover:text-white backdrop-blur-sm">
+                                <button className="btn-institutional text-corex-navy border-2 border-corex-navy/10 hover:bg-corex-navy hover:text-white backdrop-blur-sm cursor-pointer">
                                     <PlayCircle className="h-6 w-6" /> Our Vision
                                 </button>
                             </div>
@@ -374,7 +374,8 @@ const Home = ({ onExploreClick, homeData }) => {
                             <motion.div
                                 key={i}
                                 whileHover={expandedFeature !== i ? { y: -10 } : {}}
-                                className={`bg-white p-10 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-2xl transition-all group flex flex-col h-full ${expandedFeature === i ? 'lg:col-span-2' : ''}`}
+                                onClick={() => setExpandedFeature(expandedFeature === i ? null : i)}
+                                className={`bg-white p-10 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-2xl transition-all group flex flex-col h-full cursor-pointer ${expandedFeature === i ? 'lg:col-span-2' : ''}`}
                             >
                                 <div className="w-16 h-16 rounded-2xl bg-corex-navy flex items-center justify-center mb-8 group-hover:bg-corex-accent transition-colors shadow-xl shadow-corex-navy/10 flex-shrink-0">
                                     <IconCmp className="text-white h-7 w-7" />
@@ -392,6 +393,7 @@ const Home = ({ onExploreClick, homeData }) => {
                                             exit={{ opacity: 0, height: 0 }}
                                             transition={{ duration: 0.3 }}
                                             className="mt-2 mb-8 pt-6 border-t border-gray-100 space-y-6 text-left"
+                                            onClick={(e) => e.stopPropagation()}
                                         >
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
@@ -455,7 +457,8 @@ const Home = ({ onExploreClick, homeData }) => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: i * 0.1 }}
                                     whileHover={expandedPhase !== i ? { y: -10 } : {}}
-                                    className={`p-10 rounded-[32px] border border-gray-100 hover:shadow-2xl transition-all group bg-white relative overflow-hidden flex flex-col justify-between ${expandedPhase === i ? 'lg:col-span-2' : ''}`}
+                                    onClick={() => setExpandedPhase(expandedPhase === i ? null : i)}
+                                    className={`p-10 rounded-[32px] border border-gray-100 hover:shadow-2xl transition-all group bg-white relative overflow-hidden flex flex-col justify-between cursor-pointer ${expandedPhase === i ? 'lg:col-span-2' : ''}`}
                                 >
                                     <div>
                                         <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-10 transition-opacity">
@@ -483,6 +486,7 @@ const Home = ({ onExploreClick, homeData }) => {
                                                     exit={{ opacity: 0, height: 0 }}
                                                     transition={{ duration: 0.3 }}
                                                     className="mt-6 pt-6 border-t border-gray-100 space-y-6 text-left relative z-10"
+                                                    onClick={(e) => e.stopPropagation()}
                                                 >
                                                     <div className="grid grid-cols-2 gap-4">
                                                         <div>
@@ -511,7 +515,10 @@ const Home = ({ onExploreClick, homeData }) => {
                                     </div>
 
                                     <button 
-                                        onClick={() => setExpandedPhase(expandedPhase === i ? null : i)}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setExpandedPhase(expandedPhase === i ? null : i);
+                                        }}
                                         className="text-xs font-black uppercase tracking-widest text-corex-accent flex items-center gap-2 group/btn mt-auto pt-4 relative z-10 cursor-pointer"
                                     >
                                         {expandedPhase === i ? 'Close Study' : 'Detailed Study'}
@@ -795,7 +802,8 @@ const Home = ({ onExploreClick, homeData }) => {
                                     transition={{ duration: 0.5, delay: i * 0.1 }}
                                     viewport={{ once: true }}
                                     whileHover={expandedTheory !== i ? { y: -10 } : {}}
-                                    className={`bg-white/5 backdrop-blur-sm border ${theory.color} p-8 rounded-[32px] transition-all group flex flex-col justify-between ${expandedTheory === i ? 'sm:col-span-2' : ''}`}
+                                    onClick={() => setExpandedTheory(expandedTheory === i ? null : i)}
+                                    className={`bg-white/5 backdrop-blur-sm border ${theory.color} p-8 rounded-[32px] transition-all group flex flex-col justify-between cursor-pointer ${expandedTheory === i ? 'sm:col-span-2' : ''}`}
                                 >
                                     <div>
                                         <div className="flex justify-between items-start mb-6">
@@ -817,6 +825,7 @@ const Home = ({ onExploreClick, homeData }) => {
                                                     exit={{ opacity: 0, height: 0 }}
                                                     transition={{ duration: 0.3 }}
                                                     className="mt-2 mb-8 pt-6 border-t border-white/10 space-y-6 text-left"
+                                                    onClick={(e) => e.stopPropagation()}
                                                 >
                                                     <div className="grid grid-cols-2 gap-4">
                                                         <div>
@@ -918,7 +927,7 @@ const Home = ({ onExploreClick, homeData }) => {
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <button 
                             onClick={() => onExploreClick('contact')}
-                            className="btn-institutional bg-corex-accent text-white shadow-corex-accent/40 px-12 py-5 rounded-xl font-black uppercase tracking-widest hover:scale-105 transition-all"
+                            className="btn-institutional bg-corex-accent text-white shadow-corex-accent/40 px-12 py-5 rounded-xl font-black uppercase tracking-widest hover:scale-105 transition-all cursor-pointer"
                         >
                             Join Now
                         </button>
