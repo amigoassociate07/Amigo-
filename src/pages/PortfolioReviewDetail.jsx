@@ -98,7 +98,7 @@ const PortfolioReviewDetail = ({ onBackClick }) => {
 
   return (
     <div className="bg-white min-h-screen">
-      <BackNavigation onBackClick={onBackClick} label="Back to Mutual Funds" />
+
       
       {/* Hero Section */}
       <section className="pt-48 pb-24 bg-slate-50 relative overflow-hidden text-center">

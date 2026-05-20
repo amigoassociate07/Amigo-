@@ -52,8 +52,6 @@ The platform utilizes a state-of-the-art **Glassmorphic Command Center** aesthet
 - **Icons**: Lucide React
 - **Deployment**: Optimized for Vercel
 
----
-
 ## 🚦 Getting Started
 
 ### Prerequisites
@@ -81,7 +79,6 @@ npm run build
 
 ## 📜 Legal Disclaimer
 Amigo Associate is an educational and study platform. All data points, analysis nodes, and market studies are for informational purposes only. Amigo Associate is NOT a SEBI-registered Investment Adviser or Research Analyst.
-
 ---
 
 **Developed with Precision by the Amigo Associate Engineering Team.**

@@ -318,6 +318,153 @@ const ForexDetail = ({ onBackClick }) => {
           </section>
         </div>
       )
+    },
+    {
+      id: "1.5",
+      title: "Cryptocurrency Markets",
+      subtitle: "Digital Assets & Blockchain",
+      icon: Zap,
+      content: (
+        <div className="space-y-12 text-slate-700">
+          <section>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-10 w-10 rounded-xl bg-orange-500/10 flex items-center justify-center">
+                <Zap className="h-5 w-5 text-orange-600" />
+              </div>
+              <h3 className="text-2xl font-black text-corex-navy tracking-tight">How Cryptocurrency Works</h3>
+            </div>
+            <p className="text-lg leading-relaxed font-medium mb-6">
+              Unlike traditional fiat currencies, cryptocurrencies are not issued or controlled by any central authority like a government or bank. Instead, they rely on a combination of cryptography and distributed ledger technology called the <span className="font-bold text-orange-600">Blockchain</span>.
+            </p>
+            <div className="bg-slate-50 border border-slate-100 p-8 rounded-[32px] mb-8">
+              <h4 className="text-sm font-black uppercase tracking-widest text-orange-500 mb-4">The Blockchain Engine</h4>
+              <p className="text-base font-medium leading-relaxed mb-4">
+                Think of a blockchain as a digital, public ledger that records all transactions. But instead of one entity holding this ledger, it is distributed across thousands of computers worldwide (called nodes).
+              </p>
+              <ul className="space-y-3 text-sm font-medium">
+                <li className="flex items-center gap-3"><div className="h-2 w-2 rounded-full bg-orange-500"></div> Transactions are grouped into "blocks".</li>
+                <li className="flex items-center gap-3"><div className="h-2 w-2 rounded-full bg-orange-500"></div> Each block is mathematically linked to the previous one, forming a "chain".</li>
+                <li className="flex items-center gap-3"><div className="h-2 w-2 rounded-full bg-orange-500"></div> This makes it virtually impossible to alter past transactions, ensuring extreme security.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <h3 className="text-2xl font-black text-corex-navy mb-8 tracking-tight">Market Mechanics</h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="p-8 rounded-[32px] bg-white border border-slate-100 shadow-sm">
+                <h4 className="font-black text-corex-navy mb-4 uppercase text-xs tracking-widest">Decentralized Exchanges (DEXs)</h4>
+                <p className="text-sm text-slate-500 font-medium leading-relaxed mb-4">
+                  Platforms where users trade directly with each other via automated algorithms called smart contracts, without a middleman.
+                </p>
+                <div className="text-[10px] font-black uppercase text-slate-400 bg-slate-50 p-3 rounded-xl tracking-wider">
+                  Example: Uniswap, PancakeSwap
+                </div>
+              </div>
+              <div className="p-8 rounded-[32px] bg-white border border-slate-100 shadow-sm">
+                <h4 className="font-black text-corex-navy mb-4 uppercase text-xs tracking-widest">Centralized Exchanges (CEXs)</h4>
+                <p className="text-sm text-slate-500 font-medium leading-relaxed mb-4">
+                  Platforms operated by a company that facilitate trades, hold your funds, and act similarly to traditional stock brokers.
+                </p>
+                <div className="text-[10px] font-black uppercase text-slate-400 bg-slate-50 p-3 rounded-xl tracking-wider">
+                  Example: Binance, Coinbase
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-orange-50 p-10 rounded-[40px] border border-orange-100">
+            <h3 className="text-xl font-black text-corex-navy mb-6">Key Differences from Forex</h3>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {[
+                { title: "24/7/365 Market", desc: "Never closes. Trades continuously over weekends and holidays." },
+                { title: "Extreme Volatility", desc: "Prices can swing dramatically in short periods. High risk, high reward." },
+                { title: "True Ownership", desc: "You hold the private keys in your own digital wallet, giving you complete control." },
+                { title: "Programmable Money", desc: "Smart contracts allow money to execute complex logic automatically." }
+              ].map((item, i) => (
+                <div key={i} className="flex gap-4 items-start">
+                  <div className="h-6 w-6 rounded-full bg-orange-200 flex items-center justify-center flex-shrink-0 text-orange-600 font-black text-[10px]">{i+1}</div>
+                  <div>
+                    <h4 className="font-black text-orange-600 text-sm mb-1 uppercase tracking-widest">{item.title}</h4>
+                    <p className="text-sm font-medium leading-relaxed text-slate-600">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+      )
+    },
+    {
+      id: "1.6",
+      title: "Forex vs Crypto",
+      subtitle: "Market Comparison",
+      icon: Search,
+      content: (
+        <div className="space-y-12 text-slate-700">
+          <section>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-10 w-10 rounded-xl bg-purple-500/10 flex items-center justify-center">
+                <Search className="h-5 w-5 text-purple-600" />
+              </div>
+              <h3 className="text-2xl font-black text-corex-navy tracking-tight">Market Comparison</h3>
+            </div>
+            <p className="text-lg leading-relaxed font-medium mb-8">
+              Understanding the core differences between traditional Forex and the Cryptocurrency market is essential for diversifying your portfolio and managing risk effectively.
+            </p>
+
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Forex Card */}
+              <div className="bg-white border-2 border-indigo-100 rounded-[32px] overflow-hidden shadow-xl shadow-indigo-900/5">
+                <div className="bg-indigo-600 p-6 text-white">
+                  <h4 className="text-xl font-black tracking-tight mb-1">Forex (Foreign Exchange)</h4>
+                  <p className="text-indigo-200 text-xs font-black uppercase tracking-widest">Traditional Fiat Markets</p>
+                </div>
+                <div className="p-8">
+                  <ul className="space-y-6">
+                    {[
+                      { label: "What it trades", value: "Traditional government-issued currencies (USD, EUR, GBP, JPY, etc.)" },
+                      { label: "Trading hours", value: "24/5 (Monday to Friday)" },
+                      { label: "Regulation", value: "Heavily regulated by governments and central banks" },
+                      { label: "Examples", value: "EUR/USD, GBP/JPY, USD/INR" },
+                      { label: "Market type", value: "Decentralized, but through traditional banks and brokers" }
+                    ].map((item, i) => (
+                      <li key={i} className="flex flex-col border-b border-slate-50 pb-4 last:border-0 last:pb-0">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-indigo-500 mb-1">{item.label}</span>
+                        <span className="text-sm font-medium text-slate-700">{item.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Crypto Card */}
+              <div className="bg-white border-2 border-orange-100 rounded-[32px] overflow-hidden shadow-xl shadow-orange-900/5">
+                <div className="bg-orange-500 p-6 text-white">
+                  <h4 className="text-xl font-black tracking-tight mb-1">Cryptocurrency Market</h4>
+                  <p className="text-orange-200 text-xs font-black uppercase tracking-widest">Digital Asset Markets</p>
+                </div>
+                <div className="p-8">
+                  <ul className="space-y-6">
+                    {[
+                      { label: "What it trades", value: "Digital/virtual currencies (Bitcoin, Ethereum, etc.)" },
+                      { label: "Trading hours", value: "24/7 (every day, including weekends)" },
+                      { label: "Regulation", value: "Less regulated (varies by country)" },
+                      { label: "Examples", value: "BTC/USD, ETH/USD, BTC/ETH" },
+                      { label: "Market type", value: "Decentralized, blockchain-based" }
+                    ].map((item, i) => (
+                      <li key={i} className="flex flex-col border-b border-slate-50 pb-4 last:border-0 last:pb-0">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-orange-500 mb-1">{item.label}</span>
+                        <span className="text-sm font-medium text-slate-700">{item.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      )
     }
   ];
 
@@ -362,25 +509,7 @@ const ForexDetail = ({ onBackClick }) => {
                 ))}
               </div>
 
-              {/* Progress Card */}
-              <div className="mt-12 p-10 bg-indigo-600 rounded-[40px] text-white relative overflow-hidden shadow-2xl shadow-indigo-500/20">
-                <div className="absolute top-0 right-0 p-8 opacity-10">
-                  <Award className="h-32 w-32 -mr-10 -mt-10" />
-                </div>
-                <div className="relative z-10">
-                  <h5 className="text-xs font-black uppercase tracking-widest mb-6 text-indigo-300">Your Progress</h5>
-                  <div className="flex items-end gap-2 mb-4">
-                    <span className="text-5xl font-black tracking-tighter">25%</span>
-                    <span className="text-xs font-bold uppercase tracking-widest opacity-60 mb-2">Complete</span>
-                  </div>
-                  <div className="h-2 bg-white/10 rounded-full overflow-hidden mb-8">
-                    <div className="h-full bg-white w-1/4" />
-                  </div>
-                  <p className="text-xs font-medium leading-relaxed opacity-80">
-                    Master these 4 core lessons to unlock Module 2: Technical Study.
-                  </p>
-                </div>
-              </div>
+
             </div>
           </div>
 

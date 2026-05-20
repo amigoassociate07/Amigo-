@@ -5,7 +5,7 @@ const Navbar = ({ onHomeClick, onServicesClick, onPortfolioClick, onAboutClick, 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <nav className="bg-corex-navy text-white sticky top-0 z-50 shadow-xl border-b border-white/10">
+        <nav className="bg-corex-navy text-white w-full z-50 shadow-xl border-b border-white/10">
             <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20 relative">
                     {/* Mobile Menu Button */}

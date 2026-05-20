@@ -339,7 +339,7 @@ const Home = ({ onExploreClick, homeData }) => {
                                                 <span className="text-white font-black text-sm uppercase tracking-[0.3em]">Institutional Core Active</span>
                                             </div>
                                             <p className="text-gray-300 text-base font-medium leading-relaxed max-w-sm">
-                                                Deploying proprietary intelligence nodes across 50,000+ market vectors in real-time.
+                                                Leveraging institutional-grade analytics to discover profitable opportunities across global financial markets.
                                             </p>
                                         </div>
                                     </div>

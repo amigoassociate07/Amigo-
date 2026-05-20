@@ -8,27 +8,27 @@ const Layout = ({ children, onHomeClick, onServicesClick, onPortfolioClick, onCa
     return (
         <div className="min-h-screen flex flex-col bg-corex-gray overflow-x-hidden w-full">
             {activePage !== 'admin' && (
-                <div className="bg-yellow-400 py-1.5 px-4 text-center border-b border-yellow-500/20">
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">
-                        Educational Purpose Only: Amigo Associate is a study platform for academic learning and market intelligence.
-                    </span>
+                <div className="fixed top-0 left-0 right-0 w-full z-50">
+                    <div className="bg-yellow-400 py-1.5 px-4 text-center border-b border-yellow-500/20">
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">
+                            Educational Purpose Only: Amigo Associate is a study platform for academic learning and market intelligence.
+                        </span>
+                    </div>
+                    <Navbar
+                        onHomeClick={onHomeClick}
+                        onServicesClick={onServicesClick}
+                        onPortfolioClick={onPortfolioClick}
+                        onAboutClick={onAboutClick}
+                        onIpoClick={onIpoClick}
+                        onMutualFundsClick={onMutualFundsClick}
+                        onPathshalaClick={onPathshalaClick}
+                        onForexClick={onForexClick}
+                        activePage={activePage}
+                    />
                 </div>
             )}
-            {activePage !== 'admin' && (
-                <Navbar
-                    onHomeClick={onHomeClick}
-                    onServicesClick={onServicesClick}
-                    onPortfolioClick={onPortfolioClick}
-                    onAboutClick={onAboutClick}
-                    onIpoClick={onIpoClick}
-                    onMutualFundsClick={onMutualFundsClick}
-                    onPathshalaClick={onPathshalaClick}
-                    onForexClick={onForexClick}
-                    activePage={activePage}
-                />
-            )}
             
-            <main className="flex-grow">
+            <main className={`flex-grow ${activePage !== 'admin' ? 'pt-[108px]' : ''}`}>
                 {children}
             </main>
             {activePage !== 'admin' && (

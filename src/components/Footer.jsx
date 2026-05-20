@@ -62,11 +62,7 @@ const Footer = ({ onCareersClick, onContactClick, onAdminClick, onIpoClick, onAb
                         <p>© 2026 Amigo Associate. All rights reserved. Financial data is provided for informational purposes only. Past performance is not indicative of future results.</p>
                         <p>Amigo provides general information strictly for study and educational purposes only. We are not registered with SEBI as an Investment Adviser or Analyst. All content, including data points, intelligence, and historical insights, is for informational purposes only and does not constitute investment advice. Please consult a SEBI-registered advisor before making any investment decisions.</p>
                     </div>
-                    <div className="flex gap-4 md:gap-8 justify-center text-[11px] text-gray-500 font-bold uppercase tracking-wider flex-wrap">
-                        <a href="#" className="hover:text-white transition-colors">Terms</a>
-                        <a href="#" className="hover:text-white transition-colors">Privacy</a>
-                        <a href="#" className="hover:text-white transition-colors">Cookies</a>
-                    </div>
+
                 </div>
             </div>
         </footer>
