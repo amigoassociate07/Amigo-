@@ -576,21 +576,21 @@ const Home = ({ onExploreClick, homeData }) => {
             </section>
 
             {/* Smart Calculators Section */}
-            <section className="py-32 bg-white">
+            <section className="py-16 sm:py-24 lg:py-32 bg-white">
                 <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-corex-navy rounded-[48px] p-12 lg:p-20 relative overflow-hidden">
+                    <div className="bg-corex-navy rounded-[32px] sm:rounded-[48px] p-6 sm:p-10 lg:p-20 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-1/3 h-full bg-corex-accent/10 skew-x-[-15deg] translate-x-20"></div>
-                        <div className="relative z-10 grid lg:grid-cols-5 gap-12 items-center">
+                        <div className="relative z-10 grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
                         <div className="lg:col-span-2">
-                            <span className="text-xs font-black uppercase tracking-[0.4em] text-corex-accent mb-6 block">Interactive Tools</span>
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
-                                Plan your future <br />
+                            <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.4em] text-corex-accent mb-4 sm:mb-6 block">Interactive Tools</span>
+                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-6 sm:mb-8">
+                                Plan your future <br className="hidden sm:block" />
                                 with <span className="text-corex-accent italic">Precision</span>.
                             </h2>
-                            <p className="text-gray-400 text-lg mb-10 font-medium">
+                            <p className="text-gray-400 text-sm sm:text-lg mb-8 sm:mb-10 font-medium">
                                 Visualize your wealth trajectory. Adjust the sliders to see how small, consistent steps can lead to significant long-term growth.
                             </p>
-                            <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+                            <div className="bg-white/5 p-5 sm:p-6 rounded-2xl border border-white/10">
                                 <div className="flex items-center gap-4 mb-4">
                                     <div className="w-10 h-10 rounded-xl bg-corex-accent/20 flex items-center justify-center">
                                         <TrendingUp className="text-corex-accent h-5 w-5" />
@@ -623,11 +623,11 @@ const Home = ({ onExploreClick, homeData }) => {
                             </div>
                         </div>
 
-                        <div className="lg:col-span-3 grid md:grid-cols-2 gap-8">
-                            <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-10 rounded-[40px] flex flex-col justify-between h-full">
+                        <div className="lg:col-span-3 grid md:grid-cols-2 gap-6 sm:gap-8">
+                            <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-6 sm:p-8 lg:p-10 rounded-[32px] sm:rounded-[40px] flex flex-col justify-between h-full">
                                 <div>
                                     <h3 className="text-gray-400 font-black text-xs uppercase tracking-widest mb-10">Maturity Estimation</h3>
-                                    <p className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter mb-4">₹{maturityValue.toLocaleString()}</p>
+                                    <p className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter mb-4 break-all">₹{maturityValue.toLocaleString()}</p>
                                     <p className="text-corex-accent font-black text-sm uppercase tracking-widest">Total Estimated Value</p>
                                 </div>
                                 <div className="mt-12 space-y-4">
@@ -649,7 +649,7 @@ const Home = ({ onExploreClick, homeData }) => {
                                     const i = idx + 1; // Align index with calculators array
                                     const IconCmp = iconsMap[calc.icon];
                                     return (
-                                        <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-[32px] flex flex-col justify-between hover:bg-white/10 transition-all group">
+                                        <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 sm:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col justify-between hover:bg-white/10 transition-all group">
                                             <div>
                                                 <div className="flex justify-between items-center mb-6">
                                                     <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-corex-accent transition-colors">
@@ -671,7 +671,7 @@ const Home = ({ onExploreClick, homeData }) => {
                                                             initial={{ opacity: 0, height: 0 }}
                                                             animate={{ opacity: 1, height: 'auto' }}
                                                             exit={{ opacity: 0, height: 0 }}
-                                                            className="pt-6 border-t border-white/10 space-y-6 text-left"
+                                                            className="pt-6 border-t border-white/10 space-y-6 text-left overflow-hidden"
                                                         >
                                                             <div className="space-y-4">
                                                                 <div>
@@ -709,7 +709,7 @@ const Home = ({ onExploreClick, homeData }) => {
                                                             initial={{ opacity: 0, height: 0 }}
                                                             animate={{ opacity: 1, height: 'auto' }}
                                                             exit={{ opacity: 0, height: 0 }}
-                                                            className="pt-6 border-t border-white/10 space-y-6 text-left"
+                                                            className="pt-6 border-t border-white/10 space-y-6 text-left overflow-hidden"
                                                         >
                                                             <div className="space-y-4">
                                                                 <div>

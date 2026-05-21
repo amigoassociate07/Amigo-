@@ -301,7 +301,7 @@ const LumpsumDetail = ({ onBackClick }) => {
 
                             <div className="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
                                 <div>
-                                    <p className="text-[8px] font-black uppercase tracking-widest text-slate-300">3Y Returns</p>
+                                    <p className="text-[8px] font-black uppercase tracking-widest text-slate-400">3Y Returns</p>
                                     <p className="text-xs font-black text-blue-500">{fund.returns}</p>
                                 </div>
                                 <button 
