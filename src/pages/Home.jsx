@@ -284,7 +284,7 @@ const Home = ({ onExploreClick, homeData }) => {
                             transition={{ duration: 0.8 }}
                             className="text-center lg:text-left flex flex-col items-center lg:items-start"
                         >
-                            <div className="glass-pill bg-slate-50 border-corex-navy/10 text-corex-navy mb-6 sm:mb-10 lg:mb-6 xl:mb-10">
+                            <div className="glass-pill mt-10 sm:mt-0 bg-slate-50 border-corex-navy/10 text-corex-navy mb-6 sm:mb-10 lg:mb-6 xl:mb-10">
                                 <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-corex-accent" />
                                 <div className="glass-pill bg-yellow-400/10 border-yellow-500/20 text-yellow-600">
                                     <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> Educational Purpose Only
