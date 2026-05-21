@@ -16,9 +16,9 @@ const Layout = ({ children, onHomeClick, onServicesClick, onPortfolioClick, onCa
     }, []);
 
     return (
-        <div className="min-h-screen flex flex-col bg-corex-gray w-full">
+        <div className="min-h-screen flex flex-col bg-corex-gray overflow-x-hidden w-full">
             {activePage !== 'admin' && (
-                <div className="sticky top-0 left-0 right-0 w-full z-50">
+                <div className="fixed top-0 left-0 right-0 w-full z-50">
                     <div className={`bg-yellow-400 px-4 text-center border-b border-yellow-500/20 overflow-hidden transition-all duration-300 ${isScrolled ? 'max-h-0 py-0 opacity-0 md:max-h-[100px] md:py-1.5 md:opacity-100' : 'max-h-[100px] py-1.5 opacity-100'}`}>
                         <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">
                             Educational Purpose Only: Amigo Associate is a study platform for academic learning and market intelligence.
@@ -38,7 +38,7 @@ const Layout = ({ children, onHomeClick, onServicesClick, onPortfolioClick, onCa
                 </div>
             )}
             
-            <main className="flex-grow">
+            <main className={`flex-grow ${activePage !== 'admin' ? 'pt-[108px]' : ''}`}>
                 {children}
             </main>
             {activePage !== 'admin' && (
